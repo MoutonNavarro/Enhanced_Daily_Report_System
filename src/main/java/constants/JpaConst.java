@@ -22,7 +22,7 @@ public interface JpaConst {
 	String EMP_COL_UPDATED_AT = "updated_at"; //Date updated
 	String EMP_COL_DELETE_FLAG = "delete_flag"; //Delete flag
 
-	int TOLE_ADMIN = 1;	//Administrator right on(Administrator)
+	int ROLE_ADMIN = 1;	//Administrator right on(Administrator)
 	int ROLE_GENERAL = 0;	//Administrator right off (General user)
 	int EMP_DEL_TRUE = 1;	//Delete flag on(Deleted)
 	int EMP_DEL_FALSE = 0;	//Delete flag off (Active)
@@ -56,7 +56,7 @@ public interface JpaConst {
 	String Q_EMP_COUNT_DEF = "SELECT COUNT(e) FROM Employee AS e";
 	//Acquire not deleted employee with employee's code and hashed password as condition
 	String Q_EMP_GET_BY_CODE_AND_PASS = ENTITY_EMP + ".getByCodeAndPass";
-	String Q_EMP_GET_BY_CODE_AND_PASS_DEF = "SELECT e FROM Employee AS e WHERE e.deleteFlag = 0 AND e.code = :" + JPQL_PARM_CODE + "AND e.password = :" + JPQL_PARM_PASSWORD;
+	String Q_EMP_GET_BY_CODE_AND_PASS_DEF = "SELECT e FROM Employee AS e WHERE e.deleteFlag = 0 AND e.code = :" + JPQL_PARM_CODE + " AND e.password = :" + JPQL_PARM_PASSWORD;
 	//Acquire number of employee that has pointed employee code
 	String Q_EMP_COUNT_REGISTERED_BY_CODE = ENTITY_EMP + ".countRegisterByCode";
 	String Q_EMP_COUNT_REGISTERED_BY_CODE_DEF = "SELECT COUNT(e) FROM Employee AS e WHERE e.code = :" + JPQL_PARM_CODE;
