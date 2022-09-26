@@ -64,9 +64,8 @@ public abstract class ActionBase {
 				| InvocationTargetException | NullPointerException e) {
 			//Displays occurred exception at console
 			e.printStackTrace();
-throw new Error(e);
 			//In case cannot to run because command's value is illegal then call error screen
-//			forward(ForwardConst.FW_ERR_UNKNOWN);
+			forward(ForwardConst.FW_ERR_UNKNOWN);
 		}
 	}
 
