@@ -17,7 +17,7 @@ public interface JpaConst {
 	String EMP_COL_CODE = "code"; //Employee code
 	String EMP_COL_NAME = "name"; //Employee name
 	String EMP_COL_PASS = "password"; //Password
-	String EMP_COL_ADMIN_FLAG = "admin-flag"; //Administrator flag
+	String EMP_COL_ADMIN_FLAG = "admin_flag"; //Administrator flag
 	String EMP_COL_CREATED_AT = "created_at"; //Date created
 	String EMP_COL_UPDATED_AT = "updated_at"; //Date updated
 	String EMP_COL_DELETE_FLAG = "delete_flag"; //Delete flag
@@ -32,7 +32,7 @@ public interface JpaConst {
 	//Report table column
 	String REP_COL_ID = "id";	//ID
 	String REP_COL_EMP = "employee_id";	//Employee's ID who created the report
-	String REP_COL_REP_DATE = "report-date"; //Date indicating when the report is
+	String REP_COL_REP_DATE = "report_date"; //Date indicating when the report is
 	String REP_COL_TITLE = "title";	//The report's title
 	String REP_COL_CONTENT = "content"; //content of the report
 	String REP_COL_CREATED_AT = "created_at";	//Date created
