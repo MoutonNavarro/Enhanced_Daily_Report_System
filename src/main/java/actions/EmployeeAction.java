@@ -9,6 +9,8 @@ import actions.views.EmployeeView;
 import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
+import constants.MessageConst;
+import constants.PropertyConst;
 import services.EmployeeService;
 
 /**
@@ -73,6 +75,50 @@ public class EmployeeAction extends ActionBase {
 
 		//Displays new register screen
 		forward(ForwardConst.FW_EMP_NEW);
+	}
+
+	/**
+	 * Registering new employee
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void create()throws ServletException, IOException{
+		//Check anti-CSRF token
+		if (checkToken()) {
+			//Create instance of employee information based on parameter value
+			EmployeeView ev = new EmployeeView(
+				null,	getRequestParam(AttributeConst.EMP_CODE),
+				getRequestParam(AttributeConst.EMP_NAME),
+				getRequestParam(AttributeConst.EMP_PASS),
+				toNumber(getRequestParam(AttributeConst.EMP_ADMIN_FLG)),
+				null,	null,	AttributeConst.DEL_FLAG_FALSE.getIntegerValue());
+
+			//Acquire pepper string from the application scope
+			String pepper = getContextScope(PropertyConst.PEPPER);
+
+			//Registering the employee information
+			List<String> errors = service.create(ev, pepper);
+
+			if(errors.size() > 0) {
+				//when errors occurred at registration
+
+				putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
+				putRequestScope(AttributeConst.EMPLOYEE, ev);	//Input employee information
+				putRequestScope(AttributeConst.ERR, errors);		//List of errors
+
+				//Re-display new register screen
+				forward(ForwardConst.FW_EMP_NEW);
+			}else {
+				//When no errors occurred at registration
+
+				//Set message about registration successful at the session
+				putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());
+
+				//Redirect to list screen
+				redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);
+			}
+		}
+
 	}
 
 }

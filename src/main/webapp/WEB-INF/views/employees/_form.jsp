@@ -19,6 +19,10 @@
 <input type="text" name="${AttributeConst.EMP_CODE.getValue()}" id="${AttributeConst.EMP_CODE.getValue()}" value="${employee.code}" />
 <br><br>
 
+<label for="${AttributeConst.EMP_NAME.getValue()}">Name</label><br>
+<input type="text" name="${AttributeConst.EMP_NAME.getValue()}" id="${AttributeConst.EMP_NAME.getValue()}" value="${employee.name}" />
+<br><br>
+
 <label for="${AttributeConst.EMP_PASS.getValue()}">Password</label><br>
 <input type="password" name="${AttributeConst.EMP_PASS.getValue()}" id="${AttributeConst.EMP_PASS.getValue()}" />
 <br><br>

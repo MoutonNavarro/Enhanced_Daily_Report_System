@@ -95,7 +95,7 @@ public abstract class ActionBase {
 		//Construct the URL
 		String redirectUrl = request.getContextPath() + "/?action=" + action.getValue();
 		if (command != null) {
-			redirectUrl = redirectUrl + "^command=" + command.getValue();
+			redirectUrl = redirectUrl + "&command=" + command.getValue();
 		}
 
 		//Redirect to the URL
