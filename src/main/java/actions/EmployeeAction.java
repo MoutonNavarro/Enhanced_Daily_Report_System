@@ -165,4 +165,49 @@ public class EmployeeAction extends ActionBase {
 		forward(ForwardConst.FW_EMP_EDIT);
 	}
 
+	/**
+	 * Updating
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void update() throws ServletException, IOException{
+
+		//Anti-CSRF token check
+		if (checkToken()) {
+			//Create the instance of employee information based on the parameter's value
+			EmployeeView ev = new EmployeeView(
+				toNumber(getRequestParam(AttributeConst.EMP_ID)),
+				getRequestParam(AttributeConst.EMP_CODE),
+				getRequestParam(AttributeConst.EMP_NAME),
+				getRequestParam(AttributeConst.EMP_PASS),
+				toNumber(getRequestParam(AttributeConst.EMP_ADMIN_FLG)),
+				null,	null,	AttributeConst.DEL_FLAG_FALSE.getIntegerValue());
+
+			//Acquires pepper string from the application scope
+			String pepper = getContextScope(PropertyConst.PEPPER);
+
+			//Update employee information
+			List<String> errors = service.update(ev, pepper);
+
+			if(errors.size() > 0) {
+				//In case errors occurred at updating
+
+				putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
+				putRequestScope(AttributeConst.EMPLOYEE, ev);	//Input employee information
+				putRequestScope(AttributeConst.ERR, errors);	//List of errors
+
+				//Re-displays edit screen
+				forward(ForwardConst.FW_EMP_EDIT);
+			}else {
+				//In case no errors occurred at updating
+
+				//Set update complete flush message at the session
+				putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage());
+
+				//Redirect to the list screen
+				redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);
+			}
+		}
+	}
+
 }
