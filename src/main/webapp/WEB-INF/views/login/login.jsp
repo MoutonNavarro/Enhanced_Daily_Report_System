@@ -8,7 +8,7 @@
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
 	<c:param name="content">
-		<c:if test="${liginError}">
+		<c:if test="${loginError}">
 			<div id="flush_error">
 				The employee code or password or both are incorrect.
 			</div>
