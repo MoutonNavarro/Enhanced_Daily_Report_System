@@ -210,4 +210,23 @@ public class EmployeeAction extends ActionBase {
 		}
 	}
 
+	/**
+	 * Logical deleting
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void destroy() throws ServletException, IOException{
+		//Anti-CSRF token check
+		if(checkToken()) {
+			//Logical delete the employee data with ID as condition
+			service.destroy(toNumber(getRequestParam(AttributeConst.EMP_ID)));
+
+			//Set delete complete flush message at the session
+			putSessionScope(AttributeConst.FLUSH, MessageConst.I_DELETED.getMessage());
+
+			//Redirect to the list screen
+			redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);
+		}
+	}
+
 }
