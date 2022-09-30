@@ -41,6 +41,34 @@
 				</c:if>
 			</div>
 			<div id="content">${param.content}</div>
+			<c:if test="${sessionScope.login_employee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">
+				<div id="debug_area">
+					<p><a href="#" onclick="openDebug();" id="debug_menu_open">Open debug menu</a></p>
+<div id="debug_menu">
+	<ul>
+		<li>Change color</li>
+		<li>Change background-color</li>
+		<li>Change language</li>
+		<li>Change time zone</li>
+		<li>Play music</li>
+	</ul>
+</div>
+					<script>
+						document.getElementById("debug_menu").style.display="none";
+						function openDebug(){
+							const dm = document.getElementById("debug_menu");
+							const dmo = document.getElementById("debug_menu_open");
+							if(dm.style.display=="block"){
+								dm.style.display = "none";
+								dmo.innerText = "Open debug menu";
+							}else{
+								dm.style.display = "block";
+								dmo.innerText = "Close debug menu";
+							}
+						}
+					</script>
+				</div>
+			</c:if>
 			<div id="footer">by Mouton Navarro.</div>
 		</div>
 
