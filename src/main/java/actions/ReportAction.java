@@ -185,4 +185,45 @@ public class ReportAction extends ActionBase {
 			forward(ForwardConst.FW_REP_EDIT);
 		}
 	}
+
+	/**
+	 * Updating
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void update() throws ServletException, IOException{
+		//Anti-CSRF token check
+		if(checkToken()) {
+
+			//Acquires the report data with ID as condition
+			ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
+
+			//Set input content of the report
+			rv.setReportDate(toLocalDate(getRequestParam(AttributeConst.REP_DATE)));
+			rv.setTitle(getRequestParam(AttributeConst.REP_TITLE));
+			rv.setContent(getRequestParam(AttributeConst.REP_CONTENT));
+
+			//Update the report data
+			List<String> errors = service.update(rv);
+
+			if(errors.size() > 0) {
+				//In case errors occurred at updating
+
+				putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
+				putRequestScope(AttributeConst.REPORT, rv);	//Input the report information
+				putRequestScope(AttributeConst.ERR, errors);	//List of errors
+
+				//Re-displays edit screen
+				forward(ForwardConst.FW_REP_EDIT);
+			}else {
+				//In case there isn't errors occurred
+
+				//Set flush message of update complete at the session
+				putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage());
+
+				//Redirect to the list screen
+				redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+			}
+		}
+	}
 }

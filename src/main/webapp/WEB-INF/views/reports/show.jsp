@@ -8,7 +8,7 @@
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
-	<c:param name="content">\
+	<c:param name="content">
 		<H2>Daily report detail page</H2>
 
 		<table>
