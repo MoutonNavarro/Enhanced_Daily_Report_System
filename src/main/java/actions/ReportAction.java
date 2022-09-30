@@ -137,4 +137,25 @@ public class ReportAction extends ActionBase {
 		}
 
 	}
+
+	/**
+	 * Displays detail screen
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void show() throws ServletException, IOException{
+
+		//Acquires the report data with ID as condition
+		ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
+
+		if (rv == null) {
+			//Displays error screen if corresponds report data is not exists
+			forward(ForwardConst.FW_ERR_UNKNOWN);
+		}else {
+			putRequestScope(AttributeConst.REPORT, rv);
+
+			//Displays detail screen
+			forward(ForwardConst.FW_REP_SHOW);
+		}
+	}
 }
