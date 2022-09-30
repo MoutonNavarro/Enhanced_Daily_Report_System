@@ -158,4 +158,31 @@ public class ReportAction extends ActionBase {
 			forward(ForwardConst.FW_REP_SHOW);
 		}
 	}
+
+	/**
+	 * Displays edit screen
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void edit() throws ServletException, IOException{
+
+		//Acquires the report data with ID as condition
+		ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
+
+		//Acquires logged in employee information from the session
+		EmployeeView ev = (EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP);
+
+		if(rv == null || ev.getId() != rv.getEmployee().getId()) {
+			//If corresponds report data is not exists or
+			//logged in employee is not the creator then displays error screen
+			forward(ForwardConst.FW_ERR_UNKNOWN);
+		}else {
+
+			putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
+			putRequestScope(AttributeConst.REPORT, rv);	//Acquired report data
+
+			//Displays edit screen
+			forward(ForwardConst.FW_REP_EDIT);
+		}
+	}
 }
