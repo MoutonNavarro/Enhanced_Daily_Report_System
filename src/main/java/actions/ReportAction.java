@@ -1,6 +1,7 @@
 package actions;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -61,4 +62,21 @@ public class ReportAction extends ActionBase {
 		forward(ForwardConst.FW_REP_INDEX);
 	}
 
+	/**
+	 * Displays new registration screen
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void entryNew() throws ServletException, IOException{
+
+		putRequestScope(AttributeConst.TOKEN, getTokenId());	//the token for anti-CSRF
+
+		//Set the report's date = today's date to empty instance of report information
+		ReportView rv = new ReportView();
+		rv.setReportDate(LocalDate.now());
+		putRequestScope(AttributeConst.REPORT, rv);	//Report instance with set only date
+
+		//Displays new registration screen
+		forward(ForwardConst.FW_REP_NEW);
+	}
 }
