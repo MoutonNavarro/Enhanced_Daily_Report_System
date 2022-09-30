@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -39,6 +40,7 @@ import lombok.Setter;
 @Setter //Automatically create setter about all class field (Lombok)
 @NoArgsConstructor //Automatically create no arguments constructor
 @AllArgsConstructor //Automatically create constructor with arguments that has all class field as argument (Lombok)
+@Entity
 public class Report {
 	/**
 	 * id

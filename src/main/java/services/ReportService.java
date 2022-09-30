@@ -9,7 +9,7 @@ import actions.views.ReportConverter;
 import actions.views.ReportView;
 import constants.JpaConst;
 import models.Report;
-import models.ReportValidator;
+import models.validators.ReportValidator;
 
 /**
  * Class that do process relative to operation of the report table
@@ -79,7 +79,7 @@ public class ReportService extends ServiceBase {
 
 	/**
 	 * Create one data based on input content of the report from screen, and register at the report table
-	 * @param rv Registeration content of the report
+	 * @param rv Registration content of the report
 	 * @return List of the errors occurred at validation
 	 */
 	public List<String> create(ReportView rv){
