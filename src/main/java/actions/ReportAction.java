@@ -6,10 +6,12 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 
+import actions.views.EmployeeView;
 import actions.views.ReportView;
 import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
+import constants.MessageConst;
 import services.ReportService;
 
 /**
@@ -78,5 +80,61 @@ public class ReportAction extends ActionBase {
 
 		//Displays new registration screen
 		forward(ForwardConst.FW_REP_NEW);
+	}
+
+	/**
+	 * Do registration
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	public void create() throws ServletException, IOException{
+
+		//Anti-CSRF token check
+		if (checkToken()) {
+
+			//Set today's date if there isn't input date at the report
+			LocalDate day = null;
+			if(getRequestParam(AttributeConst.REP_DATE) == null
+				|| getRequestParam(AttributeConst.REP_DATE).equals("")) {
+				day = LocalDate.now();
+			}else {
+				day = LocalDate.parse(getRequestParam(AttributeConst.REP_DATE));
+			}
+			//Acquire logged in employee from the session
+			EmployeeView ev = (EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP);
+
+			//Create an instance of the report based on the parameter's value
+			ReportView rv = new ReportView(
+				null,
+				ev,	//Register logged in employee as a report creator
+				day,
+				getRequestParam(AttributeConst.REP_TITLE),
+				getRequestParam(AttributeConst.REP_CONTENT),
+				null,
+				null);
+
+			//Register the report information
+			List<String> errors = service.create(rv);
+
+			if(errors.size() > 0) {
+				//Errors occurred at registration
+
+				putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
+				putRequestScope(AttributeConst.REPORT, rv);	//Input the report information
+				putRequestScope(AttributeConst.ERR, errors);	//List of errors
+
+				//Re-display the new registration screen
+				forward(ForwardConst.FW_REP_NEW);
+			}else {
+				//In case no errors occurred
+
+				//Set flush message of registration complete at the session
+				putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());
+
+				//Redirect to the list screen
+				redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+			}
+		}
+
 	}
 }
