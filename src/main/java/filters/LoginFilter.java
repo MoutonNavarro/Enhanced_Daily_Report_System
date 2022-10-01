@@ -45,6 +45,19 @@ public class LoginFilter implements Filter {
 
 		if (servletPath.matches("/css.*")) {
 			//Exclude authentication process in css folder
+			try {
+				if (servletPath.equals("/css/debug.css") && 	//Except to debug.css
+						(((EmployeeView)
+							((HttpServletRequest) request).getSession().getAttribute(AttributeConst.LOGIN_EMP.getValue())
+						).getAdminFlag() != AttributeConst.ROLE_ADMIN.getIntegerValue())){
+					throw null;
+				}
+			}catch (NullPointerException e) {
+				String forward = String.format("/WEB-INF/views/%s.jsp", "error/unknown");
+				RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
+				dispatcher.forward(request, response);
+				return;
+			}
 			chain.doFilter(request, response);
 		}else {
 			HttpSession session = ((HttpServletRequest) request).getSession();

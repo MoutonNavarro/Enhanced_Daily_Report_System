@@ -18,6 +18,8 @@
 		<title>Daily report management system</title>
 		<link rel="stylesheet" href="<c:url value='/css/reset.css' />">
 		<link rel="stylesheet" href="<c:url value='/css/style.css' />">
+		<c:if test="${sessionScope.login_employee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">	<link rel="stylesheet" href="<c:url value='/css/debug.css' />"></c:if>
+
 	</head>
 	<body>
 		<div id="wrapper">
