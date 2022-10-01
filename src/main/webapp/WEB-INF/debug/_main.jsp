@@ -6,23 +6,23 @@
 		<div id="debug_menu">
 				<p><a href="#" onclick="openChangeColor();" id="open_change_color" >Change color</a></p>
 <div id="debug_changeColor" style="display:none">
-	test<br>test
+	<c:import url="/WEB-INF/debug/_changeColor.jsp" />
 </div>
 				<p><a href="#" onclick="openChangeBackground();" id="open_change_bgcolor">Change background-color</a></p>
 <div id="debug_changeBackground" style="display:none">
-	test<br>test
+	<c:import url="/WEB-INF/debug/_changeBackground.jsp" />
 </div>
 				<p><a href="#" onclick="openChangeLanguage();" id="open_change_language">Change language</a></p>
 <div id="debug_changeLanguage" style="display:none">
-	test<br>test
+	<p>Not available</p>
 </div>
 				<p><a href="#" onclick="openChangeTimeZone();" id="open_change_time_zone">Change time zone</a></p>
 <div id="debug_changeTimeZone" style="display:none">
-	test<br>test
+	<p>Not available</p>
 </div>
 				<p><a href="#" onclick="openPlayMusic();" id="open_play_music">Play music</a></p>
 <div id="debug_playMusic" style="display:none">
-	test<br>test
+	<p>Not available</p>
 </div>
 		</div>
 		<c:import url='/WEB-INF/debug/_script.jsp' />
