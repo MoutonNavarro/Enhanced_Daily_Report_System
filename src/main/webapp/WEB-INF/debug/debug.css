@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+#debug_area{
+	padding-left: 5%;
+}
+#debug_area a{
+	padding-left: 5%;
+	padding: 6px;
+	margin-left: 0px;
+	color : #FFFF00;
+	background-color: #666666;
+/*	text-decoration: underline;*/
+}
+#debug_menu{
+	padding-top: 6px;
+	padding-bottom: 6px;
+	padding-left: 6px;
+	padding-right: 6px;
+	margin-top: 10px;
+	margin-left: 6%;
+	color : #FFFF00;
+	background-color: #666666;
+	color: #FFFF00;
+	width: 76%;
+}
+#debug_menu a{
+	color : #FFFF00;
+	background-color: #666666;
+}
+#debug_menu p{
+	margin-top: 6px;
+	margin-bottom: 5px;
+}
+#debug_menu div{
+	padding-left: 30px;
+}
