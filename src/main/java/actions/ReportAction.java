@@ -75,7 +75,7 @@ public class ReportAction extends ActionBase {
 
 		//Set the report's date = today's date to empty instance of report information
 		ReportView rv = new ReportView();
-		rv.setReportDate(LocalDate.now());
+		rv.setReportDate(LocalDate.now());	//[Locked] We must implements the function of the time zone setting
 		putRequestScope(AttributeConst.REPORT, rv);	//Report instance with set only date
 
 		//Displays new registration screen
@@ -96,7 +96,7 @@ public class ReportAction extends ActionBase {
 			LocalDate day = null;
 			if(getRequestParam(AttributeConst.REP_DATE) == null
 				|| getRequestParam(AttributeConst.REP_DATE).equals("")) {
-				day = LocalDate.now();
+				day = LocalDate.now();	//[Locked] We must implements the function of the time zone setting
 			}else {
 				day = LocalDate.parse(getRequestParam(AttributeConst.REP_DATE));
 			}

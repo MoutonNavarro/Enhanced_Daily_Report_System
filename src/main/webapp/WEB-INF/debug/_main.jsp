@@ -14,11 +14,11 @@
 </div>
 				<p><a href="#" onclick="openChangeLanguage();" id="open_change_language">Change language</a></p>
 <div id="debug_changeLanguage" style="display:none">
-	<p>Not available</p>
+	<p>[Locked]We must implements the function of the language setting</p>
 </div>
 				<p><a href="#" onclick="openChangeTimeZone();" id="open_change_time_zone">Change time zone</a></p>
 <div id="debug_changeTimeZone" style="display:none">
-	<p>Not available</p>
+	<p>[Locked]We must implements the function of the time zone setting</p>
 </div>
 				<p><a href="#" onclick="openPlayMusic();" id="open_play_music">Play music</a></p>
 <div id="debug_playMusic" style="display:none">
