@@ -1,6 +1,7 @@
 package services;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 import actions.views.EmployeeConverter;
@@ -85,7 +86,7 @@ public class ReportService extends ServiceBase {
 	public List<String> create(ReportView rv){
 		List<String> errors = ReportValidator.validate(rv);
 		if (errors.size() == 0) {
-			LocalDateTime ldt = LocalDateTime.now();
+			LocalDateTime ldt = LocalDateTime.now(ZoneId.of("UTC"));	//Acquire current time as Coordinated Universal Time
 			rv.setCreatedAt(ldt);
 			rv.setUpdatedAt(ldt);
 			createInternal(rv);
@@ -107,7 +108,7 @@ public class ReportService extends ServiceBase {
 
 		if (errors.size() == 0) {
 			//Set current time at date updated
-			LocalDateTime ldt = LocalDateTime.now();
+			LocalDateTime ldt = LocalDateTime.now(ZoneId.of("UTC"));	//Acquire current time as Coordinated Universal Time
 			rv.setUpdatedAt(ldt);
 
 			updateInternal(rv);
