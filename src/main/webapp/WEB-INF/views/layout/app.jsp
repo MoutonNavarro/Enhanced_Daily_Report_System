@@ -7,9 +7,11 @@
 <c:set var="actEmp" value="${ForwardConst.ACT_EMP.getValue()}" />
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 <c:set var="actAuth" value="${ForwardConst.ACT_AUTH.getValue()}" />
+<c:set var="actConf" value="${ForwardConst.ACT_CONFIG.getValue()}" />
 
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commOut" value="${ForwardConst.CMD_LOGOUT.getValue()}" />
+<c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,6 +49,16 @@
 				<c:import url="/WEB-INF/debug/_main.jsp" />
 			</c:if>
 			<div id="footer">by Mouton Navarro.</div>
+			<a href="<c:url value='?action=${actConf}&command=${commEdt}' />" >Setting</a>
+			<c:if test="${sessionScope.configure != null}">
+				<p>Your current configure</p>
+				<ul>
+					<li>Foreground color: <c:out value="${sessionScope.configure.color}" /></li>
+					<li>Background colour: <c:out value="${sessionScope.configure.backgroundColor}" /></li>
+					<li>Language: <c:out value="${sessionScope.configure.language}" /></li>
+					<c:if test="false"><li>time zone: <c:out value="${sessionScope.configure.timezone}" /></li></c:if>
+				</ul>
+			</c:if>
 		</div>
 
 	</body>

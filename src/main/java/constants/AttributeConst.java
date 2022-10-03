@@ -47,7 +47,14 @@ public enum AttributeConst {
 	REP_ID("id"),
 	REP_DATE("report_date"),
 	REP_TITLE("title"),
-	REP_CONTENT("content_msg");
+	REP_CONTENT("content_msg"),
+
+	//Configure
+	CONFIG("configure"),
+	CONFIG_COLOR("color"),
+	CONFIG_BG("background"),
+	CONFIG_LANGUAGE("language"),
+	CONFIG_TIMEZONE("timezone");
 
 	private final String text;
 	private final Integer i;

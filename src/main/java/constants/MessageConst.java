@@ -20,7 +20,11 @@ public enum MessageConst {
 	E_NOEMP_CODE("Please input the employee code."),
 	E_EMP_CODE_EXIST("The information of input employee code is already exists."),
 	E_NOTITLE("Please input title."),
-	E_NOCONTENT("Please input the content.");
+	E_NOCONTENT("Please input the content."),
+
+	//Configure
+	I_CONFIG_UPDATED("Your Configure is updated."),
+	I_CONFIG_UPDATED_TEMP("Your Configure is updated. the setting will be removed when you ended the browser.");
 
 	/**
 	 * Character string
