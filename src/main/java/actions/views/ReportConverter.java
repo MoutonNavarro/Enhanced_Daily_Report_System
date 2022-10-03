@@ -19,7 +19,7 @@ public class ReportConverter {
 	public static Report toModel(ReportView rv) {
 		return new Report(rv.getId(),	EmployeeConverter.toModel(rv.getEmployee()),
 			rv.getReportDate(),	rv.getTitle(),	rv.getContent(),
-			rv.getCreatedAt().minusHours(9),	rv.getUpdatedAt().minusHours(9));	//Remove UTC+09:00 for model(temporary)
+			rv.getCreatedAt(),	rv.getUpdatedAt());
 	}
 
 	/**
@@ -62,6 +62,6 @@ public class ReportConverter {
 		r.setId(rv.getId());	r.setEmployee(EmployeeConverter.toModel(rv.getEmployee()));
 		r.setReportDate(rv.getReportDate());	r.setTitle(rv.getTitle());
 		r.setContent(rv.getContent());
-		r.setCreatedAt(rv.getCreatedAt().minusHours(9));	r.setUpdatedAt(rv.getUpdatedAt().minusHours(9));	//Set UTC+09:00 for model(temporary)
+		r.setCreatedAt(rv.getCreatedAt().minusHours(9));	r.setUpdatedAt(rv.getUpdatedAt());
 	}
 }

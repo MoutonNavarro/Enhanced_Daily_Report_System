@@ -22,7 +22,7 @@ public class EmployeeConverter {
 				ev.getAdminFlag() == null ? null
 						: ev.getAdminFlag() == AttributeConst.ROLE_ADMIN.getIntegerValue()
 								? JpaConst.ROLE_ADMIN : JpaConst.ROLE_GENERAL,
-				ev.getCreatedAt().minusHours(9), ev.getUpdatedAt().minusHours(9),	//Remove UTC+09:00 for model(temporary)
+				ev.getCreatedAt(), ev.getUpdatedAt(),
 				ev.getDeleteFlag() == null ? null
 						: ev.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()
 								? JpaConst.EMP_DEL_TRUE : JpaConst.EMP_DEL_FALSE);
@@ -72,7 +72,7 @@ public class EmployeeConverter {
 	public static void copyViewToModel(Employee e, EmployeeView ev) {
 		e.setId(ev.getId());	e.setCode(ev.getCode());	e.setName(ev.getName());
 		e.setPassword(ev.getPassword());			e.setAdminFlag(ev.getAdminFlag());
-		e.setCreatedAt(ev.getCreatedAt().minusHours(9));		e.setUpdatedAt(ev.getUpdatedAt().minusHours(9));	//Remove UTC+09:00 for model(temporary)
+		e.setCreatedAt(ev.getCreatedAt().minusHours(9));		e.setUpdatedAt(ev.getUpdatedAt());	//Remove UTC+09:00 from date created for model(temporary)
 		e.setDeleteFlag(ev.getDeleteFlag());
 
 	}
