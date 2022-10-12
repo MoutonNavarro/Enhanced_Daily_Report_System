@@ -35,7 +35,7 @@ public class ReportConverter {
 
 		return new ReportView(r.getId(), EmployeeConverter.toView(r.getEmployee()),
 			r.getReportDate(),	r.getTitle(),	r.getContent(),
-			r.getCreatedAt().plusHours(9),	r.getUpdatedAt().plusHours(9));	//Set UTC+09:00 for view(temporary)
+			r.getCreatedAt(),	r.getUpdatedAt());
 	}
 
 	/**
@@ -61,7 +61,7 @@ public class ReportConverter {
 	public static void copyViewToModel(Report r, ReportView rv) {
 		r.setId(rv.getId());	r.setEmployee(EmployeeConverter.toModel(rv.getEmployee()));
 		r.setReportDate(rv.getReportDate());	r.setTitle(rv.getTitle());
-		r.setContent(rv.getContent());
-		r.setCreatedAt(rv.getCreatedAt().minusHours(9));	r.setUpdatedAt(rv.getUpdatedAt());
+		r.setContent(rv.getContent());	r.setCreatedAt(rv.getCreatedAt());
+		r.setUpdatedAt(rv.getUpdatedAt());
 	}
 }

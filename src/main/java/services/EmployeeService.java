@@ -1,7 +1,6 @@
 package services;
 
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -100,7 +99,7 @@ public class EmployeeService extends ServiceBase {
 		ev.setPassword(pass);
 
 		//Date registered and date updated are set current time
-		LocalDateTime now = LocalDateTime.now(ZoneId.of("UTC"));	//Acquire current time as Coordinated Universal Time
+		LocalDateTime now = LocalDateTime.now();
 		ev.setCreatedAt(now);
 		ev.setUpdatedAt(now);
 
@@ -150,7 +149,7 @@ public class EmployeeService extends ServiceBase {
 		savedEmp.setAdminFlag(ev.getAdminFlag());	//Set administrator flag after changes
 
 		//Set current time at date updated
-		LocalDateTime today = LocalDateTime.now(ZoneId.of("UTC"));	//Acquire current time as Coordinated Universal Time
+		LocalDateTime today = LocalDateTime.now();
 		savedEmp.setUpdatedAt(today);
 
 		//Validate about the update content
@@ -174,7 +173,7 @@ public class EmployeeService extends ServiceBase {
 		EmployeeView savedEmp = findOne(id);
 
 		//Set current time at date registered
-		LocalDateTime today = LocalDateTime.now(ZoneId.of("UTC"));	//Acquire current time as Coordinated Universal Time
+		LocalDateTime today = LocalDateTime.now();
 		savedEmp.setUpdatedAt(today);
 
 		//Raise a logical delete flag
