@@ -15,24 +15,26 @@
 			action="<c:url value='?action=${action}&command=${commUpd}' />">
 
 <label for="${AttributeConst.CONFIG_COLOR.getValue()}">Foreground color</label><br>
-<input type="text" name="${AttributeConst.CONFIG_COLOR.getValue()}" id="${AttributeConst.CONFIG_COLOR.getValue()}" value="${configure.color}" />
+<input type="text" name="${AttributeConst.CONFIG_COLOR.getValue()}" id="${AttributeConst.CONFIG_COLOR.getValue()}" value="${configure.user_color}" />
 <br><br>
 
-<label for="${AttributeConst.CONFIG_BG.getValue()}">Background colour</label><br>
-<input type="text" name="${AttributeConst.CONFIG_BG.getValue()}" id="${AttributeConst.CONFIG_BG.getValue()}" value="${configure.backgroundColor}" />
-<br><br>
+<c:if test="${false}">
+	<label for="${AttributeConst.CONFIG_BG.getValue()}">Background colour</label><br>
+	<input type="text" name="${AttributeConst.CONFIG_BG.getValue()}" id="${AttributeConst.CONFIG_BG.getValue()}" value="${configure.user_background}" />
+	<br><br>
 
-<label for="${AttributeConst.CONFIG_LANGUAGE.getValue()}">Language</label><br>
-<input type="text" name="${AttributeConst.CONFIG_LANGUAGE.getValue()}" id="${AttributeConst.CONFIG_LANGUAGE.getValue()}" value="${configure.language}" />
-<br><br>
+	<label for="${AttributeConst.CONFIG_LANGUAGE.getValue()}">Language</label><br>
+	<input type="text" name="${AttributeConst.CONFIG_LANGUAGE.getValue()}" id="${AttributeConst.CONFIG_LANGUAGE.getValue()}" value="${configure.language}" />
+	<br><br>
 
-<input type="hidden" name="${AttributeConst.CONFIG_TIMEZONE.getValue()}" value="${configure.timezone}" />
+	<input type="hidden" name="${AttributeConst.CONFIG_TIMEZONE.getValue()}" value="${configure.time_zone}" />
+</c:if>
 
 <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
 <button type="submit">Submit</button>		</form>
 
 		<p>
-			<a href="<c:url value='?action=${actTop}&command=${commIdx}}' />">Go to top page</a>
+			<a href="<c:url value='?action=${actTop}&command=${commIdx}' />">Go to top page</a>
 		</p>
 	</c:param>
 </c:import>

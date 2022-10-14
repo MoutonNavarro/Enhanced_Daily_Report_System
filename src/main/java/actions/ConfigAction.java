@@ -1,21 +1,33 @@
 package actions;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.servlet.ServletException;
 
 import actions.views.ConfigureView;
+import actions.views.EmployeeView;
 import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.MessageConst;
+import services.ConfigureService;
 
 public class ConfigAction extends ActionBase {
 
+	private ConfigureService service;
+
 	@Override
 	public void process() throws ServletException, IOException {
+		try {
+			service = new ConfigureService();
 
-		//Run method
-		invoke();
+			//Run method
+			invoke();
+
+		}finally{
+			service.close();
+		}
 
 	}
 
@@ -28,8 +40,11 @@ public class ConfigAction extends ActionBase {
 		//[Temporary] We must configure the databese for configure function
 		putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
 		ConfigureView cv = getSessionScope(AttributeConst.CONFIG);	//Get ConfigureView from the session if there.
-		if (cv == null) {
-			cv = new ConfigureView("", "", "", "UTC+09:00");	//Empty Employee instance
+		if (cv == null && null == (cv = service.findOne(((EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP)).getId()))) {
+			LocalDateTime ldt = LocalDateTime.now();
+			int id = ((EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP)).getId();
+			cv = new ConfigureView(id, ldt, ldt, "eng", "", "UTC+09:00", "", (byte)2, "default", false, false, "", "", false);	//Empty Configure instance
+			service.create(cv);	//The initialization timing may change after update
 //			putSessionScope(AttributeConst.CONFIG_COLOR, "");
 //			putSessionScope(AttributeConst.CONFIG_BG, "");
 //			putSessionScope(AttributeConst.CONFIG_LANGUAGE, "");
@@ -46,15 +61,24 @@ public class ConfigAction extends ActionBase {
 	 * @throws IOException
 	 */
 	public void update() throws ServletException, IOException{
-		//[Temporary] We must configure the databese for configure function
 		//check the token for anti-CSRF
-		if (checkToken()) {
-			ConfigureView cv = new ConfigureView(
-				getRequestParam(AttributeConst.CONFIG_COLOR),
-				getRequestParam(AttributeConst.CONFIG_BG),
-				getRequestParam(AttributeConst.CONFIG_LANGUAGE),
-				getRequestParam(AttributeConst.CONFIG_TIMEZONE));
-			//[Locked]We must implement the ConfigureValidator.class
+		ConfigureView cv = null;
+		if (checkToken() && null != (
+				cv = service.findOne(((EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP)).getId())
+				)){
+			//[Locked] We must implements the language constants
+//			cv.setLanguage(getRequestParam(AttributeConst.CONFIG_LANGUAGE));
+			//[Locked] We must implements the time zone function
+//			cv.setTime_zone(getRequestParam(AttributeConst.CONFIG_TIMEZONE));
+			cv.setUser_color(getRequestParam(AttributeConst.CONFIG_COLOR));
+			//[Locked] We must tunes colour management
+//			cv.setUser_background(getRequestParam(AttributeConst.CONFIG_BG));
+			//[Unlocked]ConfigureValidator.class has been implemented
+			List<String> errors = service.update(cv);
+			if (errors.size() > 0) {
+				throw new ServletException("Bad request ditected\n" + errors);
+			}
+
 			putSessionScope(AttributeConst.CONFIG, cv);
 
 			putSessionScope(AttributeConst.FLUSH, MessageConst.I_CONFIG_UPDATED.getMessage());

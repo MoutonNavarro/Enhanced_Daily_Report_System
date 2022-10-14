@@ -53,10 +53,10 @@
 			<c:if test="${sessionScope.configure != null}">
 				<p>Your current configure</p>
 				<ul>
-					<li>Foreground color: <c:out value="${sessionScope.configure.color}" /></li>
-					<li>Background colour: <c:out value="${sessionScope.configure.backgroundColor}" /></li>
+					<li>Foreground color: <c:out value="${sessionScope.configure.user_color}" /></li>
+					<li>Background colour: <c:out value="${sessionScope.configure.user_background}" /></li>
 					<li>Language: <c:out value="${sessionScope.configure.language}" /></li>
-					<c:if test="false"><li>time zone: <c:out value="${sessionScope.configure.timezone}" /></li></c:if>
+					<c:if test="false"><li>time zone: <c:out value="${sessionScope.configure.time_zone}" /></li></c:if>
 				</ul>
 			</c:if>
 		</div>

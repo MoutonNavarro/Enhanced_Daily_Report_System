@@ -72,4 +72,39 @@ public interface JpaConst {
 	//Acquire all number of reports that has created by pointed employee.
 	String Q_REP_COUNT_ALL_MINE = ENTITY_REP + ".countAllMine";
 	String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
+
+	//Enhanced
+	//Configure table
+	String TABLE_CONF = "configurations"; //table name
+	//Configure table column
+	//Visual setting
+	String CONF_COL_ID = "id"; //ID
+	String CONF_COL_CREATED_AT = "created_at"; //Date created
+	String CONF_COL_UPDATED_AT = "updated_at"; //Date updated
+	String CONF_COL_LANG = "language"; //Language
+	String CONF_COL_LANG_COUNTRY = "lang_country"; //Language of country
+	String CONF_COL_TIMEZONE = "time_zone"; //Time zone e.g: "Asia/Manila"
+	String CONF_COL_TIMEZONE_AREA = "time_area"; //Time zone of area e.g: "Manila"
+	String CONF_COL_IS_SPRING_TIME = "time_is_spring_time"; //Whether is it spring time
+	String CONF_COL_COLOR_THEME = "color_theme"; //Set color theme
+	String CONF_COL_DISABLE_JS = "disable_js"; //Turn off JavaScript
+	String CONF_COL_DISABLE_FLASH = "disable_flash"; //????
+
+	//User setting
+	String CONF_COL_USER_COLOR = "user_color"; //User submitted foreground color
+	String CONF_COL_USER_BG = "user_background"; //User submitted background color
+	String CONF_COL_IS_USER_COLOR_SPECIAL = "user_is_color_special"; //????
+
+
+	byte SPRING_TIME = 1;	//Enable spring time
+	byte NORMAL_TIME = 0;	//Normal time
+	byte UNDEF_TIME = 2;	//Undefined
+	boolean JS_DISABLED = true;	//Disabled JavaScript
+	boolean JS_ENABLED = false;	//Enabled JavaScript
+	boolean FLASH_DISABLED = true;	//????
+	boolean FLASH_ENABLED = false;	//????
+	boolean USER_COLOR_SPECIAL = true;	//????
+	boolean USER_COLOR_NORMAL = false;	//????
+
+
 }
