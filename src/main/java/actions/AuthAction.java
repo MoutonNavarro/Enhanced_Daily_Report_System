@@ -106,6 +106,7 @@ public class AuthAction extends ActionBase {
 	public void logout() throws ServletException, IOException{
 		//Delete login employee's parameter at the session
 		removeSessionScope(AttributeConst.LOGIN_EMP);
+		removeSessionScope(AttributeConst.CONFIG);
 
 		//Append flush message when logged out at the session
 		putSessionScope(AttributeConst.FLUSH, MessageConst.I_LOGOUT.getMessage());

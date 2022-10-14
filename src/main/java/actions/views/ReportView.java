@@ -51,4 +51,9 @@ public class ReportView {
 	 * Date updated
 	 */
 	private LocalDateTime updatedAt;
+
+	/**
+	 * Employee's configure
+	 */
+	private ConfigureView configure;
 }

@@ -9,7 +9,7 @@ import actions.views.ConfigureView;
 import models.Configure;
 import models.validators.ConfigureValidator;
 
-public class ConfigureService extends ServiceBase {
+public final class ConfigureService extends ServiceBase implements AutoCloseable{
 
 
 	/**

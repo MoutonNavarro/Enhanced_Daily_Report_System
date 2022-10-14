@@ -54,7 +54,9 @@ public enum AttributeConst {
 	CONFIG_COLOR("color"),
 	CONFIG_BG("background"),
 	CONFIG_LANGUAGE("language"),
-	CONFIG_TIMEZONE("timezone");
+	CONFIG_TIMEZONE("timezone"),
+	REP_COLORS("report_colors"),	//[temporary] it may be deleted
+	EMP_CONFIG("configure");		//[temporary] it may be deleted
 
 	private final String text;
 	private final Integer i;

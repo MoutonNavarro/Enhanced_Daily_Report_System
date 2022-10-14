@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import models.Report;
+import services.ConfigureService;
 
 /**
  * Class that mutual convert a report data's DTO model and View model
@@ -32,10 +33,15 @@ public class ReportConverter {
 		if (r == null) {
 			return null;
 		}
-
-		return new ReportView(r.getId(), EmployeeConverter.toView(r.getEmployee()),
-			r.getReportDate(),	r.getTitle(),	r.getContent(),
-			r.getCreatedAt(),	r.getUpdatedAt());
+		try (ConfigureService cs = new ConfigureService();){
+			ConfigureView cv = null;
+			if (null == (cv = cs.findOne(r.getEmployee().getId()))){
+				cv = ConfigureView.DEFAULT_CV_VIEW;
+			}
+			return new ReportView(r.getId(), EmployeeConverter.toView(r.getEmployee()),
+				r.getReportDate(),	r.getTitle(),	r.getContent(),
+				r.getCreatedAt(),	r.getUpdatedAt(), cv);
+		}
 	}
 
 	/**
