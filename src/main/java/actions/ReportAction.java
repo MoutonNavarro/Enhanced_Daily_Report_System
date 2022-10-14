@@ -2,7 +2,6 @@ package actions;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,7 +12,6 @@ import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
 import constants.MessageConst;
-import services.ConfigureService;
 import services.ReportService;
 
 /**
@@ -57,15 +55,6 @@ public class ReportAction extends ActionBase {
 		putRequestScope(AttributeConst.REP_COUNT, reportsCount);	//Number of all report data
 		putRequestScope(AttributeConst.PAGE, page);	//Number of page
 		putRequestScope(AttributeConst.MAX_ROW, JpaConst.ROW_PER_PAGE);	//Number of record for displays at one page
-		List<String> reportColors = new ArrayList<>();
-		{
-			ConfigureService cs = new ConfigureService();
-			for (int i = 0; i < reports.size(); i++) {
-				reportColors.add(cs.findOne(reports.get(i).getEmployee().getId()).getUser_color());
-			}
-			cs.close();
-		}
-		putRequestScope(AttributeConst.REP_COLORS, reportColors);
 
 		//If there is set flush message at the session then move to request scope and delete from the session
 		String flush = getSessionScope(AttributeConst.FLUSH);

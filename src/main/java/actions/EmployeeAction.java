@@ -25,12 +25,14 @@ public class EmployeeAction extends ActionBase {
 	 */
 	@Override
 	public void process() throws ServletException, IOException {
-		service = new EmployeeService();
+		try {
+			service = new EmployeeService();
 
-		//Do the method
-		invoke();
-
-		service.close();
+			//Do the method
+			invoke();
+		}finally {
+			service.close();
+		}
 
 	}
 

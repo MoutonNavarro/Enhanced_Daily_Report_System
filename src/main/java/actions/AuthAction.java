@@ -23,12 +23,16 @@ public class AuthAction extends ActionBase {
 	 */
 	@Override
 	public void process() throws ServletException, IOException {
-		service = new EmployeeService();
 
-		//Run a method
-		invoke();
+		try {
+			service = new EmployeeService();
 
-		service.close();
+			//Run a method
+			invoke();
+		}finally {
+			service.close();
+		}
+
 	}
 
 	/**
