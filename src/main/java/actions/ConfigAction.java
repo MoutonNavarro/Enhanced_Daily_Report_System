@@ -10,6 +10,7 @@ import actions.views.ConfigureView;
 import actions.views.EmployeeView;
 import constants.AttributeConst;
 import constants.ForwardConst;
+import constants.JpaConst;
 import constants.MessageConst;
 import services.ConfigureService;
 
@@ -79,7 +80,10 @@ public class ConfigAction extends ActionBase {
 				throw new ServletException("Bad request ditected\n" + errors);
 			}
 
-			putSessionScope(AttributeConst.CONFIG, cv);
+
+			if (((EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP)).getAdminFlag() == JpaConst.ROLE_ADMIN) {
+				putSessionScope(AttributeConst.CONFIG, cv);
+			}
 
 			putSessionScope(AttributeConst.FLUSH, MessageConst.I_CONFIG_UPDATED.getMessage());
 			redirect(ForwardConst.ACT_TOP, ForwardConst.CMD_INDEX);
