@@ -27,7 +27,7 @@
 				<c:forEach var="report" items="${reports}" varStatus="status">
 					<fmt:parseDate value="${report.reportDate}" pattern="yyyy-MM-dd" var="reportDay" type="date" />
 
-					<tr class="row${status.count % 2}" style="color:<c:out value='${report.configure.user_color}' />;">
+					<tr class="row${status.count % 2}"<c:if test="${report.configure.id != null}"> style="color:<c:out value='${report.configure.user_color}' />;"</c:if>>
 						<td class="report_name"><c:out value="${report.employee.name}" /></td>
 						<td class="report_date"><fmt:formatDate value='${reportDay}' pattern='MM/dd/yyyy' /></td>
 						<td class="report_title">${report.title}</td>
