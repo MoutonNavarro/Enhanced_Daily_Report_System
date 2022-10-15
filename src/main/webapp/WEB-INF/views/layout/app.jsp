@@ -40,6 +40,7 @@
 						Hi!&nbsp;
 						<c:out value="${sessionScope.login_employee.name}" />
 						&nbsp;&nbsp;&nbsp;
+						<a href="<c:url value='?action=${actConf}&command=${commEdt}' />">Setting</a>&nbsp;&nbsp;&nbsp;
 						<a href="<c:url value='?action=${actAuth}&command=${commOut}' />">Logout</a>
 					</div>
 				</c:if>
@@ -49,15 +50,17 @@
 				<c:import url="/WEB-INF/debug/_main.jsp" />
 			</c:if>
 			<div id="footer">by Mouton Navarro.</div>
-			<a href="<c:url value='?action=${actConf}&command=${commEdt}' />" >Setting</a>
-			<c:if test="${sessionScope.configure != null}">
-				<p>Your current configure</p>
-				<ul>
-					<li>Foreground color: <c:out value="${sessionScope.configure.user_color}" /></li>
-					<li>Background colour: <c:out value="${sessionScope.configure.user_background}" /></li>
-					<li>Language: <c:out value="${sessionScope.configure.language}" /></li>
-					<c:if test="false"><li>time zone: <c:out value="${sessionScope.configure.time_zone}" /></li></c:if>
-				</ul>
+			<c:if test="${sessionScope.login_employee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">
+				<a href="<c:url value='?action=${actConf}&command=${commEdt}' />" >Setting</a>
+				<c:if test="${sessionScope.configure != null}">
+					<p>Your current configure</p>
+					<ul>
+						<li>Foreground color: <c:out value="${sessionScope.configure.user_color}" /></li>
+						<li>Background colour: <c:out value="${sessionScope.configure.user_background}" /></li>
+						<li>Language: <c:out value="${sessionScope.configure.language}" /></li>
+						<c:if test="false"><li>time zone: <c:out value="${sessionScope.configure.time_zone}" /></li></c:if>
+					</ul>
+				</c:if>
 			</c:if>
 		</div>
 
