@@ -3,6 +3,7 @@ package actions.views;
 import java.util.ArrayList;
 import java.util.List;
 
+import colors.ColorNameEnum;
 import models.Report;
 import services.ConfigureService;
 
@@ -37,6 +38,10 @@ public class ReportConverter {
 			ConfigureView cv = null;
 			if (null == (cv = cs.findOne(r.getEmployee().getId()))){
 				cv = ConfigureView.DEFAULT_CV_VIEW;
+			}
+			ColorNameEnum nullCheck = null;
+			if (null != (nullCheck = ColorNameEnum.getByName(cv.getUser_color()))) {
+				cv.setUser_color(nullCheck.getCode());
 			}
 			return new ReportView(r.getId(), EmployeeConverter.toView(r.getEmployee()),
 				r.getReportDate(),	r.getTitle(),	r.getContent(),

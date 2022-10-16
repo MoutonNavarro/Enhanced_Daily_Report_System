@@ -12,7 +12,7 @@
 		<H2>Daily report detail page</H2>
 
 		<table>
-			<tbody<c:if test="${report.configure.id != null}"> style="color:<c:out value='${report.configure.user_color}' />;"</c:if>>
+			<tbody<c:if test="${report.configure.user_color != ''}"> style="color:<c:out value='${report.configure.user_color}' />;"</c:if>>
 				<tr>
 					<th>Name</th>
 					<td><c:out value="${report.employee.name}" /></td>
