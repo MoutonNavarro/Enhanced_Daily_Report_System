@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="constants.ForwardConst" %>
 <%@ page import="constants.AttributeConst" %>
+<%@ page import="colors.ColorNameEnum" %>
 
 <c:set var="action" value="${ForwardConst.ACT_CONFIG.getValue()}" />
 <c:set var="actTop" value="${ForwardConst.ACT_TOP.getValue()}" />
@@ -16,35 +17,20 @@
 
 <label for="${AttributeConst.CONFIG_COLOR.getValue()}">Foreground color</label><br>
 <select name="${AttributeConst.CONFIG_COLOR.getValue()}" id="${AttributeConst.CONFIG_COLOR.getValue()}" >
-	<option value="Default"<c:if test="${configure.user_color == 'Default'}"> selected</c:if> >Default</option>
-	<option value="Pink" style="color:pink;"<c:if test="${configure.user_color == 'Pink'}"> selected</c:if> >Pink</option>
-	<option value="Yellow" style="color:Yellow;"<c:if test="${configure.user_color == 'Yellow'}"> selected</c:if> >Yellow</option>
-	<option value="Green" style="color:Green;"<c:if test="${configure.user_color == 'Green'}"> selected</c:if> >Green</option>
-	<option value="Blue" style="color:Blue;"<c:if test="${configure.user_color == 'Blue'}"> selected</c:if> >Blue</option>
-	<option value="Red" style="color:red;"<c:if test="${configure.user_color == 'Red'}"> selected</c:if> >Red</option>
-	<option value="Black" style="color:Black;"<c:if test="${configure.user_color == 'Black'}"> selected</c:if> >Black</option>
-	<option value="Sibyas" style="color:#A54200;"<c:if test="${configure.user_color == 'Sibuyas'}"> selected</c:if> >Sibuyas</option>
-	<option value="Berde" style="color:#31572A;"<c:if test="${configure.user_color == 'Berde'}"> selected</c:if> >Berde</option>
-	<option value="Asul" style="color:#5E4266;"<c:if test="${configure.user_color == 'Asul'}"> selected</c:if> >Asul</option>
-	<option value="Kulay Rosas" style="color:#FF3B60;"<c:if test="${configure.user_color == 'Kulay Rosas'}"> selected</c:if> >Kulay Rosas</option>
-	<option value="Kulay Ube" style="color:#36425C;"<c:if test="${configure.user_color == 'Kulay Ube'}"> selected</c:if> >Kulay Ube</option>
+	<option value="${ColorNameEnum.DEFAULT.getName()}"<c:if test="${configure.user_color == ColorNameEnum.DEFAULT.getName()}"> selected</c:if>>${ColorNameEnum.DEFAULT.getName()}</option>
+	<option value="${ColorNameEnum.PINK.getName()}" style="color:${ColorNameEnum.PINK.getCode()};"<c:if test="${configure.user_color == ColorNameEnum.PINK.getName()}"> selected</c:if>>${ColorNameEnum.PINK.getName()}</option>
+	<option value="${ColorNameEnum.YELLOW.getName()}" style="color:${ColorNameEnum.YELLOW.getCode()};"<c:if test="${configure.user_color == ColorNameEnum.YELLOW.getName()}"> selected</c:if>>${ColorNameEnum.YELLOW.getName()}</option>
+	<option value="${ColorNameEnum.GREEN.getName()}" style="color:${ColorNameEnum.GREEN.getCode()};"<c:if test="${configure.user_color == ColorNameEnum.GREEN.getName()}"> selected</c:if>>${ColorNameEnum.GREEN.getName()}</option>
+	<option value="${ColorNameEnum.BLUE.getName()}" style="color:${ColorNameEnum.BLUE.getCode()};"<c:if test="${configure.user_color == ColorNameEnum.BLUE.getName()}"> selected</c:if>>${ColorNameEnum.BLUE.getName()}</option>
+	<option value="${ColorNameEnum.RED.getName()}" style="color:${ColorNameEnum.RED.getCode()};"<c:if test="${configure.user_color == ColorNameEnum.RED.getName()}"> selected</c:if>>${ColorNameEnum.RED.getName()}</option>
+	<option value="${ColorNameEnum.BLACK.getName()}" style="color:${ColorNameEnum.BLACK.getCode()};"<c:if test="${configure.user_color == ColorNameEnum.BLACK.getName()}"> selected</c:if>>${ColorNameEnum.BLACK.getName()}</option>
+	<option value="${ColorNameEnum.SIBUYAS.getName()}" style="color:${ColorNameEnum.SIBUYAS.getCode()};"<c:if test="${configure.user_color == ColorNameEnum.SIBUYAS.getName()}"> selected</c:if>>${ColorNameEnum.SIBUYAS.getName()}</option>
+	<option value="${ColorNameEnum.BERDE.getName()}" style="color:${ColorNameEnum.BERDE.getCode()};"<c:if test="${configure.user_color == ColorNameEnum.BERDE.getName()}"> selected</c:if>>${ColorNameEnum.BERDE.getName()}</option>
+	<option value="${ColorNameEnum.ASUL.getName()}" style="color:${ColorNameEnum.ASUL.getCode()};"<c:if test="${configure.user_color == ColorNameEnum.ASUL.getName()}"> selected</c:if>>${ColorNameEnum.ASUL.getName()}</option>
+	<option value="${ColorNameEnum.KULAY_ROSAS.getName()}" style="color:${ColorNameEnum.KULAY_ROSAS.getCode()};"<c:if test="${configure.user_color == ColorNameEnum.KULAY_ROSAS.getName()}"> selected</c:if>>${ColorNameEnum.KULAY_ROSAS.getName()}</option>
+	<option value="${ColorNameEnum.KULAY_UBE.getName()}" style="color:${ColorNameEnum.KULAY_UBE.getCode()};"<c:if test="${configure.user_color == ColorNameEnum.KULAY_UBE.getName()}"> selected</c:if>>${ColorNameEnum.KULAY_UBE.getName()}</option>
 </select>
 <br><br>
-
-<c:if test="${false}">
-	<input type="text" name="${AttributeConst.CONFIG_COLOR.getValue()}" id="${AttributeConst.CONFIG_COLOR.getValue()}" value="${configure.user_color}" />
-	<br><br>
-
-	<label for="${AttributeConst.CONFIG_BG.getValue()}">Background colour</label><br>
-	<input type="text" name="${AttributeConst.CONFIG_BG.getValue()}" id="${AttributeConst.CONFIG_BG.getValue()}" value="${configure.user_background}" />
-	<br><br>
-
-	<label for="${AttributeConst.CONFIG_LANGUAGE.getValue()}">Language</label><br>
-	<input type="text" name="${AttributeConst.CONFIG_LANGUAGE.getValue()}" id="${AttributeConst.CONFIG_LANGUAGE.getValue()}" value="${configure.language}" />
-	<br><br>
-
-	<input type="hidden" name="${AttributeConst.CONFIG_TIMEZONE.getValue()}" value="${configure.time_zone}" />
-</c:if>
 
 <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
 <button type="submit">Submit</button>		</form>
