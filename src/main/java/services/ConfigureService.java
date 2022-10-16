@@ -6,6 +6,7 @@ import java.util.List;
 
 import actions.views.ConfigureConverter;
 import actions.views.ConfigureView;
+import colors.ColorNameEnum;
 import models.Configure;
 import models.validators.ConfigureValidator;
 
@@ -35,6 +36,9 @@ public final class ConfigureService extends ServiceBase implements AutoCloseable
 			//Set current time at date updated
 			LocalDateTime ldt = LocalDateTime.now();
 			cv.setUpdatedAt(ldt);
+			if (ColorNameEnum.getByName(cv.getUser_color()) == null) {
+				cv.setUser_color(ColorNameEnum.getByCode(cv.getUser_color()).getName());
+			}
 
 			updateInternal(cv);
 		}
