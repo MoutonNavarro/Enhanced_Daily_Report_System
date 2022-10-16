@@ -21,10 +21,12 @@ public enum MessageConst {
 	E_EMP_CODE_EXIST("The information of input employee code is already exists."),
 	E_NOTITLE("Please input title."),
 	E_NOCONTENT("Please input the content."),
+	E_NO_SUCH_USER_COLOR("No such color name in user color"),
 
 	//Configure
 	I_CONFIG_UPDATED("Your Configure is updated."),
 	I_CONFIG_UPDATED_TEMP("Your Configure is updated. the setting will be removed when you ended the browser.");
+
 
 	/**
 	 * Character string
