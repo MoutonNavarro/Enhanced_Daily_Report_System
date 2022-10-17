@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * employee data's DTO model
+ * configure data's DTO model
  */
 @Table(name = JpaConst.TABLE_CONF)
 @Getter //Automatically create getter about all class fields(Lombok)

@@ -15,6 +15,14 @@
 		<form method="POST"
 			action="<c:url value='?action=${action}&command=${commUpd}' />">
 
+<c:if test="${errors != null}">
+	<div id="flush_error">
+		Errors in input content.<br>
+		<c:forEach var="error" items="${errors}">
+			*<c:out value="${error}" /><br>
+		</c:forEach>
+	</div>
+</c:if>
 <label for="${AttributeConst.CONFIG_COLOR.getValue()}">Foreground color</label><br>
 <select name="${AttributeConst.CONFIG_COLOR.getValue()}" id="${AttributeConst.CONFIG_COLOR.getValue()}" >
 	<option value="${ColorNameEnum.DEFAULT.getName()}"<c:if test="${configure.user_color == ColorNameEnum.DEFAULT.getName()}"> selected</c:if>>${ColorNameEnum.DEFAULT.getName()}</option>

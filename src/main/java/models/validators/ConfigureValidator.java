@@ -27,7 +27,7 @@ public class ConfigureValidator {
 		String userColorError = null;
 		//[Unlocked] We implemented color constants for foreground
 		if (null == (checkNull = cv.getUser_color())) {
-			seriousErrors.add("User_color is null");
+			System.err.println("cv = null");
 		}else if (!"".equals(userColorError = validateUserColor((String)checkNull))) {
 			errors.add(userColorError);
 		}
@@ -44,6 +44,7 @@ public class ConfigureValidator {
 		if (ColorNameEnum.getByName(user_color) == null && ColorNameEnum.getByCode(user_color) == null) {
 			return MessageConst.E_NO_SUCH_USER_COLOR.getMessage();
 		}
+
 		return "";	//No errors detected then empty string
 	}
 

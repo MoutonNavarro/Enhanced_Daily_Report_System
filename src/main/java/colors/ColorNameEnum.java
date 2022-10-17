@@ -55,7 +55,7 @@ public enum ColorNameEnum {
 	 */
 	public static ColorNameEnum getByCode(String code) {
 		return Arrays.stream(ColorNameEnum.values())
-			.filter(data -> data.getName().equalsIgnoreCase(code))
+			.filter(data -> data.getCode().equalsIgnoreCase(code))
 			.findFirst()
 			.orElse(null);
 	}

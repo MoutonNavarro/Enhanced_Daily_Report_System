@@ -14,7 +14,7 @@ public final class ConfigureService extends ServiceBase implements AutoCloseable
 
 
 	/**
-	 * Return acquired data with ID as condition as EmployeeView's instance
+	 * Return acquired data with Employee ID as condition as ConfigureView's instance
 	 * @param id
 	 * @return Acquired instance (the ID's instance does not found then null)
 	 */

@@ -22,7 +22,7 @@ public class ConfigureConverter {
 
 	/**
 	 * Create View model's instance from DTO model's instance
-	 * @param e Configure's instance
+	 * @param c Configure's instance
 	 * @return ConfigureView's instance
 	 */
 	public static ConfigureView toView(Configure c) {
@@ -40,7 +40,7 @@ public class ConfigureConverter {
 
 	/**
 	 * Copy all field's content of View model to DTO model's field
-	 * @param e DTO model (copy to)
+	 * @param c DTO model (copy to)
 	 * @param cv View model (copy from)
 	 */
 	public static void copyViewToModel(Configure c, ConfigureView cv) {

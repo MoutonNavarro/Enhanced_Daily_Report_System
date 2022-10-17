@@ -77,7 +77,13 @@ public class ConfigAction extends ActionBase {
 			//[Unlocked]ConfigureValidator.class has been implemented
 			List<String> errors = service.update(cv);
 			if (errors.size() > 0) {
-				throw new ServletException("Bad request ditected\n" + errors);
+				putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
+				putRequestScope(AttributeConst.CONFIG, cv);	//Input the report information
+				putRequestScope(AttributeConst.ERR, errors);	//List of errors
+
+				//Re-displays edit screen
+				forward(ForwardConst.FW_CONFIG);
+				return;
 			}
 
 
