@@ -106,5 +106,25 @@ public interface JpaConst {
 	boolean USER_COLOR_SPECIAL = true;	//????
 	boolean USER_COLOR_NORMAL = false;	//????
 
+	//Clap table
+	String TABLE_CLAP = "claps"; //table name
+	//Clap table column
+	String CLAP_COL_REP = "report_id"; //Relative to the report ID
+	String CLAP_COL_EMP = "employee_id"; //Clapped employee ID
+	String CLAP_COL_REACT = "reaction"; //Type of reaction
+
+	//Entity names
+	String ENTITY_CLAP = "claps";	//Employees
+
+	//NamedQuery's name and query
+	//Acquire all employee whose clapped that report
+	String Q_CLAP_GET_ALL = ENTITY_CLAP + ".getAll";	//name
+	String Q_CLAP_GET_ALL_DEF = "SELECT c FROM Clap AS c WHERE c.report_id";	//query
+	//Acquire all number of employees whose clapped that report
+	String Q_CLAP_COUNT = ENTITY_CLAP + ".count";
+	String Q_CLAP_COUNT_DEF = "SELECT COUNT(c) FROM Clap AS c WHERE c.report_id";
+	//Acquire all report that specified employee clapped
+	String Q_CLAP_GET_BY_EMP = ENTITY_CLAP + ".getByEmployee";
+	String Q_CLAP_GET_BY_EMP_DEF = "SELECT c FROM Clap AS c WHERE c.empoyee_id = :" + JPQL_PARM_EMPLOYEE;
 
 }
