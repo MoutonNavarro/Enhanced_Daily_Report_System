@@ -156,6 +156,7 @@ public class ReportAction extends ActionBase {
 			forward(ForwardConst.FW_ERR_UNKNOWN);
 		}else {
 			putRequestScope(AttributeConst.REPORT, rv);
+			putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
 
 			//Displays detail screen
 			forward(ForwardConst.FW_REP_SHOW);

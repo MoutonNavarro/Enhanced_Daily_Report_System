@@ -46,6 +46,7 @@ public interface JpaConst {
 	String JPQL_PARM_CODE = "code";	//Employee code
 	String JPQL_PARM_PASSWORD = "password";	//Password
 	String JPQL_PARM_EMPLOYEE = "employee";	//Employee
+	String JPQL_PARM_REPORT = "report";	//Report
 
 	//NamedQuery's name and query
 	//Acquire all employee with reverse order of ID
@@ -125,6 +126,13 @@ public interface JpaConst {
 	String Q_CLAP_COUNT_DEF = "SELECT COUNT(c) FROM Clap AS c WHERE c.report_id";
 	//Acquire all report that specified employee clapped
 	String Q_CLAP_GET_BY_EMP = ENTITY_CLAP + ".getByEmployee";
-	String Q_CLAP_GET_BY_EMP_DEF = "SELECT c FROM Clap AS c WHERE c.empoyee_id = :" + JPQL_PARM_EMPLOYEE;
+	String Q_CLAP_GET_BY_EMP_DEF = "SELECT c FROM Clap AS c WHERE c.employee_id = :" + JPQL_PARM_EMPLOYEE;
+	//Acquire all report that specified report and employee
+	String Q_CLAP_GET_BY_REP_AND_EMP = ENTITY_CLAP + ".getByReportAndEmployee";
+	String Q_CLAP_GET_BY_REP_AND_EMP_DEF = "SELECT c FROM Clap AS c WHERE c.employee_id = :" + JPQL_PARM_EMPLOYEE  + " AND c.report_id = :" + JPQL_PARM_REPORT;
+
+	int CLAP_REACT_CLAP = 1;	//Clap
+	int CLAP_REACT_NONE = 0;	//Nothing
+
 
 }

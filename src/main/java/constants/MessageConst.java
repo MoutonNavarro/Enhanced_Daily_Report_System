@@ -25,7 +25,9 @@ public enum MessageConst {
 
 	//Configure
 	I_CONFIG_UPDATED("Your Configure is updated."),
-	I_CONFIG_UPDATED_TEMP("Your Configure is updated. the setting will be removed when you ended the browser.");
+	I_CONFIG_UPDATED_TEMP("Your Configure is updated. the setting will be removed when you ended the browser."),
+	I_CLAPPED("You clapped the report"),
+	I_UNDID_CLAP("You undid clap the report");
 
 
 	/**
