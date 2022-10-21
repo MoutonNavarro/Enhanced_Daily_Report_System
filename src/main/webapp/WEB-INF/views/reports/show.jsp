@@ -13,6 +13,11 @@
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
 	<c:param name="content">
+		<c:if test="${flush != null}">
+			<div id="flush_success">
+				<c:out value="${flush}" />
+			</div>
+		</c:if>
 		<H2>Daily report detail page</H2>
 
 		<table>
@@ -48,6 +53,12 @@
 			<input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
 			<button type="submit"><c:choose><c:when test='${is_clapped}'>You clapped</c:when><c:otherwise>Clap</c:otherwise></c:choose> (${clap_count})</button>
 		</form>
+		<c:if test="${clap_count > 0}">
+			<p>Clappes:&nbsp;
+			<c:forEach var="clap" items="${claps}">
+				[${clap.employee_name}]&nbsp;&nbsp;
+			</c:forEach></p>
+		</c:if>
 		<c:if test="${sessionScope.login_employee.id == report.employee.id}">
 			<p>
 				<a href="<c:url value='?action=${actRep}&command=${commEdt}&id=${report.id}' />">Edit this report</a>

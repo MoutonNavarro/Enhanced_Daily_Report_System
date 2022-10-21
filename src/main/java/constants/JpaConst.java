@@ -113,6 +113,7 @@ public interface JpaConst {
 	String CLAP_COL_REP = "report_id"; //Relative to the report ID
 	String CLAP_COL_EMP = "employee_id"; //Clapped employee ID
 	String CLAP_COL_REACT = "reaction"; //Type of reaction
+	String CLAP_COL_ID = "id";
 
 	//Entity names
 	String ENTITY_CLAP = "claps";	//Employees
@@ -120,19 +121,20 @@ public interface JpaConst {
 	//NamedQuery's name and query
 	//Acquire all employee whose clapped that report
 	String Q_CLAP_GET_ALL = ENTITY_CLAP + ".getAll";	//name
-	String Q_CLAP_GET_ALL_DEF = "SELECT c FROM Clap AS c WHERE c.report_id = :" + JPQL_PARM_REPORT;	//query
+	String Q_CLAP_GET_ALL_DEF = "SELECT c FROM Clap AS c WHERE c.report_id = :" + JPQL_PARM_REPORT + " ORDER BY c.id DESC";	//query
 	//Acquire all number of employees whose clapped that report
 	String Q_CLAP_COUNT = ENTITY_CLAP + ".count";
 	String Q_CLAP_COUNT_DEF = "SELECT COUNT(c) FROM Clap AS c WHERE c.report_id = :" + JPQL_PARM_REPORT;
 	//Acquire all report that specified employee clapped
 	String Q_CLAP_GET_BY_EMP = ENTITY_CLAP + ".getByEmployee";
-	String Q_CLAP_GET_BY_EMP_DEF = "SELECT c FROM Clap AS c WHERE c.employee_id = :" + JPQL_PARM_EMPLOYEE;
+	String Q_CLAP_GET_BY_EMP_DEF = "SELECT c FROM Clap AS c WHERE c.employee_id = :" + JPQL_PARM_EMPLOYEE + " ORDER BY c.id DESC";
 	//Acquire all report that specified report and employee
 	String Q_CLAP_GET_BY_REP_AND_EMP = ENTITY_CLAP + ".getByReportAndEmployee";
-	String Q_CLAP_GET_BY_REP_AND_EMP_DEF = "SELECT c FROM Clap AS c WHERE c.employee_id = :" + JPQL_PARM_EMPLOYEE  + " AND c.report_id = :" + JPQL_PARM_REPORT;
+	String Q_CLAP_GET_BY_REP_AND_EMP_DEF = "SELECT c FROM Clap AS c WHERE c.employee_id = :" + JPQL_PARM_EMPLOYEE + " AND c.report_id = :" + JPQL_PARM_REPORT + " ORDER BY c.id DESC";
 
 	int CLAP_REACT_CLAP = 1;	//Clap
 	int CLAP_REACT_NONE = 0;	//Nothing
+
 
 
 }

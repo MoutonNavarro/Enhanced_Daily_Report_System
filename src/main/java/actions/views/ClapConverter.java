@@ -13,7 +13,7 @@ public class ClapConverter {
 	 * @throws NullPointerException In case that null argument
 	 */
 	public static Clap toModel(ClapView cv) {
-		return new Clap(cv.getReport_id(),	cv.getEmployee_id(),	cv.getReaction());
+		return new Clap(cv.getId(), cv.getReport_id(),	cv.getEmployee_id(),	cv.getReaction());
 	}
 
 	/**
@@ -27,7 +27,7 @@ public class ClapConverter {
 			return null;
 		}
 
-		return new ClapView(c.getReport_id(),	c.getEmployee_id(),	c.getReaction());
+		return new ClapView(c.getId(), c.getReport_id(),	c.getEmployee_id(),	c.getReaction());
 	}
 
 	/**
@@ -36,7 +36,7 @@ public class ClapConverter {
 	 * @param cv View model (copy from)
 	 */
 	public static void copyViewToModel(Clap c, ClapView cv) {
-		c.setReport_id(cv.getReport_id());	c.setEmployee_id(cv.getEmployee_id());	c.setReaction(cv.getReaction());
+		c.setId(cv.getId());	c.setReport_id(cv.getReport_id());	c.setEmployee_id(cv.getEmployee_id());	c.setReaction(cv.getReaction());
 
 	}
 

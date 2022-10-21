@@ -14,6 +14,10 @@ import lombok.Setter;
 @AllArgsConstructor //Automatically create constructor with arguments that has all class field as argument
 public class ClapView {
 	/**
+	 * Clap ID
+	 */
+	private Integer id;
+	/**
 	 * Report ID
 	 */
 	private Integer report_id;

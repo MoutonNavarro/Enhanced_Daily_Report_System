@@ -44,7 +44,7 @@ public final class ClapService extends ServiceBase implements AutoCloseable{
 		}
 		//[Locked] We must implements the other type of reaction
 		if (errors.size() == 0) {
-			createInternal(new Clap(rep_id, emp_id, reaction));
+			createInternal(new Clap(null, rep_id, emp_id, reaction));
 		}
 
 
@@ -129,6 +129,7 @@ public final class ClapService extends ServiceBase implements AutoCloseable{
 		em.getTransaction().begin();
 		Clap c = findOneInternal(rep_id, emp_id);
 		em.remove(c);
+//		c.setReaction(0);
 		em.getTransaction().commit();
 	}
 

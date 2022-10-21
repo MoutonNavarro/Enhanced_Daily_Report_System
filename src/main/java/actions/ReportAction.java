@@ -172,6 +172,12 @@ public class ReportAction extends ActionBase {
 				}
 			}
 
+			//If there is set flush message at the session then move to request scope and delete from the session
+			String flush = getSessionScope(AttributeConst.FLUSH);
+			if(flush != null) {
+				putRequestScope(AttributeConst.FLUSH, flush);
+				removeSessionScope(AttributeConst.FLUSH);
+			}
 			//Displays detail screen
 			forward(ForwardConst.FW_REP_SHOW);
 		}

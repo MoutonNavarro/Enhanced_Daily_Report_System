@@ -2,6 +2,8 @@ package models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -19,9 +21,9 @@ import lombok.Setter;
 @Table(name = JpaConst.TABLE_CLAP)
 @NamedQueries({
 	@NamedQuery(name = JpaConst.Q_CLAP_GET_ALL,
-		query = JpaConst.Q_CLAP_GET_ALL_DEF), //!
+		query = JpaConst.Q_CLAP_GET_ALL_DEF),
 	@NamedQuery(name = JpaConst.Q_CLAP_COUNT,
-		query = JpaConst.Q_CLAP_COUNT_DEF), //!
+		query = JpaConst.Q_CLAP_COUNT_DEF),
 	@NamedQuery(name = JpaConst.Q_CLAP_GET_BY_EMP,
 		query = JpaConst.Q_CLAP_GET_BY_EMP_DEF),
 	@NamedQuery(name = JpaConst.Q_CLAP_GET_BY_REP_AND_EMP,
@@ -34,9 +36,16 @@ import lombok.Setter;
 @Entity
 public class Clap {
 	/**
-	 * Report ID
+	 * Clap ID
 	 */
 	@Id
+	@Column(name = JpaConst.CLAP_COL_ID, nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	/**
+	 * Report ID
+	 */
+//	@Id
 	@Column(name = JpaConst.CLAP_COL_REP, nullable = false)
 	private Integer report_id;
 	/**

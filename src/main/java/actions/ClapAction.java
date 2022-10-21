@@ -46,8 +46,8 @@ public class ClapAction extends ActionBase {
 			}else {
 				putSessionScope(AttributeConst.FLUSH, MessageConst.I_CLAPPED.getMessage());
 			}
-			//Redirect to the list screen
-			redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+			//Redirect to the detail screen
+			redirectInternal(ForwardConst.ACT_REP, ForwardConst.CMD_SHOW, toNumber(getRequestParam(AttributeConst.REP_ID)));
 			return;
 		}
 		forward(ForwardConst.FW_ERR_UNKNOWN);
@@ -70,12 +70,31 @@ public class ClapAction extends ActionBase {
 			}else {
 				putSessionScope(AttributeConst.FLUSH, MessageConst.I_UNDID_CLAP.getMessage());
 			}
-			//Redirect to the list screen
-			redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+			//Redirect to the detail screen
+			redirectInternal(ForwardConst.ACT_REP, ForwardConst.CMD_SHOW, toNumber(getRequestParam(AttributeConst.REP_ID)));
 			return;
 		}
 		forward(ForwardConst.FW_ERR_UNKNOWN);
 
+	}
+
+	/**
+	 * Construct URL and do redirect with ID
+	 * @param action Value that set to the parameter
+	 * @param command Value that set to the parameter
+	 * @param id Value that set to the parameter
+	 * @throws ServletException
+	 * @throws IOException
+	 */
+	private void redirectInternal(ForwardConst action, ForwardConst command, int id) throws ServletException, IOException{
+		//Construct the URL
+		String redirectUrl = request.getContextPath() + "/?action=" + action.getValue();
+		if (command != null) {
+			redirectUrl = redirectUrl + "&command=" + command.getValue() + "&id=" + id;
+		}
+
+		//Redirect to the URL
+		response.sendRedirect(redirectUrl);
 	}
 
 }
