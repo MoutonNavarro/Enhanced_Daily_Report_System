@@ -49,6 +49,11 @@ public class ReportAction extends ActionBase {
 		//Acquires report data for displays list screen of number of specified page
 		int page = getPage();
 		List<ReportView> reports = service.getAllPerPage(page);
+		try(ClapService cs = new ClapService()){
+			for (ReportView report : reports) {
+				report.setClaps(cs.countAllByReport(report.getId()));
+			}
+		}
 
 		//Acquires number of all report data
 		long reportsCount = service.countAll();
@@ -116,7 +121,7 @@ public class ReportAction extends ActionBase {
 				getRequestParam(AttributeConst.REP_TITLE),
 				getRequestParam(AttributeConst.REP_CONTENT),
 				null,
-				null, null);
+				null, null, null);
 
 			//Register the report information
 			List<String> errors = service.create(rv);
@@ -159,17 +164,11 @@ public class ReportAction extends ActionBase {
 		}else {
 			putRequestScope(AttributeConst.REPORT, rv);
 			putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
-			{
-				ClapService cs = null;
-				try {
-					cs = new ClapService();
-					putRequestScope(AttributeConst.CLAP, ClappedEmployeeView.toList(cs.getClapsAllByReport(rv.getId())));	//All claps at the report
-					putRequestScope(AttributeConst.CLAP_COUNT, cs.countAllByReport(rv.getId()));	//count of clap at this report
-					EmployeeView ev = (EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP);
-					putRequestScope(AttributeConst.IS_CLAPPED, cs.isEmployeeReactedTheReport(rv.getId(), ev.getId()));	//Should we have primitive value as arguments?
-				}finally {
-					cs.close();
-				}
+			try (ClapService cs = new ClapService()){
+				putRequestScope(AttributeConst.CLAP, ClappedEmployeeView.toList(cs.getClapsAllByReport(rv.getId())));	//All claps at the report
+				putRequestScope(AttributeConst.CLAP_COUNT, cs.countAllByReport(rv.getId()));	//count of clap at this report
+				EmployeeView ev = (EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP);
+				putRequestScope(AttributeConst.IS_CLAPPED, cs.isEmployeeReactedTheReport(rv.getId(), ev.getId()));	//Should we have primitive value as arguments?
 			}
 
 			//If there is set flush message at the session then move to request scope and delete from the session
@@ -177,6 +176,11 @@ public class ReportAction extends ActionBase {
 			if(flush != null) {
 				putRequestScope(AttributeConst.FLUSH, flush);
 				removeSessionScope(AttributeConst.FLUSH);
+			}
+			List<String> errors = getSessionScope(AttributeConst.ERR);
+			if(errors != null) {
+				putRequestScope(AttributeConst.ERR, errors);
+				removeSessionScope(AttributeConst.ERR);
 			}
 			//Displays detail screen
 			forward(ForwardConst.FW_REP_SHOW);

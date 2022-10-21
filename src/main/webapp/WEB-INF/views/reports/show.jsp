@@ -18,6 +18,13 @@
 				<c:out value="${flush}" />
 			</div>
 		</c:if>
+		<c:if test="${errors != null}">
+			<div id="flush_error">
+				<c:forEach var="error" items="${errors}">
+					*<c:out value="${error}" /><br>
+				</c:forEach>
+			</div>
+		</c:if>
 		<H2>Daily report detail page</H2>
 
 		<table>
@@ -54,7 +61,7 @@
 			<button type="submit"><c:choose><c:when test='${is_clapped}'>You clapped</c:when><c:otherwise>Clap</c:otherwise></c:choose> (${clap_count})</button>
 		</form>
 		<c:if test="${clap_count > 0}">
-			<p>Clappes:&nbsp;
+			<p>Clapped:&nbsp;
 			<c:forEach var="clap" items="${claps}">
 				[${clap.employee_name}]&nbsp;&nbsp;
 			</c:forEach></p>
