@@ -43,7 +43,16 @@ public enum ForwardConst {
 	ACT_CONFIG("Config"),
 
 	//jsp
-	FW_CONFIG("configure/config");
+	FW_CONFIG("configure/config"),
+
+	//for reactions
+	//action
+	ACT_CLAP("Clap"),
+
+	//command
+	CMD_DO_REACTION("doReaction"),
+	CMD_UNDO_REACTION("undoReaction");
+
 
 	/**
 	 * Character strings

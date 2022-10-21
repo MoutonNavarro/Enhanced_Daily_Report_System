@@ -75,15 +75,40 @@ public final class ClapService extends ServiceBase implements AutoCloseable{
 	}
 
 	/**
+	 * Returns claps with report ID
+	 * @param rep_id Report ID
+	 * @return List of the claps
+	 */
+	public List<Clap> getClapsAllByReport(int rep_id){
+		return em.createNamedQuery(JpaConst.Q_CLAP_GET_ALL, Clap.class)
+			.setParameter(JpaConst.JPQL_PARM_REPORT, rep_id).getResultList();
+	}
+
+	/**
+	 * Returns number of claps with report ID
+	 * @param rep_id Report ID
+	 * @return Number of claps at the report
+	 */
+	public long countAllByReport(int rep_id){
+		return (long)em.createNamedQuery(JpaConst.Q_CLAP_COUNT, Long.class)
+			.setParameter(JpaConst.JPQL_PARM_REPORT, rep_id).getSingleResult();
+	}
+
+	public boolean isEmployeeReactedTheReport(int rep_id, int emp_id) {	//I thought it: we should make it have object type value as it's arguments
+		return em.createNamedQuery(JpaConst.Q_CLAP_GET_BY_REP_AND_EMP, Clap.class)
+			.setParameter(JpaConst.JPQL_PARM_REPORT, rep_id)
+			.setParameter(JpaConst.JPQL_PARM_EMPLOYEE, emp_id).getResultList().size() != 0;
+	}
+
+	/**
 	 * Acquires one data with ID as condition
 	 * @param ID
 	 * @return Instance of acquired data
 	 */
 	private Clap findOneInternal(int rep_id, int emp_id) {
-		List<Clap> claps = em.createNamedQuery(JpaConst.Q_CLAP_GET_BY_REP_AND_EMP, Clap.class)
+		return em.createNamedQuery(JpaConst.Q_CLAP_GET_BY_REP_AND_EMP, Clap.class)
 			.setParameter(JpaConst.JPQL_PARM_EMPLOYEE, emp_id)
-			.setParameter(JpaConst.JPQL_PARM_REPORT, rep_id).getResultList();
-		return claps.get(0);
+			.setParameter(JpaConst.JPQL_PARM_REPORT, rep_id).getSingleResult();
 	}
 
 	/**

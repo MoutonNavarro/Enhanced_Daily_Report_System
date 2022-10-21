@@ -19,9 +19,9 @@ import lombok.Setter;
 @Table(name = JpaConst.TABLE_CLAP)
 @NamedQueries({
 	@NamedQuery(name = JpaConst.Q_CLAP_GET_ALL,
-		query = JpaConst.Q_CLAP_GET_ALL_DEF),
+		query = JpaConst.Q_CLAP_GET_ALL_DEF), //!
 	@NamedQuery(name = JpaConst.Q_CLAP_COUNT,
-		query = JpaConst.Q_CLAP_COUNT_DEF),
+		query = JpaConst.Q_CLAP_COUNT_DEF), //!
 	@NamedQuery(name = JpaConst.Q_CLAP_GET_BY_EMP,
 		query = JpaConst.Q_CLAP_GET_BY_EMP_DEF),
 	@NamedQuery(name = JpaConst.Q_CLAP_GET_BY_REP_AND_EMP,

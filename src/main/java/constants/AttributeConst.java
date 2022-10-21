@@ -55,8 +55,11 @@ public enum AttributeConst {
 	CONFIG_BG("background"),
 	CONFIG_LANGUAGE("language"),
 	CONFIG_TIMEZONE("timezone"),
-	REP_COLORS("report_colors"),	//[temporary] it may be deleted
-	EMP_CONFIG("configure");		//[temporary] it may be deleted
+
+	//Claps
+	CLAP("claps"),
+	CLAP_COUNT("clap_count"),
+	IS_CLAPPED("is_clapped");
 
 	private final String text;
 	private final Integer i;

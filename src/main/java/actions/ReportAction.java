@@ -6,12 +6,14 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 
+import actions.views.ClappedEmployeeView;
 import actions.views.EmployeeView;
 import actions.views.ReportView;
 import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
 import constants.MessageConst;
+import services.ClapService;
 import services.ReportService;
 
 /**
@@ -157,6 +159,18 @@ public class ReportAction extends ActionBase {
 		}else {
 			putRequestScope(AttributeConst.REPORT, rv);
 			putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
+			{
+				ClapService cs = null;
+				try {
+					cs = new ClapService();
+					putRequestScope(AttributeConst.CLAP, ClappedEmployeeView.toList(cs.getClapsAllByReport(rv.getId())));	//All claps at the report
+					putRequestScope(AttributeConst.CLAP_COUNT, cs.countAllByReport(rv.getId()));	//count of clap at this report
+					EmployeeView ev = (EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP);
+					putRequestScope(AttributeConst.IS_CLAPPED, cs.isEmployeeReactedTheReport(rv.getId(), ev.getId()));	//Should we have primitive value as arguments?
+				}finally {
+					cs.close();
+				}
+			}
 
 			//Displays detail screen
 			forward(ForwardConst.FW_REP_SHOW);

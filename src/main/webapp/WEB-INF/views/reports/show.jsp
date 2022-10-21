@@ -2,10 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="constants.ForwardConst" %>
+<%@ page import="constants.AttributeConst" %>
 
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
+<c:set var="actClap" value="${ForwardConst.ACT_CLAP.getValue()}" />
+<c:set var="commDoReact" value="${ForwardConst.CMD_DO_REACTION.getValue()}" />
+<c:set var="commUndoReact" value="${ForwardConst.CMD_UNDO_REACTION.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
 	<c:param name="content">
@@ -39,6 +43,11 @@
 			</tbody>
 		</table>
 
+		<form method="POST" action="<c:choose><c:when test='${is_clapped}'><c:url value='?action=${actClap}&command=${commUndoReact}' /></c:when><c:otherwise><c:url value='?action=${actClap}&command=${commDoReact}' /></c:otherwise></c:choose>">
+			<input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
+			<input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
+			<button type="submit"><c:choose><c:when test='${is_clapped}'>You clapped</c:when><c:otherwise>Clap</c:otherwise></c:choose> (${clap_count})</button>
+		</form>
 		<c:if test="${sessionScope.login_employee.id == report.employee.id}">
 			<p>
 				<a href="<c:url value='?action=${actRep}&command=${commEdt}&id=${report.id}' />">Edit this report</a>

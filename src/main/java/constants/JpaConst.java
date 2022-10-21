@@ -120,10 +120,10 @@ public interface JpaConst {
 	//NamedQuery's name and query
 	//Acquire all employee whose clapped that report
 	String Q_CLAP_GET_ALL = ENTITY_CLAP + ".getAll";	//name
-	String Q_CLAP_GET_ALL_DEF = "SELECT c FROM Clap AS c WHERE c.report_id";	//query
+	String Q_CLAP_GET_ALL_DEF = "SELECT c FROM Clap AS c WHERE c.report_id = :" + JPQL_PARM_REPORT;	//query
 	//Acquire all number of employees whose clapped that report
 	String Q_CLAP_COUNT = ENTITY_CLAP + ".count";
-	String Q_CLAP_COUNT_DEF = "SELECT COUNT(c) FROM Clap AS c WHERE c.report_id";
+	String Q_CLAP_COUNT_DEF = "SELECT COUNT(c) FROM Clap AS c WHERE c.report_id = :" + JPQL_PARM_REPORT;
 	//Acquire all report that specified employee clapped
 	String Q_CLAP_GET_BY_EMP = ENTITY_CLAP + ".getByEmployee";
 	String Q_CLAP_GET_BY_EMP_DEF = "SELECT c FROM Clap AS c WHERE c.employee_id = :" + JPQL_PARM_EMPLOYEE;
