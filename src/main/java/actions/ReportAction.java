@@ -155,6 +155,18 @@ public class ReportAction extends ActionBase {
 	 */
 	public void show() throws ServletException, IOException{
 
+		//If there is set flush message at the session then move to request scope and delete from the session
+		String flush = getSessionScope(AttributeConst.FLUSH);
+		if(flush != null) {
+			putRequestScope(AttributeConst.FLUSH, flush);
+			removeSessionScope(AttributeConst.FLUSH);
+		}
+		List<String> errors = getSessionScope(AttributeConst.ERR);
+		if(errors != null) {
+			putRequestScope(AttributeConst.ERR, errors);
+			removeSessionScope(AttributeConst.ERR);
+		}
+
 		//Acquires the report data with ID as condition
 		ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
 
@@ -171,17 +183,6 @@ public class ReportAction extends ActionBase {
 				putRequestScope(AttributeConst.IS_CLAPPED, cs.isEmployeeReactedTheReport(rv.getId(), ev.getId()));	//Should we have primitive value as arguments?
 			}
 
-			//If there is set flush message at the session then move to request scope and delete from the session
-			String flush = getSessionScope(AttributeConst.FLUSH);
-			if(flush != null) {
-				putRequestScope(AttributeConst.FLUSH, flush);
-				removeSessionScope(AttributeConst.FLUSH);
-			}
-			List<String> errors = getSessionScope(AttributeConst.ERR);
-			if(errors != null) {
-				putRequestScope(AttributeConst.ERR, errors);
-				removeSessionScope(AttributeConst.ERR);
-			}
 			//Displays detail screen
 			forward(ForwardConst.FW_REP_SHOW);
 		}
