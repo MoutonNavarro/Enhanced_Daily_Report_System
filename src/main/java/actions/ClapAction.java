@@ -60,6 +60,9 @@ public class ClapAction extends ActionBase {
 					putSessionScope(AttributeConst.FLUSH, MessageConst.I_CLAPPED.getMessage());
 				}
 				//Redirect to the detail screen
+				redirectInternal(ForwardConst.ACT_REP, ForwardConst.CMD_SHOW, rv.getId());
+				return;
+			}else {
 				redirectInternal(ForwardConst.ACT_REP, ForwardConst.CMD_SHOW, toNumber(getRequestParam(AttributeConst.REP_ID)));
 				return;
 			}
