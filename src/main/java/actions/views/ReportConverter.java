@@ -45,7 +45,7 @@ public class ReportConverter {
 			}
 			return new ReportView(r.getId(), EmployeeConverter.toView(r.getEmployee()),
 				r.getReportDate(),	r.getTitle(),	r.getContent(),
-				r.getCreatedAt(),	r.getUpdatedAt(), cv);
+				r.getCreatedAt(),	r.getUpdatedAt(), cv, null);
 		}
 	}
 

@@ -22,6 +22,7 @@
 					<th class="report_name">Name</th>
 					<th class="report_date">Date</th>
 					<th class="report_title">Title</th>
+					<th class="report_claps">Claps</th>
 					<th class="report_action">Operation</th>
 				</tr>
 				<c:forEach var="report" items="${reports}" varStatus="status">
@@ -31,6 +32,7 @@
 						<td class="report_name"><c:out value="${report.employee.name}" /></td>
 						<td class="report_date"><fmt:formatDate value='${reportDay}' pattern='MM/dd/yyyy' /></td>
 						<td class="report_title">${report.title}</td>
+						<td class="report_claps">${report.claps}</td>
 						<td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">See detail</a></td>
 					</tr>
 				</c:forEach>

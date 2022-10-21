@@ -148,8 +148,16 @@ table#report_list .report_date{
 table#report_list .report_title{
 	width: 37%;
 }
+table#report_list .report_claps{
+	width: 5%;
+	text-align: center;
+}
+table#report_list th.report_claps{
+	padding: 0px;
+	text-align: center;
+}
 table#report_list .report_action{
-	width: 13%;
+	width: 10%;
 }
 pre{
 	font-family: "MS Gothic",Helvetica,Arial,sans-serif;

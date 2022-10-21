@@ -56,4 +56,9 @@ public class ReportView {
 	 * Employee's configure
 	 */
 	private ConfigureView configure;
+
+	/**
+	 * Number of clapped
+	 */
+	private Long claps;
 }

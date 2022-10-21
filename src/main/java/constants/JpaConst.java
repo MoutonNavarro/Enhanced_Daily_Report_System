@@ -75,6 +75,11 @@ public interface JpaConst {
 	String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
 
 	//Enhanced
+	//Addition report queries
+	//Acquire number of clapped the report
+//	String Q_REP_CLAP_COUNT = ENTITY_REP + ".countClaps";		//[Temporary]It will may deleted
+//	String Q_REP_CLAP_COUNT_DEF = "SELECT COUNT(r) AS c FROM r INNER JOIN claps ON r.id = claps.report_id WHERE r.id = 10";	//[Temporary]It will may deleted
+
 	//Configure table
 	String TABLE_CONF = "configurations"; //table name
 	//Configure table column
@@ -95,7 +100,6 @@ public interface JpaConst {
 	String CONF_COL_USER_COLOR = "user_color"; //User submitted foreground color
 	String CONF_COL_USER_BG = "user_background"; //User submitted background color
 	String CONF_COL_IS_USER_COLOR_SPECIAL = "user_is_color_special"; //????
-
 
 	byte SPRING_TIME = 1;	//Enable spring time
 	byte NORMAL_TIME = 0;	//Normal time
