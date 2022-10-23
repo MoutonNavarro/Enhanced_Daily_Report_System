@@ -1,5 +1,5 @@
 package constants.interfaces;
 
-public interface Format {
+public interface Format extends EnumInterface{
 
 }

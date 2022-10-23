@@ -1,5 +1,7 @@
 package constants.en;
 
-public enum MessageConst {
+import constants.interfaces.Message;
+
+public enum MessageConst implements Message{
 
 }

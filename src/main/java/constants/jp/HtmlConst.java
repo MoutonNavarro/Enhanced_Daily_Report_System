@@ -1,6 +1,8 @@
 package constants.jp;
 
-public enum HtmlConst {
+import constants.interfaces.Html;
+
+public enum HtmlConst implements Html{
 
 	//General
 	LANGUAGE("日本語(JP)"),

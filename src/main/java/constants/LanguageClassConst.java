@@ -2,43 +2,44 @@ package constants;
 
 import java.util.Arrays;
 
+import constants.interfaces.EnumInterface;
 import constants.interfaces.Format;
 import constants.interfaces.Forward;
 import constants.interfaces.Html;
 import constants.interfaces.Message;
 
-public enum LanguageClassConst {
-//	ENG("English", constants.en.FormatConst.class, constants.en.ForwardConst.class, constants.en.HtmlConst.class, constants.en.MessageConst.class),
-EN("English", null, constants.en.ForwardConst.class, null, null),
-	ENG_US("English(US)", null, constants.en.ForwardConst.class, null, null),
+@SuppressWarnings("rawtypes")
+public enum LanguageClassConst implements EnumInterface{
+	ENG("English", constants.en.FormatConst.class, constants.en.ForwardConst.class, constants.en.HtmlConst.class, constants.en.MessageConst.class),
+	ENG_US("English(US)", constants.en.FormatConst.class, constants.en.ForwardConst.class, constants.en.HtmlConst.class, constants.en.MessageConst.class),
 	ENG_UK("English(UK)", null, null, null, null),
 	ENG_CA("English(CA)", null, null, null, null),
 	ENG_PH("English(PH)", null, null, null, null),
 	ENG_IN("English(IN)", null, null, null, null),
-JP("日本語", null, constants.jp.ForwardConst.class, null, null);
-	//	JPN("日本語", constants.jp.FormatConst.class, constants.jp.ForwardConst.class, constants.jp.HtmlConst.class, constants.jp.MessageConst.class),
-//	JPN_JA("日本語(JP)", constants.jp.FormatConst.class, constants.jp.ForwardConst.class, constants.jp.HtmlConst.class, constants.jp.MessageConst.class);
+	JPN("日本語", constants.jp.FormatConst.class, constants.jp.ForwardConst.class, constants.jp.HtmlConst.class, constants.jp.MessageConst.class),
+	JPN_JA("日本語(JP)", constants.jp.FormatConst.class, constants.jp.ForwardConst.class, constants.jp.HtmlConst.class, constants.jp.MessageConst.class);
+
 
 
 	private final String lang_name;
-	private final Class<? extends Format> format;
-	private final Class<? extends Forward> forward;
-	private final Class<? extends Html> html;
-	private final Class<? extends Message> message;
+	private final Class<? extends Enum> format;
+	private final Class<? extends Enum> forward;
+	private final Class<? extends Enum> html;
+	private final Class<? extends Enum> message;
 
-	private LanguageClassConst(final String lang_name, final Class<? extends Format> format, final Class<? extends Forward> forward, final Class<? extends Html> html, final Class<? extends Message> message) {
+	private LanguageClassConst(final String lang_name, final Class<? extends Enum> format, final Class<? extends Enum> forward, final Class<? extends Enum> html, final Class<? extends Enum> message) {
 		this.lang_name = lang_name;
 
-		this.format = format;
-		this.forward = forward;
-		this.html = html;
-		this.message = message;
+		if(!(this.format = (/*format == null ? constants.en.FormatConst.class : */format)).isAssignableFrom(Format.class)){throw new Error("Illegal type of class stored at format: " + format.getName());}
+		if(!(this.forward = (forward == null ? constants.en.ForwardConst.class : forward)).isAssignableFrom(Forward.class)){throw new Error("Illegal type of class stored at forward: " + forward.getName());}
+		if(!(this.html = html == null ? constants.en.FormatConst.class : html).isAssignableFrom(Html.class)){throw new Error("Illegal type of class stored at html: " + html.getName());}
+		if(!(this.message = message == null ? constants.en.FormatConst.class : message).isAssignableFrom(Message.class)){throw new Error("Illegal type of class stored at message: " + message.getName());}
 	}
 
 	public String getLanguageName() {
 		return lang_name;
 	}
-	public Class<? extends Forward> getForward() {
+	public Class<? extends Enum> getForward() {
 		return forward;
 	}
 
@@ -51,7 +52,7 @@ JP("日本語", null, constants.jp.ForwardConst.class, null, null);
 		return Arrays.stream(LanguageClassConst.values())
 			.filter(data -> data.getLanguageName().equalsIgnoreCase(language_name))
 			.findFirst()
-			.orElse(EN);
+			.orElse(ENG);
 
 	}
 

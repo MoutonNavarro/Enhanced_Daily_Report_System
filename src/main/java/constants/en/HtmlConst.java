@@ -1,6 +1,8 @@
 package constants.en;
 
-public enum HtmlConst {
+import constants.interfaces.Html;
+
+public enum HtmlConst implements Html{
 
 	//General
 	LANGUAGE("English(US)"),

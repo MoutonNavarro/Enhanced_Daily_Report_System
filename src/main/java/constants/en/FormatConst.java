@@ -1,5 +1,7 @@
 package constants.en;
 
-public enum FormatConst {
+import constants.interfaces.Format;
+
+public enum FormatConst implements Format{
 
 }
