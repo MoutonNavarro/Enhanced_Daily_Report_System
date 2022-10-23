@@ -5,7 +5,7 @@ import constants.interfaces.Forward;
 /**
  * Enum class that defines relative the forward screen that request parameter variable names, variable value, jsp file's name, and else.
  */
-public enum ForwardConst implements Forward {
+public enum ForwardConst{
 	//action
 	ACT("action", "ACT"),
 	ACT_TOP("Top", "ACT_TOP"),
@@ -55,7 +55,6 @@ public enum ForwardConst implements Forward {
 	CMD_DO_REACTION("doReaction", "CMD_DO_REACTION"),
 	CMD_UNDO_REACTION("undoReaction", "CMD_UNDO_REACTION");
 
-
 	/**
 	 * Character strings
 	 */
@@ -83,10 +82,14 @@ public enum ForwardConst implements Forward {
 
 	/**
 	 * Acquire the value that localized
-	 * @return
+	 * @return Localized value (if no such declared value then original value)
 	 */
 	@SuppressWarnings("unchecked")
 	public String getValue(String lang_name) {
-		return ((Forward) valueOf(LanguageClassConst.getByLanguageName(lang_name).getForward(), this.name())).getValue();
+		try {
+			return ((Forward)valueOf(LanguageClassConst.getByLanguageName(lang_name).getForward(), this.name())).getValue();
+		}catch (IllegalArgumentException e) {
+			return getValue();
+		}
 	}
 }

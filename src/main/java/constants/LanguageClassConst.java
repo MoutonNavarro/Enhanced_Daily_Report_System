@@ -3,10 +3,6 @@ package constants;
 import java.util.Arrays;
 
 import constants.interfaces.EnumInterface;
-import constants.interfaces.Format;
-import constants.interfaces.Forward;
-import constants.interfaces.Html;
-import constants.interfaces.Message;
 
 @SuppressWarnings("rawtypes")
 public enum LanguageClassConst implements EnumInterface{
@@ -30,10 +26,10 @@ public enum LanguageClassConst implements EnumInterface{
 	private LanguageClassConst(final String lang_name, final Class<? extends Enum> format, final Class<? extends Enum> forward, final Class<? extends Enum> html, final Class<? extends Enum> message) {
 		this.lang_name = lang_name;
 
-		if(!(this.format = (/*format == null ? constants.en.FormatConst.class : */format)).isAssignableFrom(Format.class)){throw new Error("Illegal type of class stored at format: " + format.getName());}
-		if(!(this.forward = (forward == null ? constants.en.ForwardConst.class : forward)).isAssignableFrom(Forward.class)){throw new Error("Illegal type of class stored at forward: " + forward.getName());}
-		if(!(this.html = html == null ? constants.en.FormatConst.class : html).isAssignableFrom(Html.class)){throw new Error("Illegal type of class stored at html: " + html.getName());}
-		if(!(this.message = message == null ? constants.en.FormatConst.class : message).isAssignableFrom(Message.class)){throw new Error("Illegal type of class stored at message: " + message.getName());}
+		if(!(this.format = (format == null ? constants.en.FormatConst.class : format)).getSimpleName().equals("FormatConst")){throw new Error("Illegal type of class stored at format: " + format.getName());}
+		if(!(this.forward = (forward == null ? constants.en.ForwardConst.class : forward)).getSimpleName().equals("ForwardConst")){throw new Error("Illegal type of class stored at forward: " + forward.getName());}
+		if(!(this.html = html == null ? constants.en.HtmlConst.class : html).getSimpleName().equals("HtmlConst")){throw new Error("Illegal type of class stored at html: " + html.getName());}
+		if(!(this.message = message == null ? constants.en.MessageConst.class : message).getSimpleName().equals("MessageConst")){throw new Error("Illegal type of class stored at message: " + message.getName());}
 	}
 
 	public String getLanguageName() {
