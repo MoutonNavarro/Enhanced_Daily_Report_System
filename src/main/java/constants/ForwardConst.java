@@ -82,12 +82,29 @@ public enum ForwardConst{
 
 	/**
 	 * Acquire the value that localized
+	 * @param lang_name Language name
 	 * @return Localized value (if no such declared value then original value)
+	 * @deprecated We recommend to use getValue(LanguageClassConst lang) because safer
 	 */
+	@Deprecated
 	@SuppressWarnings("unchecked")
 	public String getValue(String lang_name) {
 		try {
 			return ((Forward)valueOf(LanguageClassConst.getByLanguageName(lang_name).getForward(), this.name())).getValue();
+		}catch (IllegalArgumentException e) {
+			return getValue();
+		}
+	}
+
+	/**
+	 * Acquire the value that localized
+	 * @param lang LanguageClassConst type enum object
+	 * @return Localized value (if no such declared value then original value)
+	 */
+	@SuppressWarnings("unchecked")
+	public String getValue(LanguageClassConst lang) {
+		try {
+			return ((Forward)valueOf(lang.getForward(), this.name())).getValue();
 		}catch (IllegalArgumentException e) {
 			return getValue();
 		}

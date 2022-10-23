@@ -58,12 +58,13 @@ public enum MessageConst {
 
 	/**
 	 * Acquire the value that localized
+	 * @param lang LanguageClassConst type enum object
 	 * @return Localized value (if no such declared value then original value)
 	 */
 	@SuppressWarnings("unchecked")
-	public String getMessage(String lang_name) {
+	public String getMessage(LanguageClassConst lang) {
 		try {
-			return ((Message)valueOf(LanguageClassConst.getByLanguageName(lang_name).getFormat(), this.name())).getMessage();
+			return ((Message)valueOf(lang.getFormat(), this.name())).getMessage();
 		}catch (IllegalArgumentException e) {
 			return getMessage();
 		}
