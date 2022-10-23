@@ -1,9 +1,11 @@
 package constants.jp;
 
+import constants.interfaces.Forward;
+
 /**
  * Enum class that defines relative the forward screen that request parameter variable names, variable value, jsp file's name, and else.
  */
-public enum ForwardConst {
+public enum ForwardConst implements Forward{
 	//action
 	ACT("action"),
 	ACT_TOP("Top"),
