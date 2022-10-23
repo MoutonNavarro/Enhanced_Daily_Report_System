@@ -1,5 +1,7 @@
 package constants;
 
+import constants.interfaces.Message;
+
 /**
  * Enum class that defines each output message
  */
@@ -27,7 +29,12 @@ public enum MessageConst {
 	I_CONFIG_UPDATED("Your Configure is updated."),
 	I_CONFIG_UPDATED_TEMP("Your Configure is updated. the setting will be removed when you ended the browser."),
 	I_CLAPPED("You clapped the report"),
-	I_UNDID_CLAP("You undid clap the report");
+
+	//Reaction
+	I_UNDID_CLAP("You undid clap the report"),
+
+	E_ALREADY_CLAPPED("You have already reacted this report"),
+	E_ALREADY_UNDID_CLAP("You have already undid reaction this report");
 
 
 	/**
@@ -47,5 +54,18 @@ public enum MessageConst {
 	 */
 	public String getMessage() {
 		return this.text;
+	}
+
+	/**
+	 * Acquire the value that localized
+	 * @return Localized value (if no such declared value then original value)
+	 */
+	@SuppressWarnings("unchecked")
+	public String getMessage(String lang_name) {
+		try {
+			return ((Message)valueOf(LanguageClassConst.getByLanguageName(lang_name).getFormat(), this.name())).getMessage();
+		}catch (IllegalArgumentException e) {
+			return getMessage();
+		}
 	}
 }

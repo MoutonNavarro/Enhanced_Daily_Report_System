@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import constants.JpaConst;
+import constants.MessageConst;
 import models.Clap;
 
 public final class ClapService extends ServiceBase implements AutoCloseable{
@@ -40,7 +41,7 @@ public final class ClapService extends ServiceBase implements AutoCloseable{
 			.setParameter(JpaConst.JPQL_PARM_EMPLOYEE, emp_id)
 			.setParameter(JpaConst.JPQL_PARM_REPORT, rep_id).getResultList();
 		if (claps.size() > 0) {
-			errors.add("You have already reacted this report");
+			errors.add(MessageConst.E_ALREADY_CLAPPED.getMessage());
 		}
 		//[Locked] We must implements the other type of reaction
 		if (errors.size() == 0) {
@@ -63,7 +64,7 @@ public final class ClapService extends ServiceBase implements AutoCloseable{
 			.setParameter(JpaConst.JPQL_PARM_EMPLOYEE, emp_id)
 			.setParameter(JpaConst.JPQL_PARM_REPORT, rep_id).getResultList();
 		if (claps.size() == 0) {
-			errors.add("You have already undid reaction this report");
+			errors.add(MessageConst.E_ALREADY_UNDID_CLAP.getMessage());
 		}
 		//[Locked] We must implements the other type of reaction
 		if (errors.size() == 0) {

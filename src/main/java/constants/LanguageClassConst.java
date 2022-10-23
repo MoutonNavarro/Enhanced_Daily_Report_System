@@ -2,18 +2,23 @@ package constants;
 
 import java.util.Arrays;
 
-import constants.interfaces.EnumInterface;
-
 @SuppressWarnings("rawtypes")
-public enum LanguageClassConst implements EnumInterface{
+public enum LanguageClassConst{
 	ENG("English", constants.en.FormatConst.class, constants.en.ForwardConst.class, constants.en.HtmlConst.class, constants.en.MessageConst.class),
 	ENG_US("English(US)", constants.en.FormatConst.class, constants.en.ForwardConst.class, constants.en.HtmlConst.class, constants.en.MessageConst.class),
 	ENG_UK("English(UK)", null, null, null, null),
 	ENG_CA("English(CA)", null, null, null, null),
 	ENG_PH("English(PH)", null, null, null, null),
 	ENG_IN("English(IN)", null, null, null, null),
-	JPN("日本語", constants.jp.FormatConst.class, constants.jp.ForwardConst.class, constants.jp.HtmlConst.class, constants.jp.MessageConst.class),
-	JPN_JA("日本語(JP)", constants.jp.FormatConst.class, constants.jp.ForwardConst.class, constants.jp.HtmlConst.class, constants.jp.MessageConst.class);
+	JPN("Japanese", constants.jp.FormatConst.class, constants.jp.ForwardConst.class, constants.jp.HtmlConst.class, constants.jp.MessageConst.class),
+	JPN_JA("日本語(JP)", constants.jp.FormatConst.class, constants.jp.ForwardConst.class, constants.jp.HtmlConst.class, constants.jp.MessageConst.class),
+	TGL("Tagalog", null, null, null, null),
+	CEB("Cebuano", null, null, null, null),
+	ITA("Italian", null, null, null, null),
+	FRA("French", null, null, null, null),
+	SPA("Cebuano", null, null, null, null),
+	DEU("German", null, null, null, null);
+
 
 
 
@@ -35,8 +40,17 @@ public enum LanguageClassConst implements EnumInterface{
 	public String getLanguageName() {
 		return lang_name;
 	}
-	public Class<? extends Enum> getForward() {
+	Class<? extends Enum> getFormat() {
+		return format;
+	}
+	Class<? extends Enum> getForward() {
 		return forward;
+	}
+	Class<? extends Enum> getHtml() {
+		return html;
+	}
+	Class<? extends Enum> getMessage() {
+		return message;
 	}
 
 	/**

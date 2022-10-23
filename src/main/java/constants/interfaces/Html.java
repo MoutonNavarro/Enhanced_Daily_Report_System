@@ -1,6 +1,6 @@
 package constants.interfaces;
 
-public interface Html extends EnumInterface{
+public interface Html{
 
 	/**
 	 * Acquire the value(String)

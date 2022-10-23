@@ -3,7 +3,7 @@ package constants.en;
 import constants.interfaces.Forward;
 
 /**
- * Enum class that defines relative the forward screen that request parameter variable names, variable value, jsp file's name, and else.
+ * Enum class that defines relative the forward screen that request parameter variable names, variable value, jsp file's name, and else. (English)
  */
 public enum ForwardConst implements Forward{
 	//action
@@ -45,7 +45,15 @@ public enum ForwardConst implements Forward{
 	ACT_CONFIG("Config"),
 
 	//jsp
-	FW_CONFIG("en/configure/config");
+	FW_CONFIG("en/configure/config"),
+
+	//for reactions
+	//action
+	ACT_CLAP("Clap"),
+
+	//command
+	CMD_DO_REACTION("doReaction"),
+	CMD_UNDO_REACTION("undoReaction");
 
 	/**
 	 * Character strings

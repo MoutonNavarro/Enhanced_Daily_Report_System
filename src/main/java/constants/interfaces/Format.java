@@ -1,5 +1,6 @@
 package constants.interfaces;
 
-public interface Format extends EnumInterface{
+public interface Format{
 
+	String getFormat();
 }

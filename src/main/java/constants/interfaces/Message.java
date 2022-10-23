@@ -1,5 +1,5 @@
 package constants.interfaces;
 
-public interface Message extends EnumInterface{
-
+public interface Message{
+	public String getMessage();
 }
