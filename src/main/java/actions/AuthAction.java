@@ -79,7 +79,7 @@ public class AuthAction extends ActionBase {
 				//Set logged in employee at the session
 				putSessionScope(AttributeConst.LOGIN_EMP, ev);
 				//Set flush message at the session: Login successful
-				putSessionScope(AttributeConst.FLUSH, MessageConst.I_LOGINED.getMessage());
+				putSessionScope(AttributeConst.FLUSH, MessageConst.I_LOGINED.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
 				//Redirect to the top page
 				redirect(ForwardConst.ACT_TOP, ForwardConst.CMD_INDEX);
 			}
@@ -109,7 +109,7 @@ public class AuthAction extends ActionBase {
 		removeSessionScope(AttributeConst.CONFIG);
 
 		//Append flush message when logged out at the session
-		putSessionScope(AttributeConst.FLUSH, MessageConst.I_LOGOUT.getMessage());
+		putSessionScope(AttributeConst.FLUSH, MessageConst.I_LOGOUT.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
 
 		//redirect to the login screen
 		redirect(ForwardConst.ACT_AUTH, ForwardConst.CMD_SHOW_LOGIN);

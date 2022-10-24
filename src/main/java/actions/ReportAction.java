@@ -139,7 +139,7 @@ public class ReportAction extends ActionBase {
 				//In case no errors occurred
 
 				//Set flush message of registration complete at the session
-				putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());
+				putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
 
 				//Redirect to the list screen
 				redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
@@ -248,7 +248,7 @@ public class ReportAction extends ActionBase {
 				//In case there isn't errors occurred
 
 				//Set flush message of update complete at the session
-				putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage());
+				putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
 
 				//Redirect to the list screen
 				redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);

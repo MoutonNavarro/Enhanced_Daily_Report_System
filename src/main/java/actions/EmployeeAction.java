@@ -120,7 +120,7 @@ public class EmployeeAction extends ActionBase {
 				//When no errors occurred at registration
 
 				//Set message about registration successful at the session
-				putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage());
+				putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
 
 				//Redirect to list screen
 				redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);
@@ -216,7 +216,7 @@ public class EmployeeAction extends ActionBase {
 				//In case no errors occurred at updating
 
 				//Set update complete flush message at the session
-				putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage());
+				putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
 
 				//Redirect to the list screen
 				redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);
@@ -236,7 +236,7 @@ public class EmployeeAction extends ActionBase {
 			service.destroy(toNumber(getRequestParam(AttributeConst.EMP_ID)));
 
 			//Set delete complete flush message at the session
-			putSessionScope(AttributeConst.FLUSH, MessageConst.I_DELETED.getMessage());
+			putSessionScope(AttributeConst.FLUSH, MessageConst.I_DELETED.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
 
 			//Redirect to the list screen
 			redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);

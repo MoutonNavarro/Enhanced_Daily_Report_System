@@ -57,7 +57,7 @@ public class ClapAction extends ActionBase {
 				if (errors.size() > 0) {
 					putSessionScope(AttributeConst.ERR, errors);	//List of errors
 				}else {
-					putSessionScope(AttributeConst.FLUSH, MessageConst.I_CLAPPED.getMessage());
+					putSessionScope(AttributeConst.FLUSH, MessageConst.I_CLAPPED.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
 				}
 				//Redirect to the detail screen
 				redirectInternal(ForwardConst.ACT_REP, ForwardConst.CMD_SHOW, rv.getId());
@@ -85,7 +85,7 @@ public class ClapAction extends ActionBase {
 			if (errors.size() > 0) {
 				putSessionScope(AttributeConst.ERR, errors);	//List of errors
 			}else {
-				putSessionScope(AttributeConst.FLUSH, MessageConst.I_UNDID_CLAP.getMessage());
+				putSessionScope(AttributeConst.FLUSH, MessageConst.I_UNDID_CLAP.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
 			}
 			//Redirect to the detail screen
 			redirectInternal(ForwardConst.ACT_REP, ForwardConst.CMD_SHOW, toNumber(getRequestParam(AttributeConst.REP_ID)));
