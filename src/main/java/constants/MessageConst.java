@@ -53,7 +53,7 @@ public enum MessageConst {
 	/**
 	 * Acquire the value (String)
 	 */
-	public String getMessage() {
+	private String getMessage() {
 		return this.text;
 	}
 

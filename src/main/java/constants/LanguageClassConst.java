@@ -2,6 +2,11 @@ package constants;
 
 import java.util.Arrays;
 
+import constants.interfaces.Format;
+import constants.interfaces.Forward;
+import constants.interfaces.Html;
+import constants.interfaces.Message;
+
 @SuppressWarnings("rawtypes")
 public enum LanguageClassConst{
 	ENG		("English", "English", "ENG", null, constants.en.FormatConst.class, constants.en.ForwardConst.class, constants.en.HtmlConst.class, constants.en.MessageConst.class),
@@ -42,10 +47,11 @@ public enum LanguageClassConst{
 		this.lang_code = lang_code == null ? "" : lang_code;
 		this.lang_country = lang_country == null ? "" : lang_country;
 
-		if(!(this.format = (format == null ? constants.en.FormatConst.class : format)).getSimpleName().equals("FormatConst")){throw new Error("Illegal type of class stored at format: " + format.getName());}
-		if(!(this.forward = (forward == null ? constants.en.ForwardConst.class : forward)).getSimpleName().equals("ForwardConst")){throw new Error("Illegal type of class stored at forward: " + forward.getName());}
-		if(!(this.html = html == null ? constants.en.HtmlConst.class : html).getSimpleName().equals("HtmlConst")){throw new Error("Illegal type of class stored at html: " + html.getName());}
-		if(!(this.message = message == null ? constants.en.MessageConst.class : message).getSimpleName().equals("MessageConst")){throw new Error("Illegal type of class stored at message: " + message.getName());}
+		if(!Format.class.isAssignableFrom(this.format = (format == null ? constants.en.FormatConst.class : format))){throw new Error("Illegal type of class stored at format: " + format.getName());}
+//		if(!(this.format = (format == null ? constants.en.FormatConst.class : format)).getSimpleName().equals("FormatConst")){throw new Error("Illegal type of class stored at format: " + format.getName());}
+		if(!Forward.class.isAssignableFrom(this.forward = (forward == null ? constants.en.ForwardConst.class : forward))){throw new Error("Illegal type of class stored at forward: " + forward.getName());}
+		if(!Html.class.isAssignableFrom(this.html = html == null ? constants.en.HtmlConst.class : html)){throw new Error("Illegal type of class stored at html: " + html.getName());}
+		if(!Message.class.isAssignableFrom(this.message = message == null ? constants.en.MessageConst.class : message)){throw new Error("Illegal type of class stored at message: " + message.getName());}
 	}
 
 	public String getLanguageName() {

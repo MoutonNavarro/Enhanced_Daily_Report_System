@@ -9,7 +9,11 @@ class test {
 		System.out.println(ForwardConst.FW_ERR_UNKNOWN.getValue());
 		String str = "English";
 		System.out.println(ForwardConst.FW_ERR_UNKNOWN.getValue(str));
-		str = "日本語";
+		str = "Japanese";
 		System.out.println(ForwardConst.FW_ERR_UNKNOWN.getValue(str));
-	}
+		System.out.println(constants.en.MessageConst.class.isAssignableFrom(constants.interfaces.Message.class));
+		System.out.println(constants.interfaces.Message.class.isAssignableFrom(constants.en.MessageConst.class));
+		System.out.println(services.ConfigureService.class.isAssignableFrom(AutoCloseable.class));
+		System.out.println(AutoCloseable.class.isAssignableFrom(services.ConfigureService.class));
+		}
 }

@@ -21,7 +21,7 @@ public enum FormatConst {
 	 * Acquire the format
 	 * @return Format
 	 */
-	public String getFormat() {
+	private String getFormat() {
 		return format;
 	}
 

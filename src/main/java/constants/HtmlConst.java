@@ -90,7 +90,7 @@ public enum HtmlConst {
 	 * Acquire the value
 	 * @return HTML strings
 	 */
-	public String getValue() {
+	private String getValue() {
 		return htmlText;
 	}
 
