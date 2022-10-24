@@ -87,7 +87,6 @@ public enum ForwardConst{
 	 * @deprecated We recommend to use getValue(LanguageClassConst lang) because safer
 	 */
 	@Deprecated
-	@SuppressWarnings("unchecked")
 	public String getValue(String lang_name) {
 		try {
 			return ((Forward)valueOf(LanguageClassConst.getByLanguageName(lang_name).getForward(), this.name())).getValue();
@@ -101,7 +100,6 @@ public enum ForwardConst{
 	 * @param lang LanguageClassConst type enum object
 	 * @return Localized value (if no such declared value then original value)
 	 */
-	@SuppressWarnings("unchecked")
 	public String getValue(LanguageClassConst lang) {
 		try {
 			return ((Forward)valueOf(lang.getForward(), this.name())).getValue();

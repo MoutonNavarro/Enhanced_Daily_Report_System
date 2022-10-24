@@ -62,7 +62,6 @@ public enum MessageConst {
 	 * @param lang LanguageClassConst type enum object
 	 * @return Localized value (if no such declared value then original value)
 	 */
-	@SuppressWarnings("unchecked")
 	public String getMessage(LanguageClassConst lang) {
 		try {
 			return ((Message)valueOf(lang.getMessage(), this.name())).getMessage();

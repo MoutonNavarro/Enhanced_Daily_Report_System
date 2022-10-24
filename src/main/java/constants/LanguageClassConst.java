@@ -7,7 +7,6 @@ import constants.interfaces.Forward;
 import constants.interfaces.Html;
 import constants.interfaces.Message;
 
-@SuppressWarnings("rawtypes")
 public enum LanguageClassConst{
 	ENG		("English", "English", "ENG", null, constants.en.FormatConst.class, constants.en.ForwardConst.class, constants.en.HtmlConst.class, constants.en.MessageConst.class),
 	ENG_US	("English(US)", "English(U.S)", "eng", "usa", constants.en.FormatConst.class, constants.en.ForwardConst.class, constants.en.HtmlConst.class, constants.en.MessageConst.class),
@@ -36,22 +35,22 @@ public enum LanguageClassConst{
 	private final String lang_name_display;
 	private final String lang_code;
 	private final String lang_country;
-	private final Class<? extends Enum> format;
-	private final Class<? extends Enum> forward;
-	private final Class<? extends Enum> html;
-	private final Class<? extends Enum> message;
+	private final Class<Format> format;
+	private final Class<Forward> forward;
+	private final Class<Html> html;
+	private final Class<Message> message;
 
-	private LanguageClassConst(final String lang_name, final String lang_name_display, final String lang_code, final String lang_country, final Class<? extends Enum> format, final Class<? extends Enum> forward, final Class<? extends Enum> html, final Class<? extends Enum> message) {
+	@SuppressWarnings("unchecked")
+	private LanguageClassConst(final String lang_name, final String lang_name_display, final String lang_code, final String lang_country, final Class<? extends Format> format, final Class<? extends Forward> forward, final Class<? extends Html> html, final Class<? extends Message> message) {
 		this.lang_name = lang_name == null ? "" : lang_name;
 		this.lang_name_display = lang_name_display == null ? "" : lang_name_display;
 		this.lang_code = lang_code == null ? "" : lang_code;
 		this.lang_country = lang_country == null ? "" : lang_country;
 
-		if(!Format.class.isAssignableFrom(this.format = (format == null ? constants.en.FormatConst.class : format))){throw new Error("Illegal type of class stored at format: " + format.getName());}
-//		if(!(this.format = (format == null ? constants.en.FormatConst.class : format)).getSimpleName().equals("FormatConst")){throw new Error("Illegal type of class stored at format: " + format.getName());}
-		if(!Forward.class.isAssignableFrom(this.forward = (forward == null ? constants.en.ForwardConst.class : forward))){throw new Error("Illegal type of class stored at forward: " + forward.getName());}
-		if(!Html.class.isAssignableFrom(this.html = html == null ? constants.en.HtmlConst.class : html)){throw new Error("Illegal type of class stored at html: " + html.getName());}
-		if(!Message.class.isAssignableFrom(this.message = message == null ? constants.en.MessageConst.class : message)){throw new Error("Illegal type of class stored at message: " + message.getName());}
+		if(!Format.class.isAssignableFrom(this.format = (Class<Format>)(format == null ? constants.en.FormatConst.class : format))){throw new Error("Illegal type of class stored at format: " + format.getName());}
+		if(!Forward.class.isAssignableFrom(this.forward = (Class<Forward>)(forward == null ? constants.en.ForwardConst.class : forward))){throw new Error("Illegal type of class stored at forward: " + forward.getName());}
+		if(!Html.class.isAssignableFrom(this.html = (Class<Html>)(html == null ? constants.en.HtmlConst.class : html))){throw new Error("Illegal type of class stored at html: " + html.getName());}
+		if(!Message.class.isAssignableFrom(this.message = (Class<Message>)(message == null ? constants.en.MessageConst.class : message))){throw new Error("Illegal type of class stored at message: " + message.getName());}
 	}
 
 	public String getLanguageName() {
@@ -66,17 +65,21 @@ public enum LanguageClassConst{
 	public String getLanguageCountry() {
 		return lang_country;
 	}
-	Class<? extends Enum> getFormat() {
-		return format;
+	@SuppressWarnings("unchecked")
+	<T> Class<T> getFormat() {
+		return (Class<T>) format;
 	}
-	Class<? extends Enum> getForward() {
-		return forward;
+	@SuppressWarnings("unchecked")
+	<T> Class<T> getForward() {
+		return (Class<T>) forward;
 	}
-	Class<? extends Enum> getHtml() {
-		return html;
+	@SuppressWarnings("unchecked")
+	<T> Class<T> getHtml() {
+		return (Class<T>) html;
 	}
-	Class<? extends Enum> getMessage() {
-		return message;
+	@SuppressWarnings("unchecked")
+	<T> Class<T> getMessage() {
+		return (Class<T>) message;
 	}
 
 	/**

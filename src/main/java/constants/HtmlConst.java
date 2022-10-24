@@ -99,7 +99,6 @@ public enum HtmlConst {
 	 * @param lang LanguageClassConst type enum object
 	 * @return Localized value (if no such declared value then original value)
 	 */
-	@SuppressWarnings("unchecked")
 	public String getValue(LanguageClassConst lang) {
 		try {
 			return ((Html)valueOf(lang.getHtml(), this.name())).getValue();
