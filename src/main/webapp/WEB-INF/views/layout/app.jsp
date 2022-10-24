@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="constants.ForwardConst" %>
 <%@ page import="constants.AttributeConst" %>
+<%@ page import="constants.HtmlConst" %>
 
 <c:set var="actTop" value="${ForwardConst.ACT_TOP.getValue()}" />
 <c:set var="actEmp" value="${ForwardConst.ACT_EMP.getValue()}" />
@@ -14,10 +15,10 @@
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="${HtmlConst.HTML_LANGUAGE.getValue(lang)}">
 	<head>
 		<meta charset="UTF-8">
-		<title>Daily report management system</title>
+		<title>${HtmlConst.TEXT_HEAD_DAILY_TITLE.getValue(lang)}</title>
 		<link rel="stylesheet" href="<c:url value='/css/reset.css' />">
 		<link rel="stylesheet" href="<c:url value='/css/style.css' />">
 		<c:if test="${sessionScope.login_employee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">	<style type="text/css"><c:import url="/WEB-INF/debug/debug.css" /></style></c:if>
@@ -27,21 +28,21 @@
 		<div id="wrapper">
 			<div id="header">
 				<div id="header_menu">
-					<H1><a href="<c:url value='?action=${actTop}&command=${commIdx}' />">Daily report management system</a></H1>&nbsp;&nbsp;&nbsp;
+					<H1><a href="<c:url value='?action=${actTop}&command=${commIdx}' />">${HtmlConst.TEXT_HEAD_DAILY.getValue(lang)}</a></H1>&nbsp;&nbsp;&nbsp;
 					<c:if test="${sessionScope.login_employee != null}">
 						<c:if test="${sessionScope.login_employee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">
-							<a href="<c:url value='?action=${actEmp}&command=${commIdx}' />">Manage employee</a>&nbsp;
+							<a href="<c:url value='?action=${actEmp}&command=${commIdx}' />">${HtmlConst.TEXT_HEAD_MNGEMP.getValue(lang)}</a>&nbsp;
 						</c:if>
-						<a href="<c:url value='?action=${actRep}&command=${commIdx}' />">Manage daily report</a>&nbsp;
+						<a href="<c:url value='?action=${actRep}&command=${commIdx}' />">${HtmlConst.TEXT_HEAD_MNGREP.getValue(lang)}</a>&nbsp;
 					</c:if>
 				</div>
 				<c:if test="${sessionScope.login_employee != null}">
 					<div id="employee_name">
-						Hi!&nbsp;
+						${HtmlConst.TEXT_HEAD_USERNAME_L.getValue(lang)}
 						<c:out value="${sessionScope.login_employee.name}" />
-						&nbsp;&nbsp;&nbsp;
-						<a href="<c:url value='?action=${actConf}&command=${commEdt}' />">Setting</a>&nbsp;&nbsp;&nbsp;
-						<a href="<c:url value='?action=${actAuth}&command=${commOut}' />">Logout</a>
+						${HtmlConst.TEXT_HEAD_USERNAME_R.getValue(lang)}
+						<a href="<c:url value='?action=${actConf}&command=${commEdt}' />">${HtmlConst.TEXT_HEAD_SETTING.getValue(lang)}</a>&nbsp;&nbsp;&nbsp;
+						<a href="<c:url value='?action=${actAuth}&command=${commOut}' />">${HtmlConst.TEXT_HEAD_LOGOUT.getValue(lang)}</a>
 					</div>
 				</c:if>
 			</div>

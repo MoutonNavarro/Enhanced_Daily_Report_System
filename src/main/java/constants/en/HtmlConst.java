@@ -1,11 +1,13 @@
 package constants.en;
 
+import colors.ColorNameEnum;
 import constants.interfaces.Html;
 
 public enum HtmlConst implements Html{
 
 	//General
 	LANGUAGE("English(US)"),
+	HTML_LANGUAGE("en"),
 
 	//Base
 	TEXT_NAME("Name"),
@@ -13,13 +15,25 @@ public enum HtmlConst implements Html{
 	TEXT_TITLE("Title"),
 	TEXT_ACTION("Action"),
 	TEXT_SEEDETAIL("See Detail"),
+	TEXT_EMPLOYEE("Employee"),
+	TEXT_EMPLOYEE_CODE("Employee code"),
+	TEXT_PASSWORD("Password"),
 	TEXT_NUMBER_OF_ALL_ITEMS("(All: ${count})"),
+		TEXT_NUMBER_OF_ALL_ITEMS_L("(All: "),
+		TEXT_NUMBER_OF_ALL_ITEMS_R(")"),
 	TEXT_DISCRIPT_MAIN("The enhanced daily report management system by Mouton Navarro."),
+	TEXT_DO_LOGIN("Login"),
+	TEXT_SUBMIT("Submit"),
+	TEXT_BACK_TOP("Back to top page"),
+	TEXT_GO_TOP("Go to top page"),
 
 	//Report
 	TEXT_REP_NUMBER_OF_ALL_ITEMS("(All: ${reports_count})"),
+		TEXT_REP_NUMBER_OF_ALL_ITEMS_L("(All: "),
+		TEXT_REP_NUMBER_OF_ALL_ITEMS_R(")"),
 	TEXT_REP_SUMBIT_NEW("Register new daily report"),
 	TEXT_REP_MINE("[Your daily report list]"),
+	TEXT_REP_BACK_LIST("Back to list page"),
 
 	//jsps
 	//app.jsp
@@ -29,6 +43,10 @@ public enum HtmlConst implements Html{
 	TEXT_HEAD_MNGEMP("Manage employees"),
 	TEXT_HEAD_MNGREP("Manage daily reports"),
 	TEXT_HEAD_USERNAME("	Hi!&nbsp;<c:out value=\"${sessionScope.login_employee.name}\" />&nbsp;&nbsp;&nbsp;"),
+		TEXT_HEAD_USERNAME_L("	Hi!&nbsp;"),
+		TEXT_HEAD_USERNAME_R("&nbsp;&nbsp;&nbsp;"),
+	TEXT_HEAD_SETTING("Setting"),
+	TEXT_HEAD_LOGOUT("Logout"),
 
 	//Footer
 	TEXT_DISPLAY_LANG("English"),
@@ -38,7 +56,23 @@ public enum HtmlConst implements Html{
 
 	//error/unknown.jsp
 	TEXT_UNKNOWN("The page does not exist"),
-	TEXT_UNKNOWN_FOLLOW("The following page does not exist <c:out value='${followPage}' />");
+	TEXT_UNKNOWN_FOLLOW("The following page does not exist <c:out value='${followPage}' />"),
+		TEXT_UNKNOWN_FOLLOW_L("The following page does not exist "),
+		TEXT_UNKNOWN_FOLLOW_R(""),
+
+	//login/login.jsp
+	TEXT_LOGIN("Login"),
+	//login error
+	TEXT_LOGIN_ERROR("The employee code or password or both are incorrect."),
+
+
+	//configure/config.jsp
+	TEXT_CONFIG_PAGE("Setting Page"),
+	TEXT_CONFIG_ERROR("Errors in input content."),
+	TEXT_CONFIG_COLOR_FG("Foreground color"),
+	TEXT_CONFIG_COLOR_DEFAULT(ColorNameEnum.DEFAULT.getName()),
+	TEXT_CONFIG_DISPLAY_LANG("Display language"),
+	;
 
 	/**
 	 * Field
