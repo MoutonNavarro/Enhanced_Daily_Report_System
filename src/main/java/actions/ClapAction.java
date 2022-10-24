@@ -53,7 +53,7 @@ public class ClapAction extends ActionBase {
 			if (rv != null) {	//The input report is exists
 				int rep_id = rv.getId();	//Report ID
 				int emp_id = ((EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP)).getId();
-				List<String> errors = service.doReaction(rep_id, emp_id, JpaConst.CLAP_REACT_CLAP);
+				List<String> errors = service.doReaction(rep_id, emp_id, JpaConst.CLAP_REACT_CLAP, getSessionScope(AttributeConst.LANGUAGE));
 				if (errors.size() > 0) {
 					putSessionScope(AttributeConst.ERR, errors);	//List of errors
 				}else {
@@ -81,7 +81,7 @@ public class ClapAction extends ActionBase {
 		if (checkToken()){
 			int rep_id = toNumber(getRequestParam(AttributeConst.REP_ID));	//Acquire report ID
 			int emp_id = ((EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP)).getId();
-			List<String> errors = service.undoReaction(rep_id, emp_id);
+			List<String> errors = service.undoReaction(rep_id, emp_id, getSessionScope(AttributeConst.LANGUAGE));
 			if (errors.size() > 0) {
 				putSessionScope(AttributeConst.ERR, errors);	//List of errors
 			}else {

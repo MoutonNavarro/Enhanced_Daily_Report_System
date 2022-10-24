@@ -8,6 +8,7 @@ import javax.persistence.NoResultException;
 import actions.views.EmployeeConverter;
 import actions.views.EmployeeView;
 import constants.JpaConst;
+import constants.LanguageClassConst;
 import models.Employee;
 import models.validators.EmployeeValidator;
 import utils.EncryptUtil;
@@ -91,9 +92,10 @@ public class EmployeeService extends ServiceBase {
 	 * Create one data based on the employee registration details entered from the screen and register it on the employee table
 	 * @param ev Employee registration detail entered from the screen
 	 * @param pepper pepper string
+	 * @param lang For localize based on LanguageClassConst enum object
 	 * @return Error list that occurred in validating and registration
 	 */
-	public List<String> create(EmployeeView ev, String pepper){
+	public List<String> create(EmployeeView ev, String pepper, LanguageClassConst lang){
 		//Set password with hashing
 		String pass = EncryptUtil.getPasswordEncrypt(ev.getPassword(), pepper);
 		ev.setPassword(pass);
@@ -104,7 +106,7 @@ public class EmployeeService extends ServiceBase {
 		ev.setUpdatedAt(now);
 
 		//Validate to registration content
-		List<String> errors = EmployeeValidator.validate(this, ev, true, true);
+		List<String> errors = EmployeeValidator.validate(this, ev, true, true, lang);
 
 		//There isn't validation error then register the data
 		if (errors.size() == 0) {
@@ -118,9 +120,10 @@ public class EmployeeService extends ServiceBase {
 	 * Create one data based on the employee update detail entered from the screen and update employee table
 	 * @param ev Employee's registration detail entered from the screen
 	 * @param pepper pepper string
+	 * @param lang For localize based on LanguageClassConst enum object
 	 * @return Error list that occurred validating and updating
 	 */
-	public List<String> update(EmployeeView ev, String pepper){
+	public List<String> update(EmployeeView ev, String pepper, LanguageClassConst lang){
 		//Acquire information of registered employee with ID as condition
 		EmployeeView savedEmp = findOne(ev.getId());
 
@@ -153,7 +156,7 @@ public class EmployeeService extends ServiceBase {
 		savedEmp.setUpdatedAt(today);
 
 		//Validate about the update content
-		List<String> errors = EmployeeValidator.validate(this, savedEmp, validateCode, validatePass);
+		List<String> errors = EmployeeValidator.validate(this, savedEmp, validateCode, validatePass, lang);
 
 		//There isn't validation error then update the data
 		if (errors.size() == 0) {

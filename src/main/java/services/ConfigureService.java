@@ -27,6 +27,7 @@ public final class ConfigureService extends ServiceBase implements AutoCloseable
 	/**
 	 * Create one data based on the configure update detail entered from the screen and update configuration table
 	 * @param cv Configure's registration detail entered from the screen
+	 * @param lang For localize based on LanguageClassConst enum object
 	 * @return Error list that occurred validating and updating
 	 */
 	public List<String> update(ConfigureView cv, LanguageClassConst lang) {

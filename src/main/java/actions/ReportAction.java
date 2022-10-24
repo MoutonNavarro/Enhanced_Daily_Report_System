@@ -124,7 +124,7 @@ public class ReportAction extends ActionBase {
 				null, null, null);
 
 			//Register the report information
-			List<String> errors = service.create(rv);
+			List<String> errors = service.create(rv, getSessionScope(AttributeConst.LANGUAGE));
 
 			if(errors.size() > 0) {
 				//Errors occurred at registration
@@ -233,7 +233,7 @@ public class ReportAction extends ActionBase {
 			rv.setContent(getRequestParam(AttributeConst.REP_CONTENT));
 
 			//Update the report data
-			List<String> errors = service.update(rv);
+			List<String> errors = service.update(rv, getSessionScope(AttributeConst.LANGUAGE));
 
 			if(errors.size() > 0) {
 				//In case errors occurred at updating

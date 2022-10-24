@@ -8,6 +8,7 @@ import actions.views.EmployeeView;
 import actions.views.ReportConverter;
 import actions.views.ReportView;
 import constants.JpaConst;
+import constants.LanguageClassConst;
 import models.Report;
 import models.validators.ReportValidator;
 
@@ -80,10 +81,11 @@ public class ReportService extends ServiceBase {
 	/**
 	 * Create one data based on input content of the report from screen, and register at the report table
 	 * @param rv Registration content of the report
+	 * @param lang For localize based on LanguageClassConst enum object
 	 * @return List of the errors occurred at validation
 	 */
-	public List<String> create(ReportView rv){
-		List<String> errors = ReportValidator.validate(rv);
+	public List<String> create(ReportView rv, LanguageClassConst lang){
+		List<String> errors = ReportValidator.validate(rv, lang);
 		if (errors.size() == 0) {
 			LocalDateTime ldt = LocalDateTime.now();
 			rv.setCreatedAt(ldt);
@@ -98,12 +100,13 @@ public class ReportService extends ServiceBase {
 	/**
 	 * Update the report data based on the input content of the report from the screen
 	 * @param rv Update content of the report
+	 * @param lang For localize based on LanguageClassConst enum object
 	 * @return List of the errors occurred at it's validation
 	 */
-	public List<String> update(ReportView rv){
+	public List<String> update(ReportView rv, LanguageClassConst lang){
 
 		//Do validation
-		List<String> errors = ReportValidator.validate(rv);
+		List<String> errors = ReportValidator.validate(rv, lang);
 
 		if (errors.size() == 0) {
 			//Set current time at date updated

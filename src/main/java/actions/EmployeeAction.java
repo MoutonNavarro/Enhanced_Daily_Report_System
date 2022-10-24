@@ -105,7 +105,7 @@ public class EmployeeAction extends ActionBase {
 			String pepper = getContextScope(PropertyConst.PEPPER);
 
 			//Registering the employee information
-			List<String> errors = service.create(ev, pepper);
+			List<String> errors = service.create(ev, pepper, getSessionScope(AttributeConst.LANGUAGE));
 
 			if(errors.size() > 0) {
 				//when errors occurred at registration
@@ -201,7 +201,7 @@ public class EmployeeAction extends ActionBase {
 			String pepper = getContextScope(PropertyConst.PEPPER);
 
 			//Update employee information
-			List<String> errors = service.update(ev, pepper);
+			List<String> errors = service.update(ev, pepper, getSessionScope(AttributeConst.LANGUAGE));
 
 			if(errors.size() > 0) {
 				//In case errors occurred at updating

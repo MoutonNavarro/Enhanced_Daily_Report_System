@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import constants.JpaConst;
+import constants.LanguageClassConst;
 import constants.MessageConst;
 import models.Clap;
 
@@ -33,15 +34,16 @@ public final class ClapService extends ServiceBase implements AutoCloseable{
 	 * @param rep_id Report ID
 	 * @param emp_id Employee ID
 	 * @param reaction Type of reaction
+	 * @param lang For localize based on LanguageClassConst enum object
 	 * @return List of the errors occurred at validation or already exists the reaction
 	 */
-	public List<String> doReaction(int rep_id, int emp_id, int reaction) {
+	public List<String> doReaction(int rep_id, int emp_id, int reaction, LanguageClassConst lang) {
 		List<String> errors = new ArrayList<>();
 		List<Clap> claps = em.createNamedQuery(JpaConst.Q_CLAP_GET_BY_REP_AND_EMP, Clap.class)
 			.setParameter(JpaConst.JPQL_PARM_EMPLOYEE, emp_id)
 			.setParameter(JpaConst.JPQL_PARM_REPORT, rep_id).getResultList();
 		if (claps.size() > 0) {
-			errors.add(MessageConst.E_ALREADY_CLAPPED.getMessage());
+			errors.add(MessageConst.E_ALREADY_CLAPPED.getMessage(lang));
 		}
 		//[Locked] We must implements the other type of reaction
 		if (errors.size() == 0) {
@@ -56,15 +58,16 @@ public final class ClapService extends ServiceBase implements AutoCloseable{
 	 * Search clap with both report ID and employee ID as condition, then delete the reaction if found it.
 	 * @param rep_id Report ID
 	 * @param emp_id Employee ID
+	 * @param lang For localize based on LanguageClassConst enum object
 	 * @return List of the errors occurred at validation or already exists the reaction
 	 */
-	public List<String> undoReaction(int rep_id, int emp_id) {
+	public List<String> undoReaction(int rep_id, int emp_id, LanguageClassConst lang) {
 		List<String> errors = new ArrayList<>();
 		List<Clap> claps = em.createNamedQuery(JpaConst.Q_CLAP_GET_BY_REP_AND_EMP, Clap.class)
 			.setParameter(JpaConst.JPQL_PARM_EMPLOYEE, emp_id)
 			.setParameter(JpaConst.JPQL_PARM_REPORT, rep_id).getResultList();
 		if (claps.size() == 0) {
-			errors.add(MessageConst.E_ALREADY_UNDID_CLAP.getMessage());
+			errors.add(MessageConst.E_ALREADY_UNDID_CLAP.getMessage(lang));
 		}
 		//[Locked] We must implements the other type of reaction
 		if (errors.size() == 0) {

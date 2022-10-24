@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import actions.views.EmployeeView;
+import constants.LanguageClassConst;
 import constants.MessageConst;
 import services.EmployeeService;
 
@@ -18,26 +19,27 @@ public class EmployeeValidator {
 	 * @param ev EmployeeView instance
 	 * @param codeDuplicateCheckFlag Whether do duplicate check to employee code (check: true  no check: false)
 	 * @param passwordCheckFlag Whether do input check to password (check: true  no check: false)
+	 * @param lang For localize based on LanguageClassConst enum object
 	 * @return Error's list
 	 */
 	public static List<String> validate(
-			EmployeeService service, EmployeeView ev, Boolean codeDuplicateCheckFlag, Boolean passwordCheckFlag){
+			EmployeeService service, EmployeeView ev, Boolean codeDuplicateCheckFlag, Boolean passwordCheckFlag, LanguageClassConst lang){
 		List<String> errors = new ArrayList<>();
 
 		//Check employee code
-		String codeError = validateCode(service, ev.getCode(), codeDuplicateCheckFlag);
+		String codeError = validateCode(service, ev.getCode(), codeDuplicateCheckFlag, lang);
 		if (!codeError.equals("")) {
 			errors.add(codeError);
 		}
 
 		//Check name
-		String nameError = validateName(ev.getName());
+		String nameError = validateName(ev.getName(), lang);
 		if (!nameError.equals("")) {
 			errors.add(nameError);
 		}
 
 		//Check password
-		String passError = validatePassword(ev.getPassword(), passwordCheckFlag);
+		String passError = validatePassword(ev.getPassword(), passwordCheckFlag, lang);
 		if (!passError.equals("")) {
 			errors.add(passError);
 		}
@@ -50,13 +52,14 @@ public class EmployeeValidator {
 	 * @param service EmployeeService's instance
 	 * @param code Employee code
 	 * @param codeDuplicateCheckFlag Whether do duplicate check to employee code (check: true  no check: false)
+	 * @param lang For localize based on LanguageClassConst enum object
 	 * @return Error message
 	 */
-	private static String validateCode(EmployeeService service, String code, Boolean codeDuplicateCheckFlag) {
+	private static String validateCode(EmployeeService service, String code, Boolean codeDuplicateCheckFlag, LanguageClassConst lang) {
 
 		//If no input value then returns an error message
 		if (code == null || code.equals("")) {
-			return MessageConst.E_NOEMP_CODE.getMessage();
+			return MessageConst.E_NOEMP_CODE.getMessage(lang);
 		}
 
 		if (codeDuplicateCheckFlag) {
@@ -66,7 +69,7 @@ public class EmployeeValidator {
 
 			//If the employee code has been already registered then returns an error message
 			if (employeesCount > 0) {
-				return MessageConst.E_EMP_CODE_EXIST.getMessage();
+				return MessageConst.E_EMP_CODE_EXIST.getMessage(lang);
 			}
 		}
 
@@ -88,11 +91,12 @@ public class EmployeeValidator {
 	/**
 	 * Check input value at name and if not input value then returns an error message
 	 * @param name Name
+	 * @param lang For localize based on LanguageClassConst enum object
 	 * @return Error message
 	 */
-	private static String validateName(String name) {
+	private static String validateName(String name, LanguageClassConst lang) {
 		if (name == null || name.equals("")) {
-			return MessageConst.E_NONAME.getMessage();
+			return MessageConst.E_NONAME.getMessage(lang);
 		}
 
 		//If there is input value then returns empty string
@@ -103,12 +107,13 @@ public class EmployeeValidator {
 	 * Check input password and returns error message
 	 * @param password Password
 	 * @param passwordCheckFlag Whether password's input check (check: true  no check: false)
+	 * @param lang For localize based on LanguageClassConst enum object
 	 * @return Error message
 	 */
-	private static String validatePassword(String password, Boolean passwordCheckFlag) {
+	private static String validatePassword(String password, Boolean passwordCheckFlag, LanguageClassConst lang) {
 		//Do input check and if there isn't input value then returns an error message
 		if (passwordCheckFlag && (password == null || password.equals(""))) {
-			return MessageConst.E_NOPASSWORD.getMessage();
+			return MessageConst.E_NOPASSWORD.getMessage(lang);
 		}
 
 		//No errors occurred then return empty string

@@ -16,6 +16,7 @@ public class ConfigureValidator {
 	/**
 	 * Do validation about each items of Configure instance
 	 * @param cv Configure instance
+	 * @param lang For localize based on LanguageClassConst enum object
 	 * @return Errors list
 	 * @throws NullPointerException when include null at ConfigureView in range of validation
 	 */
@@ -41,6 +42,13 @@ public class ConfigureValidator {
 		return errors;
 	}
 
+	/**
+	 * Check input of the color name and return error message
+	 * @param user_color Input color name
+	 * @param lang For localize based on LanguageClassConst enum object
+	 * @return Error message
+	 * @throws NullPointerException when include null at ConfigureView in range of validation
+	 */
 	private static String validateUserColor(String user_color, LanguageClassConst lang) {
 		if (ColorNameEnum.getByName(user_color) == null && ColorNameEnum.getByCode(user_color) == null) {
 			return MessageConst.E_NO_SUCH_USER_COLOR.getMessage(lang);
