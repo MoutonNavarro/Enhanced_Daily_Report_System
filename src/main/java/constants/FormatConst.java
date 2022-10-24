@@ -34,7 +34,7 @@ public enum FormatConst {
 	public String getFormat(LanguageClassConst lang) {
 		try {
 			return ((Format)valueOf(lang.getFormat(), this.name())).getFormat();
-		}catch (IllegalArgumentException e) {
+		}catch (IllegalArgumentException| NullPointerException e) {
 			return getFormat();
 		}
 	}

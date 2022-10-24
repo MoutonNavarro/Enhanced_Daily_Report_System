@@ -5,6 +5,7 @@ import java.util.List;
 
 import actions.views.ConfigureView;
 import colors.ColorNameEnum;
+import constants.LanguageClassConst;
 import constants.MessageConst;
 
 /**
@@ -18,7 +19,7 @@ public class ConfigureValidator {
 	 * @return Errors list
 	 * @throws NullPointerException when include null at ConfigureView in range of validation
 	 */
-	public static List<String> validate(ConfigureView cv) throws NullPointerException{
+	public static List<String> validate(ConfigureView cv, LanguageClassConst lang) throws NullPointerException{
 		List<String> errors = new ArrayList<>();
 		List<String> seriousErrors = new ArrayList<>();
 
@@ -28,7 +29,7 @@ public class ConfigureValidator {
 		//[Unlocked] We implemented color constants for foreground
 		if (null == (checkNull = cv.getUser_color())) {
 			System.err.println("cv = null");
-		}else if (!"".equals(userColorError = validateUserColor((String)checkNull))) {
+		}else if (!"".equals(userColorError = validateUserColor((String)checkNull, lang))) {
 			errors.add(userColorError);
 		}
 
@@ -40,9 +41,9 @@ public class ConfigureValidator {
 		return errors;
 	}
 
-	private static String validateUserColor(String user_color) {
+	private static String validateUserColor(String user_color, LanguageClassConst lang) {
 		if (ColorNameEnum.getByName(user_color) == null && ColorNameEnum.getByCode(user_color) == null) {
-			return MessageConst.E_NO_SUCH_USER_COLOR.getMessage();
+			return MessageConst.E_NO_SUCH_USER_COLOR.getMessage(lang);
 		}
 
 		return "";	//No errors detected then empty string

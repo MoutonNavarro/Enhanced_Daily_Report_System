@@ -68,7 +68,7 @@ public enum HtmlConst {
 	public String getValue(LanguageClassConst lang) {
 		try {
 			return ((Html)valueOf(lang.getHtml(), this.name())).getValue();
-		}catch (IllegalArgumentException e) {
+		}catch (IllegalArgumentException| NullPointerException e) {
 			return getValue();
 		}
 	}

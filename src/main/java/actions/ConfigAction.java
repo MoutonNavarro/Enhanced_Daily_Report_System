@@ -11,6 +11,7 @@ import actions.views.EmployeeView;
 import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
+import constants.LanguageClassConst;
 import constants.MessageConst;
 import services.ConfigureService;
 
@@ -75,7 +76,10 @@ public class ConfigAction extends ActionBase {
 			//[Locked] We must tunes colour management
 //			cv.setUser_background(getRequestParam(AttributeConst.CONFIG_BG));
 			//[Unlocked]ConfigureValidator.class has been implemented
-			List<String> errors = service.update(cv);
+			List<String> errors = service.update(cv, getSessionScope(AttributeConst.LANGUAGE));
+			if (LanguageClassConst.getByLanguageName(getRequestParam(AttributeConst.CONFIG_LANGUAGE)) == null) {	//Temporary
+				errors.add(MessageConst.E_NO_SUCH_LANGUAGE.getMessage(getSessionScope(AttributeConst.LANGUAGE)));	//
+			}																																			//
 			if (errors.size() > 0) {
 				putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
 				putRequestScope(AttributeConst.CONFIG, cv);	//Input the report information
@@ -90,8 +94,10 @@ public class ConfigAction extends ActionBase {
 			if (((EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP)).getAdminFlag() == JpaConst.ROLE_ADMIN) {
 				putSessionScope(AttributeConst.CONFIG, cv);
 			}
+			putSessionScope(AttributeConst.LANGUAGE, LanguageClassConst.getByLanguageName(getRequestParam(AttributeConst.CONFIG_LANGUAGE)));	//Temporary
 
-			putSessionScope(AttributeConst.FLUSH, MessageConst.I_CONFIG_UPDATED.getMessage());
+			putSessionScope(AttributeConst.FLUSH, MessageConst.I_CONFIG_UPDATED.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
+			System.out.println(((LanguageClassConst)getSessionScope(AttributeConst.LANGUAGE)).getDisplayName());
 			redirect(ForwardConst.ACT_TOP, ForwardConst.CMD_INDEX);
 			return;
 		}

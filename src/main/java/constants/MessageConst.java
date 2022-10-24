@@ -23,7 +23,8 @@ public enum MessageConst {
 	E_EMP_CODE_EXIST("The information of input employee code is already exists."),
 	E_NOTITLE("Please input title."),
 	E_NOCONTENT("Please input the content."),
-	E_NO_SUCH_USER_COLOR("No such color name in user color"),
+	E_NO_SUCH_USER_COLOR("No such color name in user color."),
+	E_NO_SUCH_LANGUAGE("No such language in displays language."),
 
 	//Configure
 	I_CONFIG_UPDATED("Your Configure is updated."),
@@ -64,8 +65,8 @@ public enum MessageConst {
 	@SuppressWarnings("unchecked")
 	public String getMessage(LanguageClassConst lang) {
 		try {
-			return ((Message)valueOf(lang.getFormat(), this.name())).getMessage();
-		}catch (IllegalArgumentException e) {
+			return ((Message)valueOf(lang.getMessage(), this.name())).getMessage();
+		}catch (IllegalArgumentException| NullPointerException e) {
 			return getMessage();
 		}
 	}

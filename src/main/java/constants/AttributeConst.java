@@ -56,6 +56,8 @@ public enum AttributeConst {
 	CONFIG_LANGUAGE("language"),
 	CONFIG_TIMEZONE("timezone"),
 
+	LANGUAGE("lang"),
+
 	//Claps
 	CLAP("claps"),
 	CLAP_COUNT("clap_count"),

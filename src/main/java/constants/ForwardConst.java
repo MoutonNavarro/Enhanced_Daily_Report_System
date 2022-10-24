@@ -91,7 +91,7 @@ public enum ForwardConst{
 	public String getValue(String lang_name) {
 		try {
 			return ((Forward)valueOf(LanguageClassConst.getByLanguageName(lang_name).getForward(), this.name())).getValue();
-		}catch (IllegalArgumentException e) {
+		}catch (IllegalArgumentException| NullPointerException e) {
 			return getValue();
 		}
 	}
@@ -105,7 +105,7 @@ public enum ForwardConst{
 	public String getValue(LanguageClassConst lang) {
 		try {
 			return ((Forward)valueOf(lang.getForward(), this.name())).getValue();
-		}catch (IllegalArgumentException e) {
+		}catch (IllegalArgumentException| NullPointerException e) {
 			return getValue();
 		}
 	}

@@ -7,6 +7,7 @@ import java.util.List;
 import actions.views.ConfigureConverter;
 import actions.views.ConfigureView;
 import colors.ColorNameEnum;
+import constants.LanguageClassConst;
 import models.Configure;
 import models.validators.ConfigureValidator;
 
@@ -28,9 +29,9 @@ public final class ConfigureService extends ServiceBase implements AutoCloseable
 	 * @param cv Configure's registration detail entered from the screen
 	 * @return Error list that occurred validating and updating
 	 */
-	public List<String> update(ConfigureView cv) {
+	public List<String> update(ConfigureView cv, LanguageClassConst lang) {
 		//Do validation
-		List<String> errors = ConfigureValidator.validate(cv);
+		List<String> errors = ConfigureValidator.validate(cv, lang);
 
 		if (errors.size() == 0) {
 			//Set current time at date updated
