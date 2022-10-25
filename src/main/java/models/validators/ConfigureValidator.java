@@ -1,6 +1,7 @@
 package models.validators;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import actions.views.ConfigureView;
@@ -26,12 +27,23 @@ public class ConfigureValidator {
 
 		Object checkNull = null;
 		//Check user_color
-		String userColorError = null;
-		//[Unlocked] We implemented color constants for foreground
-		if (null == (checkNull = cv.getUser_color())) {
-			System.err.println("cv = null");
-		}else if (!"".equals(userColorError = validateUserColor((String)checkNull, lang))) {
-			errors.add(userColorError);
+		{
+			String userColorError = null;
+			//[Unlocked] We implemented color constants for foreground
+			if (null == (checkNull = cv.getUser_color())) {
+				seriousErrors.add("cv.user_color = null");
+			}else if (!"".equals(userColorError = validateUserColor((String)checkNull, lang))) {
+				errors.add(userColorError);
+			}
+		}
+		//Check language name
+		{
+			String langNameError = null;
+			if (null == (checkNull = cv.getLanguage())) {
+				seriousErrors.add("cv.lang = null");
+			}else if (!"".equals(langNameError = validateLanguage((String)checkNull, lang))) {
+				errors.add(langNameError);
+			}
 		}
 
 		//[Locked] We must implements other function
@@ -55,6 +67,20 @@ public class ConfigureValidator {
 		}
 
 		return "";	//No errors detected then empty string
+	}
+
+	/**
+	 * Check input of the color name and return error message
+	 * @param lang_name Input language name
+	 * @param lang For localize based on LanguageClassConst enum object
+	 * @return Error message
+	 * @throws NullPointerException when include null at ConfigureView in range of validation
+	 */
+	private static String validateLanguage(String lang_name, LanguageClassConst lang) {
+		return Arrays.stream(LanguageClassConst.values())
+		.filter(data -> data.getLanguageName().equalsIgnoreCase(lang_name))
+		.findFirst()
+		.orElse(null) == null ? MessageConst.E_NO_SUCH_LANGUAGE.getMessage(lang) : "";
 	}
 
 //	/**

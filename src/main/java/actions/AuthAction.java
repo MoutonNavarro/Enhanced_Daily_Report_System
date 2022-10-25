@@ -4,11 +4,14 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 
+import actions.views.ConfigureView;
 import actions.views.EmployeeView;
 import constants.AttributeConst;
 import constants.ForwardConst;
+import constants.LanguageClassConst;
 import constants.MessageConst;
 import constants.PropertyConst;
+import services.ConfigureService;
 import services.EmployeeService;
 
 /**
@@ -78,6 +81,13 @@ public class AuthAction extends ActionBase {
 				EmployeeView ev = service.findOne(code, plainPass, pepper);
 				//Set logged in employee at the session
 				putSessionScope(AttributeConst.LOGIN_EMP, ev);
+				//Set language enum from the configure
+				try (ConfigureService cs = new ConfigureService();){
+					ConfigureView cv = null;
+					if (null != (cv = cs.findOne(ev.getId()))){
+						putSessionScope(AttributeConst.LANGUAGE, LanguageClassConst.getByConfigureView(cv));
+					}
+				}
 				//Set flush message at the session: Login successful
 				putSessionScope(AttributeConst.FLUSH, MessageConst.I_LOGINED.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
 				//Redirect to the top page

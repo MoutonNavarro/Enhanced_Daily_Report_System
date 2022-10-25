@@ -2,6 +2,7 @@ package constants;
 
 import java.util.Arrays;
 
+import actions.views.ConfigureView;
 import constants.interfaces.Format;
 import constants.interfaces.Forward;
 import constants.interfaces.Html;
@@ -85,13 +86,30 @@ public enum LanguageClassConst{
 	/**
 	 * Acquire Enum object with condition as language name
 	 * @param code color code start with "#"
-	 * @return Acquired Enum(Null if there is no Enum with such name)
+	 * @return Acquired Enum(ENG_US if there is no Enum with such name)
 	 */
 	public static LanguageClassConst getByLanguageName(String language_name) {
 		return Arrays.stream(LanguageClassConst.values())
 			.filter(data -> data.getLanguageName().equalsIgnoreCase(language_name))
 			.findFirst()
 			.orElse(ENG_US);
+
+	}
+
+	/**
+	 * Aquire Enum object with condition as ConfigureView
+	 * @param cv ConfigureView instance
+	 * @return Acquired Enum(ENG_US if there is no Enum with such name)
+	 * @throws NullPointerException If null as argument
+	 */
+	public static LanguageClassConst getByConfigureView(ConfigureView cv) {
+		LanguageClassConst l = null;
+		return null == (l = Arrays.stream(LanguageClassConst.values())
+			.filter(data -> data.getLanguageCode().equalsIgnoreCase(cv.getLanguage()))
+			.findFirst().orElse(null)) ? ENG_US : Arrays.stream(LanguageClassConst.values())
+				.filter(data -> data.getLanguageCode().equalsIgnoreCase(cv.getLanguage()))
+				.filter(data -> data.getLanguageCountry().equalsIgnoreCase(cv.getLang_country()))
+				.findFirst().orElse(l);
 
 	}
 

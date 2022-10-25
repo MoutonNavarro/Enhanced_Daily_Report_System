@@ -41,7 +41,7 @@ public class InitializeSession implements Filter {
 //			((HttpServletRequest) request).getSession().removeAttribute(AttributeConst.LANGUAGE.getValue());
 //		}else {
 		if (((HttpServletRequest) request).getSession().getAttribute(AttributeConst.LANGUAGE.getValue()) == null) {
-			((HttpServletRequest) request).getSession().setAttribute(AttributeConst.LANGUAGE.getValue(), LanguageClassConst.JPN_JP);
+			((HttpServletRequest) request).getSession().setAttribute(AttributeConst.LANGUAGE.getValue(), LanguageClassConst.ENG_US);
 		}
 
 		chain.doFilter(request, response);

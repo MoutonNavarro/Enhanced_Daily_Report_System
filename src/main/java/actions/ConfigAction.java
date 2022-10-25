@@ -69,7 +69,7 @@ public class ConfigAction extends ActionBase {
 				cv = service.findOne(((EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP)).getId())
 				)){
 			//[Locked] We must implements the language constants
-//			cv.setLanguage(getRequestParam(AttributeConst.CONFIG_LANGUAGE));
+			cv.setLanguage(getRequestParam(AttributeConst.CONFIG_LANGUAGE));
 			//[Locked] We must implements the time zone function
 //			cv.setTime_zone(getRequestParam(AttributeConst.CONFIG_TIMEZONE));
 			cv.setUser_color(getRequestParam(AttributeConst.CONFIG_COLOR));
@@ -94,7 +94,7 @@ public class ConfigAction extends ActionBase {
 			if (((EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP)).getAdminFlag() == JpaConst.ROLE_ADMIN) {
 				putSessionScope(AttributeConst.CONFIG, cv);
 			}
-			putSessionScope(AttributeConst.LANGUAGE, LanguageClassConst.getByLanguageName(getRequestParam(AttributeConst.CONFIG_LANGUAGE)));	//Temporary
+			putSessionScope(AttributeConst.LANGUAGE, LanguageClassConst.getByConfigureView(cv));
 
 			putSessionScope(AttributeConst.FLUSH, MessageConst.I_CONFIG_UPDATED.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
 			System.out.println(((LanguageClassConst)getSessionScope(AttributeConst.LANGUAGE)).getDisplayName());

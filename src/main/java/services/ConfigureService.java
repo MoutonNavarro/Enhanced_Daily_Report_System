@@ -41,6 +41,11 @@ public final class ConfigureService extends ServiceBase implements AutoCloseable
 			if (ColorNameEnum.getByName(cv.getUser_color()) == null) {
 				cv.setUser_color(ColorNameEnum.getByCode(cv.getUser_color()).getName());
 			}
+			{
+				LanguageClassConst lcc = LanguageClassConst.getByLanguageName(cv.getLanguage());
+				cv.setLanguage(lcc.getLanguageCode());
+				cv.setLang_country(lcc.getLanguageCountry());
+			}
 
 			updateInternal(cv);
 		}
