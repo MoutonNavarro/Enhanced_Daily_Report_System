@@ -4,6 +4,7 @@
 <%@ page import="constants.ForwardConst" %>
 <%@ page import="constants.AttributeConst" %>
 <%@ page import="constants.HtmlConst" %>
+<%@ page import="constants.FormatConst" %>
 
 <c:set var="actEmp" value="${ForwardConst.ACT_EMP.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
@@ -33,12 +34,12 @@
 				<tr>
 					<th>${HtmlConst.TEXT_DATE_REGISTERED.getValue(lang)}</th>
 					<fmt:parseDate value="${employee.createdAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="createDay" type="date" />
-					<td><fmt:formatDate value="${createDay}" pattern="MM/dd/yyyy HH:mm:ss" /></td>
+					<td><fmt:formatDate value="${createDay}" pattern="${FormatConst.TIME_FORMAT.getFormat(lang)}" /></td>
 				</tr>
 				<tr>
 					<th>${HtmlConst.TEXT_DATE_UPDATED.getValue(lang)}</th>
 					<fmt:parseDate value="${employee.updatedAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="updateDay" type="date" />
-					<td><fmt:formatDate value="${updateDay}" pattern="MM/dd/yyyy HH:mm:ss" /></td>
+					<td><fmt:formatDate value="${updateDay}" pattern="${FormatConst.TIME_FORMAT.getFormat(lang)}" /></td>
 				</tr>
 			</tbody>
 		</table>

@@ -3,6 +3,8 @@ package constants;
 import constants.interfaces.Format;
 
 public enum FormatConst {
+	TIME_FORMAT("MM/dd/yyyy HH:mm:ss"),
+	DATE_FORMAT("MM/dd/yyyy"),
 	;
 
 	/**
@@ -30,7 +32,6 @@ public enum FormatConst {
 	 * @param lang LanguageClassConst type enum object
 	 * @return Localized format (if no such declared value then original format)
 	 */
-	@SuppressWarnings("unchecked")
 	public String getFormat(LanguageClassConst lang) {
 		try {
 			return ((Format)valueOf(lang.getFormat(), this.name())).getFormat();

@@ -4,6 +4,7 @@
 <%@ page import="constants.ForwardConst" %>
 <%@ page import="constants.AttributeConst" %>
 <%@ page import="constants.HtmlConst" %>
+<%@ page import="constants.FormatConst" %>
 
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
@@ -37,7 +38,7 @@
 				<tr>
 					<th>${HtmlConst.TEXT_DATE.getValue(lang)}</th>
 					<fmt:parseDate value="${report.reportDate}" pattern="yyyy-MM-dd" var="reportDay" type="date" />
-					<td><fmt:formatDate value='${reportDay}' pattern='MM/dd/yyyy' /></td>
+					<td><fmt:formatDate value='${reportDay}' pattern='${FormatConst.DATE_FORMAT.getFormat(lang)}' /></td>
 				</tr>
 				<tr>
 					<th>${HtmlConst.TEXT_CONTENT.getValue(lang)}</th>
@@ -46,12 +47,12 @@
 				<tr>
 					<th>${HtmlConst.TEXT_DATE_REGISTERED.getValue(lang)}</th>
 					<fmt:parseDate value="${report.createdAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="createDay" type="date" />
-					<td><fmt:formatDate value="${createDay}" pattern="MM/dd/yyyy HH:mm:ss" /></td>
+					<td><fmt:formatDate value="${createDay}" pattern="${FormatConst.TIME_FORMAT.getFormat(lang)}" /></td>
 				</tr>
 				<tr>
 					<th>${HtmlConst.TEXT_DATE_UPDATED.getValue(lang)}</th>
 					<fmt:parseDate value="${report.updatedAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="updateDay" type="date" />
-					<td><fmt:formatDate value="${updateDay}" pattern="MM/dd/yyyy HH:mm:ss" /></td>
+					<td><fmt:formatDate value="${updateDay}" pattern="${FormatConst.TIME_FORMAT.getFormat(lang)}" /></td>
 				</tr>
 			</tbody>
 		</table>
