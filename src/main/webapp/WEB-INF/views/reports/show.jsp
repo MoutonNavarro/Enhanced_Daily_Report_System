@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="constants.ForwardConst" %>
 <%@ page import="constants.AttributeConst" %>
+<%@ page import="constants.HtmlConst" %>
 
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
@@ -25,30 +26,30 @@
 				</c:forEach>
 			</div>
 		</c:if>
-		<H2>Daily report detail page</H2>
+		<H2>${HtmlConst.TEXT_REP_SHOW_PAGE.getValue(lang)}</H2>
 
 		<table>
 			<tbody<c:if test="${report.configure.user_color != ''}"> style="color:<c:out value='${report.configure.user_color}' />;"</c:if>>
 				<tr>
-					<th>Name</th>
+					<th>${HtmlConst.TEXT_NAME.getValue(lang)}</th>
 					<td><c:out value="${report.employee.name}" /></td>
 				</tr>
 				<tr>
-					<th>Date</th>
+					<th>${HtmlConst.TEXT_DATE.getValue(lang)}</th>
 					<fmt:parseDate value="${report.reportDate}" pattern="yyyy-MM-dd" var="reportDay" type="date" />
 					<td><fmt:formatDate value='${reportDay}' pattern='MM/dd/yyyy' /></td>
 				</tr>
 				<tr>
-					<th>Content</th>
+					<th>${HtmlConst.TEXT_CONTENT.getValue(lang)}</th>
 					<td><pre><c:out value="${report.content}" /></pre></td>
 				</tr>
 				<tr>
-					<th>Date registered</th>
+					<th>${HtmlConst.TEXT_DATE_REGISTERED.getValue(lang)}</th>
 					<fmt:parseDate value="${report.createdAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="createDay" type="date" />
 					<td><fmt:formatDate value="${createDay}" pattern="MM/dd/yyyy HH:mm:ss" /></td>
 				</tr>
 				<tr>
-					<th>Date updated</th>
+					<th>${HtmlConst.TEXT_DATE_UPDATED.getValue(lang)}</th>
 					<fmt:parseDate value="${report.updatedAt}" pattern="yyyy-MM-dd'T'HH:mm:ss" var="updateDay" type="date" />
 					<td><fmt:formatDate value="${updateDay}" pattern="MM/dd/yyyy HH:mm:ss" /></td>
 				</tr>
@@ -58,22 +59,22 @@
 		<form method="POST" action="<c:choose><c:when test='${is_clapped}'><c:url value='?action=${actClap}&command=${commUndoReact}' /></c:when><c:otherwise><c:url value='?action=${actClap}&command=${commDoReact}' /></c:otherwise></c:choose>">
 			<input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
 			<input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
-			<button type="submit"><c:choose><c:when test='${is_clapped}'>You clapped</c:when><c:otherwise>Clap</c:otherwise></c:choose> (${clap_count})</button>
+			<button type="submit"><c:choose><c:when test='${is_clapped}'>${HtmlConst.TEXT_REP_CLAPPED.getValue(lang)}</c:when><c:otherwise>${HtmlConst.TEXT_REP_CLAP.getValue(lang)}</c:otherwise></c:choose> (${clap_count})</button>
 		</form>
 		<c:if test="${clap_count > 0}">
-			<p>Clapped:&nbsp;
+			<p>${HtmlConst.TEXT_REP_CLAPPED_EMPLOYEES.getValue(lang)}
 			<c:forEach var="clap" items="${claps}">
-				[${clap.employee_name}]&nbsp;&nbsp;
+				${HtmlConst.TEXT_REP_CLAPPED_EMPLOYEE_L.getValue(lang)}${clap.employee_name}${HtmlConst.TEXT_REP_CLAPPED_EMPLOYEE_R.getValue(lang)}
 			</c:forEach></p>
 		</c:if>
 		<c:if test="${sessionScope.login_employee.id == report.employee.id}">
 			<p>
-				<a href="<c:url value='?action=${actRep}&command=${commEdt}&id=${report.id}' />">Edit this report</a>
+				<a href="<c:url value='?action=${actRep}&command=${commEdt}&id=${report.id}' />">${HtmlConst.TEXT_REP_EDIT.getValue(lang)}</a>
 			</p>
 		</c:if>
 
 		<p>
-			<a href="<c:url value='?action=${actRep}&command=${commIdx}' />">Back to the list</a>
+			<a href="<c:url value='?action=${actRep}&command=${commIdx}' />">${HtmlConst.TEXT_REP_BACK_LIST.getValue(lang)}</a>
 		</p>
 	</c:param>
 </c:import>

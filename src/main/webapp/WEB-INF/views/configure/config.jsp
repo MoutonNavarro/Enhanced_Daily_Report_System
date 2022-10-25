@@ -50,7 +50,7 @@
 <br><br>
 
 <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
-<button type="submit">${HtmlConst.TEXT_SUBMIT.getValue(lang)}</button>		</form>
+<button type="submit">${HtmlConst.TEXT_SEND.getValue(lang)}</button>		</form>
 
 		<p>
 			<a href="<c:url value='?action=${actTop}&command=${commIdx}' />">${HtmlConst.TEXT_GO_TOP.getValue(lang)}</a>

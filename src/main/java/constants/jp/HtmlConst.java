@@ -21,15 +21,23 @@ public enum HtmlConst implements Html{
 		TEXT_NUMBER_OF_ALL_ITEMS_L("(全: "),
 		TEXT_NUMBER_OF_ALL_ITEMS_R(" 件)"),
 	TEXT_DO_LOGIN("ログイン"),
-	TEXT_SUBMIT("送信"),
+	TEXT_CONTENT("内容"),
+	TEXT_SUBMIT("投稿"),
+	TEXT_SEND("送信"),
+	TEXT_DATE_REGISTERED("登録日時"),
+	TEXT_DATE_UPDATED("更新日時"),
 	TEXT_BACK_TOP("トップページに戻る"),
 	TEXT_GO_TOP("トップページへ"),
+
+	TEXT_CLAPS("拍手数"),
+
+	TEXT_FORM_ERR("入力内容に誤りがありました。"),
 
 	//Report
 	TEXT_REP_NUMBER_OF_ALL_ITEMS("(全: ${reports_count} 件)"),
 		TEXT_REP_NUMBER_OF_ALL_ITEMS_L("(全: "),
 		TEXT_REP_NUMBER_OF_ALL_ITEMS_R(" 件)"),
-	TEXT_REP_SUMBIT_NEW("日報を新しく登録する"),
+	TEXT_REP_SUBMIT_NEW("日報を新しく登録する"),
 	TEXT_REP_MINE("[あなたの日報リスト]"),
 	TEXT_REP_BACK_LIST("一覧ページに戻る"),
 
@@ -69,8 +77,29 @@ public enum HtmlConst implements Html{
 	TEXT_CONFIG_PAGE("設定ページ"),
 	TEXT_CONFIG_ERROR("入力内容に誤りがあります。"),
 	TEXT_CONFIG_COLOR_FG("文字色"),
+	TEXT_CONFIG_COLOR_BG("背景色"),
 	TEXT_CONFIG_COLOR_DEFAULT("デフォルト"),
 	TEXT_CONFIG_DISPLAY_LANG("表示言語"),
+
+	//reports
+	//edit.jsp
+	TEXT_REP_EDIT_PAGE("日報編集ページ"),
+
+	//index.jsp
+	TEXT_REP_LIST_PAGE("日報一覧"),
+
+	//new.jsp
+	TEXT_REP_NEW_PAGE("日報新規登録ページ"),
+
+	//show.jsp
+	TEXT_REP_SHOW_PAGE("日報詳細ページ"),
+	TEXT_REP_CLAP("拍手"),
+	TEXT_REP_CLAPPED("拍手しました"),
+	TEXT_REP_CLAPPED_EMPLOYEES("拍手した:&nbsp;"),
+	TEXT_REP_CLAPPED_EMPLOYEE("[${clap.employee_name}]&nbsp;&nbsp;"),
+		TEXT_REP_CLAPPED_EMPLOYEE_L("["),
+		TEXT_REP_CLAPPED_EMPLOYEE_R("]さん&nbsp;&nbsp;"),
+	TEXT_REP_EDIT("この日報を編集する"),
 	;
 
 	/**

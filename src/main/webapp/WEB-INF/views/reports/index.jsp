@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="constants.ForwardConst" %>
+<%@ page import="constants.HtmlConst" %>
 
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
@@ -15,15 +16,15 @@
 				<c:out value="${flush}" />
 			</div>
 		</c:if>
-		<H2>Daily report list</H2>
+		<H2>${HtmlConst.TEXT_REP_LIST_PAGE.getValue(lang)}</H2>
 		<table id="report_list">
 			<tbody>
 				<tr>
-					<th class="report_name">Name</th>
-					<th class="report_date">Date</th>
-					<th class="report_title">Title</th>
-					<th class="report_claps">Claps</th>
-					<th class="report_action">Operation</th>
+					<th class="report_name">${HtmlConst.TEXT_NAME.getValue(lang)}</th>
+					<th class="report_date">${HtmlConst.TEXT_DATE.getValue(lang)}</th>
+					<th class="report_title">${HtmlConst.TEXT_TITLE.getValue(lang)}</th>
+					<th class="report_claps">${HtmlConst.TEXT_CLAPS.getValue(lang)}</th>
+					<th class="report_action">${HtmlConst.TEXT_ACTION.getValue(lang)}</th>
 				</tr>
 				<c:forEach var="report" items="${reports}" varStatus="status">
 					<fmt:parseDate value="${report.reportDate}" pattern="yyyy-MM-dd" var="reportDay" type="date" />
@@ -33,14 +34,14 @@
 						<td class="report_date"><fmt:formatDate value='${reportDay}' pattern='MM/dd/yyyy' /></td>
 						<td class="report_title">${report.title}</td>
 						<td class="report_claps">${report.claps}</td>
-						<td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">See detail</a></td>
+						<td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">${HtmlConst.TEXT_SEEDETAIL.getValue(lang)}</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 
 		<div id="pagination">
-			(All: ${reports_count})<br>
+			${HtmlConst.TEXT_REP_NUMBER_OF_ALL_ITEMS_L.getValue(lang)}${reports_count}${HtmlConst.TEXT_REP_NUMBER_OF_ALL_ITEMS_R.getValue(lang)}<br>
 			<c:forEach var="i" begin="1" end="${((reports_count - 1) / maxRow) + 1}" step="1">
 				<c:choose>
 					<c:when test="${i == page}">
@@ -52,6 +53,6 @@
 				</c:choose>
 			</c:forEach>
 		</div>
-		<p><a href="<c:url value='?action=${actRep}&command=${commNew}' />">Register new daily report</a></p>
+		<p><a href="<c:url value='?action=${actRep}&command=${commNew}' />">${HtmlConst.TEXT_REP_SUBMIT_NEW.getValue(lang)}</a></p>
 	</c:param>
 </c:import>

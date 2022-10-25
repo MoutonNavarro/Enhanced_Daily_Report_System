@@ -12,27 +12,33 @@ public enum HtmlConst {
 	TEXT_NAME("Name"),
 	TEXT_DATE("Date"),
 	TEXT_TITLE("Title"),
-	TEXT_ACTION("Action"),
+	TEXT_ACTION("Operation"),
 	TEXT_SEEDETAIL("See Detail"),
 	TEXT_EMPLOYEE("Employee"),
 	TEXT_EMPLOYEE_CODE("Employee code"),
 	TEXT_PASSWORD("Password"),
+	TEXT_CLAPS("Claps"),
 	TEXT_NUMBER_OF_ALL_ITEMS("(All: ${count})"),
 		TEXT_NUMBER_OF_ALL_ITEMS_L("(All: "),
 		TEXT_NUMBER_OF_ALL_ITEMS_R(")"),
 	TEXT_DISCRIPT_MAIN("The enhanced daily report management system by Mouton Navarro."),
 	TEXT_DO_LOGIN("Login"),
+	TEXT_CONTENT("Content"),
+	TEXT_DATE_REGISTERED("Date registered"),
+	TEXT_DATE_UPDATED("Date updated"),
 	TEXT_SUBMIT("Submit"),
+	TEXT_SEND("Send"),
 	TEXT_BACK_TOP("Back to top page"),
 	TEXT_GO_TOP("Go to top page"),
+	TEXT_FORM_ERR("There is errors in input content."),
 
 	//Report
 	TEXT_REP_NUMBER_OF_ALL_ITEMS("(All: ${reports_count})"),
 		TEXT_REP_NUMBER_OF_ALL_ITEMS_L("(All: "),
 		TEXT_REP_NUMBER_OF_ALL_ITEMS_R(")"),
-	TEXT_REP_SUMBIT_NEW("Register new daily report"),
+	TEXT_REP_SUBMIT_NEW("Register new daily report"),
 	TEXT_REP_MINE("[Your daily report list]"),
-	TEXT_REP_BACK_LIST("Back to list page"),
+	TEXT_REP_BACK_LIST("Back to the list"),
 
 	//jsps
 	//app.jsp
@@ -70,8 +76,29 @@ public enum HtmlConst {
 	TEXT_CONFIG_PAGE("Setting Page"),
 	TEXT_CONFIG_ERROR("Errors in input content."),
 	TEXT_CONFIG_COLOR_FG("Foreground color"),
+	TEXT_CONFIG_COLOR_BG("Background color"),
 	TEXT_CONFIG_COLOR_DEFAULT(ColorNameEnum.DEFAULT.getName()),
 	TEXT_CONFIG_DISPLAY_LANG("Display language"),
+
+	//reports
+	//edit.jsp
+	TEXT_REP_EDIT_PAGE("Daily report edit page"),
+
+	//index.jsp
+	TEXT_REP_LIST_PAGE("Daily report list"),
+
+	//new.jsp
+	TEXT_REP_NEW_PAGE("Daily report new registration page"),
+
+	//show.jsp
+	TEXT_REP_SHOW_PAGE("Daily report detail page"),
+	TEXT_REP_CLAP("Clap"),
+	TEXT_REP_CLAPPED("You clapped"),
+	TEXT_REP_CLAPPED_EMPLOYEES("Clapped:&nbsp;"),
+	TEXT_REP_CLAPPED_EMPLOYEE("[${clap.employee_name}]&nbsp;&nbsp;"),
+		TEXT_REP_CLAPPED_EMPLOYEE_L("["),
+		TEXT_REP_CLAPPED_EMPLOYEE_R("]&nbsp;&nbsp;"),
+	TEXT_REP_EDIT("Edit this report"),
 	;
 
 	/**

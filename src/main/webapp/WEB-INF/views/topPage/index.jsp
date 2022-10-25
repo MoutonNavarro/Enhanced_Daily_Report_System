@@ -54,6 +54,6 @@
 				</c:choose>
 			</c:forEach>
 		</div>
-		<p><a href="<c:url value='?action=${actRep}&command=${commNew}' />">${HtmlConst.TEXT_REP_SUMBIT_NEW.getValue(lang)}</a></p>
+		<p><a href="<c:url value='?action=${actRep}&command=${commNew}' />">${HtmlConst.TEXT_REP_SUBMIT_NEW.getValue(lang)}</a></p>
 	</c:param>
 </c:import>
