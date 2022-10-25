@@ -8,6 +8,7 @@ public enum HtmlConst implements Html{
 	//General
 	LANGUAGE("English(US)"),
 	HTML_LANGUAGE("en"),
+	EXAM_MESSAGE(null),
 
 	//Base
 	TEXT_NAME("Name"),

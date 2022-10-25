@@ -7,6 +7,7 @@ public enum HtmlConst implements Html{
 	//General
 	LANGUAGE("日本語(JP)"),
 	HTML_LANGUAGE("jp"),
+	EXAM_MESSAGE("試験表示のテスト"),
 
 	//Base
 	TEXT_NAME("氏名"),

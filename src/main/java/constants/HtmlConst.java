@@ -7,6 +7,7 @@ public enum HtmlConst {
 	//General
 	LANGUAGE("English(US)"),
 	HTML_LANGUAGE("en"),
+	EXAM_MESSAGE("THIS IS BASE"),
 
 	//Base
 	TEXT_NAME("Name"),

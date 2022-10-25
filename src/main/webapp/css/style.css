@@ -167,3 +167,15 @@ H3{
 	font-size: largeer;
 }
 
+#exam_message{
+	width: 89%;
+	margin-top: 13px;
+	margin-left: 3%;
+	padding-top: 13px;
+	padding-left: 5%;
+	padding-bottom: 13px;
+	margin-bottom: 15px;
+	color : #400080;
+	background-color: #ffe2c6;
+}
+

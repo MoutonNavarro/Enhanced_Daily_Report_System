@@ -46,6 +46,7 @@
 					</div>
 				</c:if>
 			</div>
+			<c:if test="${HtmlConst.EXAM_MESSAGE.getValue(lang) != null}"><div id="exam_message">${HtmlConst.EXAM_MESSAGE.getValue(lang)}</div></c:if>
 			<div id="content">${param.content}</div>
 			<c:if test="${sessionScope.login_employee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">
 				<c:import url="/WEB-INF/debug/_main.jsp" />
