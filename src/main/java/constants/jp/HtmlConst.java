@@ -7,7 +7,7 @@ public enum HtmlConst implements Html{
 	//General
 	LANGUAGE("日本語(JP)"),
 	HTML_LANGUAGE("jp"),
-	EXAM_MESSAGE("試験表示のテスト"),
+	EXAM_MESSAGE(null),
 
 	//Base
 	TEXT_NAME("氏名"),
@@ -31,8 +31,18 @@ public enum HtmlConst implements Html{
 	TEXT_GO_TOP("トップページへ"),
 
 	TEXT_CLAPS("拍手数"),
+	TEXT_PRIVILEGES("権限"),
 
 	TEXT_FORM_ERR("入力内容に誤りがありました。"),
+
+	//Employee
+	TEXT_EMP_NUMBER_OF_ALL_ITEMS("(全 ${reports_count} 件)"),
+		TEXT_EMP_NUMBER_OF_ALL_ITEMS_L("(全 "),
+		TEXT_EMP_NUMBER_OF_ALL_ITEMS_R(" 件)"),
+	TEXT_EMP_ADMIN_RIGHT("管理者権限"),
+	TEXT_EMP_GENERAL("一般"),
+	TEXT_EMP_ADMIN("管理者"),
+	TEXT_EMP_BACK_LIST("従業員一覧ページに戻る"),
 
 	//Report
 	TEXT_REP_NUMBER_OF_ALL_ITEMS("(全: ${reports_count} 件)"),
@@ -101,6 +111,29 @@ public enum HtmlConst implements Html{
 		TEXT_REP_CLAPPED_EMPLOYEE_L("["),
 		TEXT_REP_CLAPPED_EMPLOYEE_R("]さん&nbsp;&nbsp;"),
 	TEXT_REP_EDIT("この日報を編集する"),
+
+	//employees
+	//edit.jsp
+	TEXT_EMP_EDIT_PAGE("従業員ID: ${employee.id} の従業員情報編集ページ"),
+		TEXT_EMP_EDIT_PAGE_L("従業員ID: "),
+		TEXT_EMP_EDIT_PAGE_R(" の従業員情報編集ページ"),
+	TEXT_EMP_EDIT_NOTE_PASSWORD("(パスワードは変更したい場合のみ入力してください)"),
+	TEXT_EMP_DELETE("＜この従業員を削除する！＞"),
+	TEXT_EMP_DELETE_CONFIRM("本当にこの従業員を削除しますか？"),
+
+	//index.jsp
+	TEXT_EMP_LIST_PAGE("従業員一覧"),
+	TEXT_EMP_DELETED("(停止)"),
+	TEXT_EMP_REGISTER("従業員を登録する"),
+
+	//new.jsp
+	TEXT_EMP_NEW_PAGE("従業員新規登録ページ"),
+
+	//show.jsp
+	TEXT_EMP_SHOW_PAGE("従業員ID: ${employee.id} の詳細ページ"),
+		TEXT_EMP_SHOW_PAGE_L("従業員ID: "),
+		TEXT_EMP_SHOW_PAGE_R(" の詳細ページ"),
+	TEXT_EMP_EDIT("この従業員情報を編集する"),
 	;
 
 	/**

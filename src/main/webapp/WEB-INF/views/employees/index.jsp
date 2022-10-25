@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="constants.AttributeConst" %>
 <%@ page import="constants.ForwardConst" %>
+<%@ page import="constants.HtmlConst" %>
 
 <c:set var="actEmp" value="${ForwardConst.ACT_EMP.getValue()}" />
 <c:set var="commShow" value="${ForwardConst.CMD_SHOW.getValue()}" />
@@ -15,13 +16,13 @@
 				<c:out value="${flush}" />
 			</div>
 		</c:if>
-		<H2>Employee list</H2>
+		<H2>${HtmlConst.TEXT_EMP_LIST_PAGE.getValue(lang)}</H2>
 		<table id="employee_list">
 			<tbody>
 				<tr>
-					<th>Employee code</th>
-					<th>Name</th>
-					<th>Operation</th>
+					<th>${HtmlConst.TEXT_EMPLOYEE_CODE.getValue(lang)}</th>
+					<th>${HtmlConst.TEXT_NAME.getValue(lang)}</th>
+					<th>${HtmlConst.TEXT_ACTION.getValue(lang)}</th>
 				</tr>
 				<c:forEach var="employee" items="${employees}" varStatus="status">
 					<tr class="row${status.count % 2}">
@@ -30,9 +31,9 @@
 						<td>
 							<c:choose>
 								<c:when test="${employee.deleteFlag == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()}">
-								(Terminated)</c:when>
+								${HtmlConst.TEXT_EMP_DELETED.getValue(lang)}</c:when>
 								<c:otherwise>
-									<a href="<c:url value='?action=${actEmp}&command=${commShow}&id=${employee.id}' />">Show detail</a>
+									<a href="<c:url value='?action=${actEmp}&command=${commShow}&id=${employee.id}' />">${HtmlConst.TEXT_SEEDETAIL.getValue(lang)}</a>
 								</c:otherwise>
 							</c:choose>
 						</td>
@@ -42,7 +43,7 @@
 		</table>
 
 		<div id="pagination">
-			(All: ${employees_count})<br>
+			${HtmlConst.TEXT_EMP_NUMBER_OF_ALL_ITEMS_L.getValue(lang)}${employees_count}${HtmlConst.TEXT_EMP_NUMBER_OF_ALL_ITEMS_R.getValue(lang)}<br>
 			<c:choose>
 				<c:when test="${i == page}">
 					<c:out value="${i}" />&nbsp;
@@ -52,6 +53,6 @@
 				</c:otherwise>
 			</c:choose>
 		</div>
-		<p><a href="<c:url value='?action=${actEmp}&command=${commNew}' />">Register new employee</a>
+		<p><a href="<c:url value='?action=${actEmp}&command=${commNew}' />">${HtmlConst.TEXT_EMP_REGISTER.getValue(lang)}</a>
 	</c:param>
 </c:import>

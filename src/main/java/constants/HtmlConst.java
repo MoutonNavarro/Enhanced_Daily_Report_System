@@ -7,7 +7,7 @@ public enum HtmlConst {
 	//General
 	LANGUAGE("English(US)"),
 	HTML_LANGUAGE("en"),
-	EXAM_MESSAGE("THIS IS BASE"),
+	EXAM_MESSAGE("THIS LANGUAGE IS EXAMINING"),
 
 	//Base
 	TEXT_NAME("Name"),
@@ -19,6 +19,7 @@ public enum HtmlConst {
 	TEXT_EMPLOYEE_CODE("Employee code"),
 	TEXT_PASSWORD("Password"),
 	TEXT_CLAPS("Claps"),
+	TEXT_PRIVILEGES("Privileges"),
 	TEXT_NUMBER_OF_ALL_ITEMS("(All: ${count})"),
 		TEXT_NUMBER_OF_ALL_ITEMS_L("(All: "),
 		TEXT_NUMBER_OF_ALL_ITEMS_R(")"),
@@ -31,7 +32,16 @@ public enum HtmlConst {
 	TEXT_SEND("Send"),
 	TEXT_BACK_TOP("Back to top page"),
 	TEXT_GO_TOP("Go to top page"),
-	TEXT_FORM_ERR("There is errors in input content."),
+	TEXT_FORM_ERR("Errors in input content."),
+
+	//Employee
+	TEXT_EMP_NUMBER_OF_ALL_ITEMS("(All: ${reports_count})"),
+		TEXT_EMP_NUMBER_OF_ALL_ITEMS_L("(All: "),
+		TEXT_EMP_NUMBER_OF_ALL_ITEMS_R(")"),
+	TEXT_EMP_ADMIN_RIGHT("Administrator privileges"),
+	TEXT_EMP_GENERAL("General"),
+	TEXT_EMP_ADMIN("Administrator"),
+	TEXT_EMP_BACK_LIST("Back to the list"),
 
 	//Report
 	TEXT_REP_NUMBER_OF_ALL_ITEMS("(All: ${reports_count})"),
@@ -100,6 +110,29 @@ public enum HtmlConst {
 		TEXT_REP_CLAPPED_EMPLOYEE_L("["),
 		TEXT_REP_CLAPPED_EMPLOYEE_R("]&nbsp;&nbsp;"),
 	TEXT_REP_EDIT("Edit this report"),
+
+	//employees
+	//edit.jsp
+	TEXT_EMP_EDIT_PAGE("ID: ${employee.id}'s employee information edit page"),
+		TEXT_EMP_EDIT_PAGE_L("ID: "),
+		TEXT_EMP_EDIT_PAGE_R("'s employee information edit page"),
+	TEXT_EMP_EDIT_NOTE_PASSWORD("(Please input password only when you change it)"),
+	TEXT_EMP_DELETE("DELETE THIS EMPLOYEE INFORMATION"),
+	TEXT_EMP_DELETE_CONFIRM("REALLY DELETE THIS EMPLOYEE?"),
+
+	//index.jsp
+	TEXT_EMP_LIST_PAGE("Employee list"),
+	TEXT_EMP_DELETED("(Terminated)"),
+	TEXT_EMP_REGISTER("Register new employee"),
+
+	//new.jsp
+	TEXT_EMP_NEW_PAGE("Employee new register page"),
+
+	//show.jsp
+	TEXT_EMP_SHOW_PAGE("ID: ${employee.id}'s employee information detail page"),
+		TEXT_EMP_SHOW_PAGE_L("ID: "),
+		TEXT_EMP_SHOW_PAGE_R("'s employee information detail page"),
+	TEXT_EMP_EDIT("Edit this employee information"),
 	;
 
 	/**
