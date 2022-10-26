@@ -61,7 +61,14 @@ public enum AttributeConst {
 	//Claps
 	CLAP("claps"),
 	CLAP_COUNT("clap_count"),
-	IS_CLAPPED("is_clapped");
+	IS_CLAPPED("is_clapped"),
+
+	//Single action(Post)
+	POST("post"),
+	TYPE("type"),
+	POST_FLUSH("postFlush"),
+	POST_FLUSH_ERR("postFlush_E"),
+	;
 
 	private final String text;
 	private final Integer i;
