@@ -26,9 +26,11 @@
 
 		<script type="text/javascript">
 			function jump(){
-				var url = document.post_lang.lang_select.options[document.post_lang.lang_select.selectedIndex].value;
-				if(url != "" ){
-					location.href = location.href+'&'+url;
+				var action = document.post_lang.lang_select.options[document.post_lang.lang_select.selectedIndex].value;
+				if(action != "" ){
+//					console.log(location.search);
+//					console.log(location.search.replace(/(&?post=[^&]*)(&?)([^&]*)(&?)/, "$2$3"));
+					location.href = location.search.replace(/(&?post=[^&]*)(&?)([^&]*)(&?)/, "$2$3")+'&'+action;
 				}
 			}
 		</script>
