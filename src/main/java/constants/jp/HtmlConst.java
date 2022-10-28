@@ -136,6 +136,9 @@ public enum HtmlConst implements Html{
 		TEXT_EMP_SHOW_PAGE_L("従業員ID: "),
 		TEXT_EMP_SHOW_PAGE_R(" の詳細ページ"),
 	TEXT_EMP_EDIT("この従業員情報を編集する"),
+
+	//single actions
+	TEXT_WARN_RESET("この動作を実行すると、ページ内の入力内容がリセットされます。続行しますか？"),
 	;
 
 	/**

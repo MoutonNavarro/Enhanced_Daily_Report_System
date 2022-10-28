@@ -113,6 +113,7 @@ public class EmployeeAction extends ActionBase {
 				putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
 				putRequestScope(AttributeConst.EMPLOYEE, ev);	//Input employee information
 				putRequestScope(AttributeConst.ERR, errors);		//List of errors
+				putRequestScope(AttributeConst.LINK, request.getRequestURL() + "?action=Employee&command=entryNew");	//Set as post link
 
 				//Re-display new register screen
 				forward(ForwardConst.FW_EMP_NEW);
@@ -209,6 +210,7 @@ public class EmployeeAction extends ActionBase {
 				putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
 				putRequestScope(AttributeConst.EMPLOYEE, ev);	//Input employee information
 				putRequestScope(AttributeConst.ERR, errors);	//List of errors
+				putRequestScope(AttributeConst.LINK, request.getRequestURL() + "?action=Employee&command=edit&id=" + ev.getId());	//Set as post link
 
 				//Re-displays edit screen
 				forward(ForwardConst.FW_EMP_EDIT);

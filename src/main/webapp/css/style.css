@@ -71,7 +71,7 @@ button {
 }
 
 #flush_success{
-	width: 100%;
+	width: 98%;
 	padding-top: 28px;
 	padding-left: 2%;
 	padding-bottom: 28px;
@@ -81,7 +81,7 @@ button {
 }
 
 #flush_error{
-	width: 100%;
+	width: 98%;
 	padding-top: 28px;
 	padding-left: 2%;
 	padding-bottom: 28px;
@@ -203,7 +203,7 @@ H3{
 }
 
 #config_defferent_lang{
-	width: 100%;
+	width: 98%;
 	padding-top: 28px;
 	padding-left: 2%;
 	padding-bottom: 28px;

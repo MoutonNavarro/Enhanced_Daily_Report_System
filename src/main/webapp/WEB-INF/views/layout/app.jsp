@@ -25,10 +25,28 @@
 		<c:if test="${sessionScope.login_employee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">	<style type="text/css"><c:import url="/WEB-INF/debug/debug.css" /></style></c:if>
 
 		<script type="text/javascript">
+		var init_lang;
+			window.onload = function(){
+				init_lang = post_lang.lang_select.selectedIndex;
+				console.log(init_lang);
+			}
 			function jump(){
 				var action = document.post_lang.lang_select.options[document.post_lang.lang_select.selectedIndex].value;
+				var url = "<%= request.getAttribute("link") %>"
 				if(action != "" ){
-					location.href = location.search.replace(/&?post=[^&]*/g, "")+'&'+action;
+					if (url == "null"){
+						location.href = location.search.replace(/&?post=[^&]*/g, "")+'&'+action;
+					}else{
+						confirmReset(url + '&'+action, );
+					}
+				}
+			}
+			function confirmReset(url, action){
+				var message = "<%= constants.HtmlConst.TEXT_WARN_RESET.getValue((constants.LanguageClassConst)request.getSession().getAttribute("lang")) %>"
+				if (confirm(message)){
+					location.href = url;
+				}else{
+					document.post_lang.lang_select.selectedIndex = init_lang;
 				}
 			}
 		</script>

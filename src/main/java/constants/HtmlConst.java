@@ -135,6 +135,9 @@ public enum HtmlConst {
 		TEXT_EMP_SHOW_PAGE_L("ID: "),
 		TEXT_EMP_SHOW_PAGE_R("'s employee information detail page"),
 	TEXT_EMP_EDIT("Edit this employee information"),
+
+	//single actions
+	TEXT_WARN_RESET("If you do that then the input content will be reset. really do that?"),
 	;
 
 	/**

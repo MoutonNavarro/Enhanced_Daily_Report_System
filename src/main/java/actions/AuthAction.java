@@ -113,6 +113,7 @@ public class AuthAction extends ActionBase {
 			putRequestScope(AttributeConst.LOGIN_ERR, true);
 			//Set input employee code
 			putRequestScope(AttributeConst.EMP_CODE, code);
+			putRequestScope(AttributeConst.LINK, request.getRequestURL() + "?action=Auth&command=showLogin");	//Set as post link
 
 			//Displays login screen
 			forward(ForwardConst.FW_LOGIN);

@@ -69,6 +69,7 @@ public enum AttributeConst {
 	POST_FLUSH("postFlush"),
 	POST_FLUSH_ERR("postFlush_E"),
 	LANGUAGE_POST("lang_post"),
+	LINK("link"),
 	;
 
 	private final String text;

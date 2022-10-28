@@ -84,6 +84,7 @@ public class ConfigAction extends ActionBase {
 				putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
 				putRequestScope(AttributeConst.CONFIG, cv);	//Input the report information
 				putRequestScope(AttributeConst.ERR, errors);	//List of errors
+				putRequestScope(AttributeConst.LINK, request.getRequestURL() + "?action=Config&command=edit");	//Set as post link
 
 				//Re-displays edit screen
 				forward(ForwardConst.FW_CONFIG);
@@ -102,7 +103,6 @@ public class ConfigAction extends ActionBase {
 			redirect(ForwardConst.ACT_TOP, ForwardConst.CMD_INDEX);
 			return;
 		}
-		forward(ForwardConst.FW_ERR_UNKNOWN);
 
 	}
 

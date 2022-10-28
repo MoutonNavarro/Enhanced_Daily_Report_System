@@ -132,6 +132,7 @@ public class ReportAction extends ActionBase {
 				putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
 				putRequestScope(AttributeConst.REPORT, rv);	//Input the report information
 				putRequestScope(AttributeConst.ERR, errors);	//List of errors
+				putRequestScope(AttributeConst.LINK, request.getRequestURL() + "?action=Report&command=entryNew");	//Set as post link
 
 				//Re-display the new registration screen
 				forward(ForwardConst.FW_REP_NEW);
@@ -241,6 +242,7 @@ public class ReportAction extends ActionBase {
 				putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
 				putRequestScope(AttributeConst.REPORT, rv);	//Input the report information
 				putRequestScope(AttributeConst.ERR, errors);	//List of errors
+				putRequestScope(AttributeConst.LINK, request.getRequestURL() + "?action=Report&command=edit&id=" + rv.getId());	//Set as post link
 
 				//Re-displays edit screen
 				forward(ForwardConst.FW_REP_EDIT);
