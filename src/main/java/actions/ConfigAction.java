@@ -45,7 +45,7 @@ public class ConfigAction extends ActionBase {
 		if (cv == null && null == (cv = service.findOne(((EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP)).getId()))) {
 			LocalDateTime ldt = LocalDateTime.now();
 			int id = ((EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP)).getId();
-			cv = new ConfigureView(id, ldt, ldt, "eng", "", "UTC+09:00", "", (byte)2, "default", false, false, "", "", false);	//Empty Configure instance
+			cv = new ConfigureView(id, ldt, ldt, "eng", "usa", "UTC+09:00", "", (byte)2, "default", false, false, "", "", false);	//Empty Configure instance
 			service.create(cv);	//The initialization timing may change after update
 //			putSessionScope(AttributeConst.CONFIG_COLOR, "");
 //			putSessionScope(AttributeConst.CONFIG_BG, "");
@@ -95,6 +95,7 @@ public class ConfigAction extends ActionBase {
 				putSessionScope(AttributeConst.CONFIG, cv);
 			}
 			putSessionScope(AttributeConst.LANGUAGE, LanguageClassConst.getByConfigureView(cv));
+			removeSessionScope(AttributeConst.LANGUAGE_POST);
 
 			putSessionScope(AttributeConst.FLUSH, MessageConst.I_CONFIG_UPDATED.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
 			System.out.println(((LanguageClassConst)getSessionScope(AttributeConst.LANGUAGE)).getDisplayName());

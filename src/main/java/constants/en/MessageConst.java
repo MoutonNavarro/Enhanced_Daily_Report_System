@@ -25,6 +25,7 @@ public enum MessageConst implements Message{
 	E_NOCONTENT("Please input the content."),
 	E_NO_SUCH_USER_COLOR("No such color name in user color."),
 	E_NO_SUCH_LANGUAGE("No such language in displays language."),
+	E_NO_SUCH_DEFINED_LANGUAGE("Not defined language as displays language."),
 
 	//Configure
 	I_CONFIG_UPDATED("Your Configure is updated."),

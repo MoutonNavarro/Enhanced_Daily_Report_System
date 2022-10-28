@@ -6,6 +6,7 @@ import java.util.List;
 
 import actions.views.ConfigureView;
 import colors.ColorNameEnum;
+import constants.DeclaredLanguage;
 import constants.LanguageClassConst;
 import constants.MessageConst;
 
@@ -77,10 +78,10 @@ public class ConfigureValidator {
 	 * @throws NullPointerException when include null at ConfigureView in range of validation
 	 */
 	private static String validateLanguage(String lang_name, LanguageClassConst lang) {
-		return Arrays.stream(LanguageClassConst.values())
+		return Arrays.stream(DeclaredLanguage.values())
 		.filter(data -> data.getLanguageName().equalsIgnoreCase(lang_name))
 		.findFirst()
-		.orElse(null) == null ? MessageConst.E_NO_SUCH_LANGUAGE.getMessage(lang) : "";
+		.orElse(null) == null ? MessageConst.E_NO_SUCH_DEFINED_LANGUAGE.getMessage(lang) : "";
 	}
 
 //	/**

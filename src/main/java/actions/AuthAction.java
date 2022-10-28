@@ -7,8 +7,8 @@ import javax.servlet.ServletException;
 import actions.views.ConfigureView;
 import actions.views.EmployeeView;
 import constants.AttributeConst;
+import constants.DeclaredLanguage;
 import constants.ForwardConst;
-import constants.LanguageClassConst;
 import constants.MessageConst;
 import constants.PropertyConst;
 import services.ConfigureService;
@@ -82,14 +82,16 @@ public class AuthAction extends ActionBase {
 				//Set logged in employee at the session
 				putSessionScope(AttributeConst.LOGIN_EMP, ev);
 				//Set language enum from the configure
-				try (ConfigureService cs = new ConfigureService();){
-					ConfigureView cv = null;
-					if (null != (cv = cs.findOne(ev.getId()))){
-						putSessionScope(AttributeConst.LANGUAGE, LanguageClassConst.getByConfigureView(cv));
+				if (getSessionScope(AttributeConst.LANGUAGE_POST) == null) {
+					try (ConfigureService cs = new ConfigureService();){
+						ConfigureView cv = null;
+						if (null != (cv = cs.findOne(ev.getId()))){
+							putSessionScope(AttributeConst.LANGUAGE, DeclaredLanguage.getByConfigureView(cv));
+						}
 					}
+					//Set flush message at the session: Login successful
+					putSessionScope(AttributeConst.FLUSH, MessageConst.I_LOGINED.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
 				}
-				//Set flush message at the session: Login successful
-				putSessionScope(AttributeConst.FLUSH, MessageConst.I_LOGINED.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
 				//Redirect to the top page
 				redirect(ForwardConst.ACT_TOP, ForwardConst.CMD_INDEX);
 			}

@@ -25,6 +25,7 @@ public enum MessageConst implements Message{
 	E_NOCONTENT("内容を入力してください。"),
 	E_NO_SUCH_USER_COLOR("そのような名前の色はありません。"),
 	E_NO_SUCH_LANGUAGE("そのような名前の言語はありません。"),
+	E_NO_SUCH_DEFINED_LANGUAGE("表示言語として定義された言語ではありません。"),
 
 	//Configure
 	I_CONFIG_UPDATED("コンフィグが更新されました。"),
