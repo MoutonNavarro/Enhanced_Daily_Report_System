@@ -35,7 +35,13 @@ public enum MessageConst implements Message{
 	//Reaction
 	I_UNDID_CLAP("You undid clap the report"),
 	E_ALREADY_CLAPPED("You have already reacted this report"),
-	E_ALREADY_UNDID_CLAP("You have already undid reaction this report");
+	E_ALREADY_UNDID_CLAP("You have already undid reaction this report"),
+
+	//Single action
+	I_POST_LANG_UPDATED("Update display language to + lcc.getLanguageName()"),
+		I_POST_LANG_UPDATED_L("Update display language to "),
+		I_POST_LANG_UPDATED_R("."),
+	E_POST_LANG_NO_SUCH("No such declared language.");
 
 	/**
 	 * Character string

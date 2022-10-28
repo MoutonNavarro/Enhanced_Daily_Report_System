@@ -35,7 +35,13 @@ public enum MessageConst implements Message{
 	//Reaction
 	I_UNDID_CLAP("日報の拍手を取り消しました。"),
 	E_ALREADY_CLAPPED("既にこの日報にリアクションしています"),
-	E_ALREADY_UNDID_CLAP("既にこの日報へのリアクションを取り消しています");
+	E_ALREADY_UNDID_CLAP("既にこの日報へのリアクションを取り消しています"),
+
+	//Single action
+	I_POST_LANG_UPDATED("表示言語を + lcc.getLanguageName() + に変更しました。"),
+		I_POST_LANG_UPDATED_L("表示言語を "),
+		I_POST_LANG_UPDATED_R(" に変更しました。"),
+	E_POST_LANG_NO_SUCH("表示言語として宣言された言語ではありません。");
 
 	/**
 	 * Character string
