@@ -90,6 +90,8 @@ public enum HtmlConst {
 	TEXT_CONFIG_COLOR_BG("Background color"),
 	TEXT_CONFIG_COLOR_DEFAULT(ColorNameEnum.DEFAULT.getName()),
 	TEXT_CONFIG_DISPLAY_LANG("Display language"),
+	TEXT_CAUTION_LANGUAGE("It's defferent the current language of configuration and session."
+			+ "<br>If you decition to configuration then the session's will be changed same as configuration's"),
 
 	//reports
 	//edit.jsp

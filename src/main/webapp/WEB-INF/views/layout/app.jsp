@@ -28,9 +28,7 @@
 			function jump(){
 				var action = document.post_lang.lang_select.options[document.post_lang.lang_select.selectedIndex].value;
 				if(action != "" ){
-//					console.log(location.search);
-//					console.log(location.search.replace(/(&?post=[^&]*)(&?)([^&]*)(&?)/, "$2$3"));
-					location.href = location.search.replace(/(&?post=[^&]*)(&?)([^&]*)(&?)/, "$2$3")+'&'+action;
+					location.href = location.search.replace(/&?post=[^&]*/g, "")+'&'+action;
 				}
 			}
 		</script>
@@ -64,14 +62,15 @@
 			<c:if test="${sessionScope.login_employee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">
 				<c:import url="/WEB-INF/debug/_main.jsp" />
 			</c:if>
-			<div id="footer">by Mouton Navarro.</div>
-			<form action="#" name="post_lang">
-				<label for="${AttributeConst.CONFIG_LANGUAGE.getValue()}">${HtmlConst.TEXT_CONFIG_DISPLAY_LANG.getValue(lang)}</label>
-				<select name="lang_select" id="post_lang"  onChange="jump()">
-					<option value="post=${DeclaredLanguage.ENG_US.getName()}"<c:if test="${lang == DeclaredLanguage.ENG_US.getLcc()}"> selected</c:if>>${DeclaredLanguage.ENG_US.getLcc().getDisplayName()}</option>
-					<option value="post=${DeclaredLanguage.JPN_JP.getName()}"<c:if test="${lang == DeclaredLanguage.JPN_JP.getLcc()}"> selected</c:if>>${DeclaredLanguage.JPN_JP.getLcc().getDisplayName()}</option>
-				</select>
-			</form>
+			<div id="footer"><div id="copyright">by Mouton Navarro.</div>
+				<div id="display_lang"><form action="#" name="post_lang" id="display_lang">
+					<label for="${AttributeConst.CONFIG_LANGUAGE.getValue()}">${HtmlConst.TEXT_CONFIG_DISPLAY_LANG.getValue(lang)}</label>
+					<select name="lang_select" id="post_lang"  onChange="jump()">
+						<option value="post=${DeclaredLanguage.ENG_US.getName()}"<c:if test="${lang == DeclaredLanguage.ENG_US.getLcc()}"> selected</c:if>>${DeclaredLanguage.ENG_US.getLcc().getDisplayName()}</option>
+						<option value="post=${DeclaredLanguage.JPN_JP.getName()}"<c:if test="${lang == DeclaredLanguage.JPN_JP.getLcc()}"> selected</c:if>>${DeclaredLanguage.JPN_JP.getLcc().getDisplayName()}</option>
+					</select>
+				</form></div>
+			</div>
 			<c:if test="${sessionScope.login_employee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">
 				<a href="<c:url value='?action=${actConf}&command=${commEdt}' />" >Setting</a>
 				<c:if test="${sessionScope.configure != null}">

@@ -91,6 +91,8 @@ public enum HtmlConst implements Html{
 	TEXT_CONFIG_COLOR_BG("背景色"),
 	TEXT_CONFIG_COLOR_DEFAULT("デフォルト"),
 	TEXT_CONFIG_DISPLAY_LANG("表示言語"),
+	TEXT_CAUTION_LANGUAGE("現在の表示言語(セッション)と、設定の表示言語が異なります。"
+		+ "<br>設定を確定すると、表示言語は設定項目と同じに変更されます。"),
 
 	//reports
 	//edit.jsp
