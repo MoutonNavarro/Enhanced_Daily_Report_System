@@ -55,6 +55,7 @@ public enum AttributeConst {
 	CONFIG_BG("background"),
 	CONFIG_LANGUAGE("language"),
 	CONFIG_TIMEZONE("timezone"),
+	CONFIG_CUR_LANG("currentLang"),
 
 	LANGUAGE("lang"),
 

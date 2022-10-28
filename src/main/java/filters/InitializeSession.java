@@ -38,13 +38,6 @@ public class InitializeSession implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-//		{
-//			ConfigureView cv = new ConfigureView();
-//			cv.setLanguage("jpn");
-//			cv.setLang_country("usa");
-//			System.out.println(DeclaredLanguage.getByConfigureView(cv));
-//			System.exit(0);
-//		}
 		Object nullCheck;
 		//If is there single action
 		if (null != (nullCheck = ((HttpServletRequest) request).getParameter(AttributeConst.POST.getValue()))) {

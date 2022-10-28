@@ -54,6 +54,7 @@ public class ConfigAction extends ActionBase {
 
 		}
 		putRequestScope(AttributeConst.CONFIG, cv);
+		putRequestScope(AttributeConst.CONFIG_CUR_LANG,LanguageClassConst.getByConfigureView(cv));
 		forward(ForwardConst.FW_CONFIG);
 	}
 
@@ -65,9 +66,11 @@ public class ConfigAction extends ActionBase {
 	public void update() throws ServletException, IOException{
 		//check the token for anti-CSRF
 		ConfigureView cv = null;
+		int id;
 		if (checkToken() && null != (
-				cv = service.findOne(((EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP)).getId())
+				cv = service.findOne(id = ((EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP)).getId())
 				)){
+			LanguageClassConst lcc = LanguageClassConst.getByConfigureView(cv);
 			//[Locked] We must implements the language constants
 			cv.setLanguage(getRequestParam(AttributeConst.CONFIG_LANGUAGE));
 			//[Locked] We must implements the time zone function
@@ -84,6 +87,7 @@ public class ConfigAction extends ActionBase {
 				putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
 				putRequestScope(AttributeConst.CONFIG, cv);	//Input the report information
 				putRequestScope(AttributeConst.ERR, errors);	//List of errors
+				putRequestScope(AttributeConst.CONFIG_CUR_LANG, lcc);
 				putRequestScope(AttributeConst.LINK, request.getRequestURL() + "?action=Config&command=edit");	//Set as post link
 
 				//Re-displays edit screen

@@ -26,7 +26,7 @@
 					</c:forEach>
 				</div>
 			</c:if>
-			<c:if test="${lang.getLanguageCode() != configure.language && lang.getLanguageCountry() != configure.lang_country}">
+			<c:if test="${lang != currentLang}">
 				<div id="config_defferent_lang">
 					${HtmlConst.TEXT_CAUTION_LANGUAGE.getValue(lang)}
 				</div>
