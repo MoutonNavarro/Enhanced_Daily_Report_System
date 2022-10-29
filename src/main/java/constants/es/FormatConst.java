@@ -2,6 +2,9 @@ package constants.es;
 
 import constants.interfaces.Format;
 
+/**
+ * Enum class that defines format for date and etc.
+ */
 public enum FormatConst implements Format{
 	TIME_FORMAT("MM/dd/yyyy HH:mm:ss"),
 	DATE_FORMAT("MM/dd/yyyy"),

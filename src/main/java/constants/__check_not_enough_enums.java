@@ -3,6 +3,9 @@ package constants;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Test class that check not enough enum classes(for localize)
+ */
 class __check_not_enough_enums {
 
 	@SuppressWarnings("unchecked")

@@ -11,6 +11,9 @@ import constants.LanguageClassConst;
 import models.Configure;
 import models.validators.ConfigureValidator;
 
+/**
+ * Class that do process relative to operation to configuration table
+ */
 public final class ConfigureService extends ServiceBase implements AutoCloseable{
 
 

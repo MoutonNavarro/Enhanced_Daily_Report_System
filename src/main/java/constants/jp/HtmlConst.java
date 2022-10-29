@@ -2,6 +2,9 @@ package constants.jp;
 
 import constants.interfaces.Html;
 
+/**
+ * Enum class that define text relative to html for localize
+ */
 public enum HtmlConst implements Html{
 
 	//General

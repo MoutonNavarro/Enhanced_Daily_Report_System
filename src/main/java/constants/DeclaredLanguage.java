@@ -4,6 +4,9 @@ import java.util.Arrays;
 
 import actions.views.ConfigureView;
 
+/**
+ * Enum class that defines usable languages
+ */
 public enum DeclaredLanguage {
 	ENG_US(LanguageClassConst.ENG_US, "English_United-States"),
 	JPN_JP(LanguageClassConst.JPN_JP, "Japanese_Japan"),
@@ -19,23 +22,44 @@ public enum DeclaredLanguage {
 		this.name = name;
 	}
 
+	/**
+	 * Acquire language name for query parameter
+	 * @return This enum's language name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Acquire LanguageClassConst enum object
+	 * @return LanguageClassConst object that this enum has
+	 */
 	public LanguageClassConst getLcc() {
 		return lcc;
 	}
 
+	/**
+	 * Acquire LanguageClassConst enum object
+	 * @return LanguageClassConst object that this enum has
+	 */
 	public static DeclaredLanguage getByName(String name) {
 		return  Arrays.stream(DeclaredLanguage.values())
 			.filter(data -> data.getName().equals(name))
 			.findFirst()
 			.orElse(null);
 	}
+
+	/**
+	 * Acquire language code(ISO 639-2)
+	 * @return Language code based on ISO 639-2 (from this enum's LanguageClassConst object)
+	 */
 	public String getLanguageCode() {
 		return lcc.getLanguageCode();
 	}
+	/**
+	 * Acquire country code(ISO 3166-1 alpha-3)
+	 * @return Country code based on ISO 3166-1 alpha-3 (from this enum's LanguageClassConst object)
+	 */
 	public String getLanguageCountry() {
 		return lcc.getLanguageCountry();
 	}
@@ -57,6 +81,10 @@ public enum DeclaredLanguage {
 
 	}
 
+	/**
+	 * Acquire language name
+	 * @return Language name from this enum's LanguageClassConst object.
+	 */
 	public String getLanguageName() {
 		return lcc.getLanguageName();
 	}

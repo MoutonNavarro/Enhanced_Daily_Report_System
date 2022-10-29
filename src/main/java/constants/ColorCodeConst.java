@@ -1,5 +1,8 @@
 package constants;
 
+/**
+ * Enum class that defines color profile
+ */
 public enum ColorCodeConst {
 	PINK("Pink"),
 	YELLOW("Yellow"),
@@ -20,6 +23,10 @@ public enum ColorCodeConst {
 		this.code = code;
 	}
 
+	/**
+	 * Acquire color code
+	 * @return This enum's color code(RGB value)
+	 */
 	public String getCode() {
 		return code;
 	}

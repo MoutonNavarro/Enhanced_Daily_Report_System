@@ -8,6 +8,9 @@ import constants.LanguageClassConst;
 import constants.MessageConst;
 import models.Clap;
 
+/**
+ * Class that do process relative to operation to clap table
+ */
 public final class ClapService extends ServiceBase implements AutoCloseable{
 
 //	/**

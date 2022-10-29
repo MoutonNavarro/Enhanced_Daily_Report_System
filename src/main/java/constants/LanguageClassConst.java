@@ -8,6 +8,9 @@ import constants.interfaces.Forward;
 import constants.interfaces.Html;
 import constants.interfaces.Message;
 
+/**
+ * Enum class that defines relation to each language's constants.
+ */
 public enum LanguageClassConst{
 	ENG		("English", "English", "ENG", null, constants.en.FormatConst.class, constants.en.ForwardConst.class, constants.en.HtmlConst.class, constants.en.MessageConst.class),
 	ENG_US	("English(US)", "English(U.S)", "eng", "usa", constants.en.FormatConst.class, constants.en.ForwardConst.class, constants.en.HtmlConst.class, constants.en.MessageConst.class),
@@ -54,30 +57,62 @@ public enum LanguageClassConst{
 		if(!Enum.class.isAssignableFrom(this.message = (Class<Message>)(message == null ? constants.en.MessageConst.class : message))){throw new Error("Illegal type of class stored at message: " + message.getName());}
 	}
 
+	/**
+	 * Acquire language name for English
+	 * @return Language name(English)
+	 */
 	public String getLanguageName() {
 		return lang_name;
 	}
+	/**
+	 * Acquire language name for each language
+	 * @return Language name(localized)
+	 */
 	public String getDisplayName() {
 		return lang_name_display;
 	}
+	/**
+	 * Acquire language code(ISO 639-2)
+	 * @return Language code based on ISO 639-2
+	 */
 	public String getLanguageCode() {
 		return lang_code;
 	}
+	/**
+	 * Acquire country code(ISO 3166-1 alpha-3)
+	 * @return Country code based on ISO 3166-1 alpha-3
+	 */
 	public String getLanguageCountry() {
 		return lang_country;
 	}
+	/**
+	 * Acquire localized FormatConst.class
+	 * @return FormatConst class
+	 */
 	@SuppressWarnings("unchecked")
 	<T> Class<T> getFormat() {
 		return (Class<T>) format;
 	}
+	/**
+	 * Acquire localized ForwardConst.class
+	 * @return ForwardConst class
+	 */
 	@SuppressWarnings("unchecked")
 	<T> Class<T> getForward() {
 		return (Class<T>) forward;
 	}
+	/**
+	 * Acquire localized HtmlConst.class
+	 * @return HtmlConst class
+	 */
 	@SuppressWarnings("unchecked")
 	<T> Class<T> getHtml() {
 		return (Class<T>) html;
 	}
+	/**
+	 * Acquire localized MessageConst.class
+	 * @return MessageConst class
+	 */
 	@SuppressWarnings("unchecked")
 	<T> Class<T> getMessage() {
 		return (Class<T>) message;
