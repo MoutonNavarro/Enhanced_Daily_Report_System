@@ -1,6 +1,7 @@
 package filters;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -11,10 +12,13 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 
+import actions.views.ConfigureView;
+import actions.views.EmployeeView;
 import constants.AttributeConst;
 import constants.DeclaredLanguage;
 import constants.LanguageClassConst;
 import constants.MessageConst;
+import services.ConfigureService;
 
 /**
  * Servlet Filter implementation class InitializeSession
@@ -48,6 +52,15 @@ public class InitializeSession implements Filter {
 				if (lcc != lang) {
 					((HttpServletRequest) request).setAttribute(AttributeConst.POST_FLUSH.getValue(), MessageConst.I_POST_LANG_UPDATED_L.getMessage(lcc)
 								+ lcc.getDisplayName() + MessageConst.I_POST_LANG_UPDATED_R.getMessage(lcc));
+					try(ConfigureService cs = new ConfigureService()){
+						int id;
+						if (null == cs.findOne(id = ((EmployeeView) ((HttpServletRequest) request).getSession().getAttribute(AttributeConst.LOGIN_EMP.getValue())).getId())){
+							LocalDateTime ldt = LocalDateTime.now();
+							ConfigureView cv = new ConfigureView(id, ldt, ldt, lcc.getLanguageCode(), lcc.getLanguageCountry(), "UTC+09:00", "", (byte)2, "default", false, false, "", "", false);	//Empty Configure instance
+							cs.create(cv);	//The initialization timing may change after update
+						}
+
+					}
 					((HttpServletRequest) request).getSession().setAttribute(AttributeConst.LANGUAGE.getValue(), lcc);
 					((HttpServletRequest) request).getSession().setAttribute(AttributeConst.LANGUAGE_POST.getValue(), Boolean.TRUE);
 				}
