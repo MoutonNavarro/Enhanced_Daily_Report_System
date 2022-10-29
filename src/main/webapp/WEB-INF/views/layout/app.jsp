@@ -86,8 +86,6 @@
 					<select name="lang_select" id="post_lang"  onChange="jump()">
 						<option value="post=${DeclaredLanguage.ENG_US.getName()}"<c:if test="${lang == DeclaredLanguage.ENG_US.getLcc()}"> selected</c:if>>${DeclaredLanguage.ENG_US.getLcc().getDisplayName()}</option>
 						<option value="post=${DeclaredLanguage.JPN_JP.getName()}"<c:if test="${lang == DeclaredLanguage.JPN_JP.getLcc()}"> selected</c:if>>${DeclaredLanguage.JPN_JP.getLcc().getDisplayName()}</option>
-						<option value="post=${DeclaredLanguage.TGL.getName()}"<c:if test="${lang == DeclaredLanguage.TGL.getLcc()}"> selected</c:if>>${DeclaredLanguage.TGL.getLcc().getDisplayName()}</option>
-						<option value="post=${DeclaredLanguage.SPA.getName()}"<c:if test="${lang == DeclaredLanguage.SPA.getLcc()}"> selected</c:if>>${DeclaredLanguage.SPA.getLcc().getDisplayName()}</option>
 					</select>
 				</form></div>
 			</div>

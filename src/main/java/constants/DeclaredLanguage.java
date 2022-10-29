@@ -7,6 +7,8 @@ import actions.views.ConfigureView;
 public enum DeclaredLanguage {
 	ENG_US(LanguageClassConst.ENG_US, "English_United-States"),
 	JPN_JP(LanguageClassConst.JPN_JP, "Japanese_Japan"),
+	TGL(LanguageClassConst.TGL, "Tagalog_Philippines"),
+	SPA(LanguageClassConst.SPA, "Spanish"),
 	;
 
 	private final LanguageClassConst lcc;

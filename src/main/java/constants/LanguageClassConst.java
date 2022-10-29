@@ -22,11 +22,11 @@ public enum LanguageClassConst{
 	CHI		("Chinese", "中文", "CHI", null, null, null, null, null),
 	CHI_S		("Chinese(Simplified)", "汉语", "CHI", null, null, null, null, null),
 	CHI_T		("Chinese(Traditional)", "漢語", "CHI", null, null, null, null, null),
-	TGL		("Tagalog", "Tagalog", "TGL", "PHL", null, null, null, null),
+	TGL		("Tagalog", "Tagalog", "TGL", "PHL", null, null, constants.tl.HtmlConst.class, null),
 	CEB		("Cebuano", "Cebuano", "CEB", "PHL", null, null, null, null),
 	ITA		("Italian", "Italiano", "ITA", null, null, null, null, null),
 	FRA		("French", "français", "FRA", null, null, null, null, null),
-	SPA		("Spanish", "español", "SPA", null, null, null, null, null),
+	SPA		("Spanish", "español", "SPA", null, null, null, constants.es.HtmlConst.class, null),
 	DEU		("German", "Deutsch", "DEU", null, null, null, null, null);
 
 
@@ -48,10 +48,10 @@ public enum LanguageClassConst{
 		this.lang_code = lang_code == null ? "" : lang_code;
 		this.lang_country = lang_country == null ? "" : lang_country;
 
-		if(!Format.class.isAssignableFrom(this.format = (Class<Format>)(format == null ? constants.en.FormatConst.class : format))){throw new Error("Illegal type of class stored at format: " + format.getName());}
-		if(!Forward.class.isAssignableFrom(this.forward = (Class<Forward>)(forward == null ? constants.en.ForwardConst.class : forward))){throw new Error("Illegal type of class stored at forward: " + forward.getName());}
-		if(!Html.class.isAssignableFrom(this.html = (Class<Html>)(html == null ? constants.en.HtmlConst.class : html))){throw new Error("Illegal type of class stored at html: " + html.getName());}
-		if(!Message.class.isAssignableFrom(this.message = (Class<Message>)(message == null ? constants.en.MessageConst.class : message))){throw new Error("Illegal type of class stored at message: " + message.getName());}
+		if(!Enum.class.isAssignableFrom(this.format = (Class<Format>)(format == null ? constants.en.FormatConst.class : format))){throw new Error("Illegal type of class stored at format: " + format.getName());}
+		if(!Enum.class.isAssignableFrom(this.forward = (Class<Forward>)(forward == null ? constants.en.ForwardConst.class : forward))){throw new Error("Illegal type of class stored at forward: " + forward.getName());}
+		if(!Enum.class.isAssignableFrom(this.html = (Class<Html>)(html == null ? constants.en.HtmlConst.class : html))){throw new Error("Illegal type of class stored at html: " + html.getName());}
+		if(!Enum.class.isAssignableFrom(this.message = (Class<Message>)(message == null ? constants.en.MessageConst.class : message))){throw new Error("Illegal type of class stored at message: " + message.getName());}
 	}
 
 	public String getLanguageName() {

@@ -19,7 +19,8 @@
 		</form>
 
 		<p>
-			<a href="#" onclick="confirmDestroy();">${HtmlConst.TEXT_EMP_DELETE.getValue(lang)}</a>
+			<c:choose><c:when test="${employee.id != login_employee.id}"><a href="#" onclick="confirmDestroy();">${HtmlConst.TEXT_EMP_DELETE.getValue(lang)}</a></c:when>
+			<c:otherwise>${HtmlConst.TEXT_EMP_CANNOT_DELETE.getValue(lang)}</c:otherwise></c:choose>
 		</p>
 		<form method="POST"
 			action="<c:url value='?action=${action}&command=${commDel}' />">

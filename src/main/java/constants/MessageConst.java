@@ -26,6 +26,9 @@ public enum MessageConst {
 	E_NO_SUCH_USER_COLOR("No such color name in user color."),
 	E_NO_SUCH_LANGUAGE("No such language in displays language."),
 	E_NO_SUCH_DEFINED_LANGUAGE("Not defined language as displays language."),
+	E_EMP_CANNOT_DELETE("You cannot delete your employee information yourself"),
+	E_EMP_CANNOT_CHANGE_RIGHT("You cannot change your Administrator privileges yourself"
+		+ "<br>(You will become not able to be continuing to any action about employee after change your privileges!)"),
 
 	//Configure
 	I_CONFIG_UPDATED("Your Configure is updated."),

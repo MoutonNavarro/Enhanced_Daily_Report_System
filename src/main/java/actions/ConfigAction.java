@@ -41,11 +41,12 @@ public class ConfigAction extends ActionBase {
 	public void edit() throws ServletException, IOException{
 		//[Temporary] We must configure the databese for configure function
 		putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
+		int id;
 		ConfigureView cv = getSessionScope(AttributeConst.CONFIG);	//Get ConfigureView from the session if there.
-		if (cv == null && null == (cv = service.findOne(((EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP)).getId()))) {
+		if (cv == null && null == (cv = service.findOne(id = ((EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP)).getId()))) {
+			LanguageClassConst lang = (LanguageClassConst)getSessionScope(AttributeConst.LANGUAGE);
 			LocalDateTime ldt = LocalDateTime.now();
-			int id = ((EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP)).getId();
-			cv = new ConfigureView(id, ldt, ldt, "eng", "usa", "UTC+09:00", "", (byte)2, "default", false, false, "", "", false);	//Empty Configure instance
+			cv = new ConfigureView(id, ldt, ldt, lang.getLanguageCode(), lang.getLanguageCountry(), "UTC+09:00", "", (byte)2, "default", false, false, "", "", false);	//Empty Configure instance
 			service.create(cv);	//The initialization timing may change after update
 //			putSessionScope(AttributeConst.CONFIG_COLOR, "");
 //			putSessionScope(AttributeConst.CONFIG_BG, "");
@@ -66,9 +67,8 @@ public class ConfigAction extends ActionBase {
 	public void update() throws ServletException, IOException{
 		//check the token for anti-CSRF
 		ConfigureView cv = null;
-		int id;
 		if (checkToken() && null != (
-				cv = service.findOne(id = ((EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP)).getId())
+				cv = service.findOne(((EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP)).getId())
 				)){
 			LanguageClassConst lcc = LanguageClassConst.getByConfigureView(cv);
 			//[Locked] We must implements the language constants
@@ -80,9 +80,6 @@ public class ConfigAction extends ActionBase {
 //			cv.setUser_background(getRequestParam(AttributeConst.CONFIG_BG));
 			//[Unlocked]ConfigureValidator.class has been implemented
 			List<String> errors = service.update(cv, getSessionScope(AttributeConst.LANGUAGE));
-			if (LanguageClassConst.getByLanguageName(getRequestParam(AttributeConst.CONFIG_LANGUAGE)) == null) {	//Temporary
-				errors.add(MessageConst.E_NO_SUCH_LANGUAGE.getMessage(getSessionScope(AttributeConst.LANGUAGE)));	//
-			}																																			//
 			if (errors.size() > 0) {
 				putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
 				putRequestScope(AttributeConst.CONFIG, cv);	//Input the report information

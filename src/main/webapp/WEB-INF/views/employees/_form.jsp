@@ -30,8 +30,16 @@
 
 <label for="${AttributeConst.EMP_ADMIN_FLG.getValue()}">${HtmlConst.TEXT_EMP_ADMIN_RIGHT.getValue(lang)}</label><br>
 <select name="${AttributeConst.EMP_ADMIN_FLG.getValue()}" id="${AttributeConst.EMP_ADMIN_FLG.getValue()}">
-	<option value="${AttributeConst.ROLE_GENERAL.getIntegerValue()}"<c:if test="${employee.adminFlag == AttributeConst.ROLE_GENERAL.getIntegerValue()}"> selected</c:if>>${HtmlConst.TEXT_EMP_GENERAL.getValue(lang)}</option>
-	<option value="${AttributeConst.ROLE_ADMIN.getIntegerValue()}"<c:if test="${employee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}"> selected</c:if>>${HtmlConst.TEXT_EMP_ADMIN.getValue(lang)}</option>
+	<c:choose>
+		<c:when test="${employee.id != login_employee.id}">
+			<option value="${AttributeConst.ROLE_GENERAL.getIntegerValue()}"<c:if test="${employee.adminFlag == AttributeConst.ROLE_GENERAL.getIntegerValue()}"> selected</c:if>>${HtmlConst.TEXT_EMP_GENERAL.getValue(lang)}</option>
+			<option value="${AttributeConst.ROLE_ADMIN.getIntegerValue()}"<c:if test="${employee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}"> selected</c:if>>${HtmlConst.TEXT_EMP_ADMIN.getValue(lang)}</option>
+		</c:when>
+		<c:otherwise>
+			<option value="${AttributeConst.ROLE_ADMIN.getIntegerValue()}" disabled>${HtmlConst.TEXT_EMP_GENERAL_LOCK.getValue(lang)}</option>
+			<option value="${AttributeConst.ROLE_ADMIN.getIntegerValue()}" selected>${HtmlConst.TEXT_EMP_ADMIN_ONLY.getValue(lang)}</option>
+		</c:otherwise>
+	</c:choose>
 </select>
 <br><br>
 <input type="hidden" name="${AttributeConst.EMP_ID.getValue()}" value="${employee.id}" />

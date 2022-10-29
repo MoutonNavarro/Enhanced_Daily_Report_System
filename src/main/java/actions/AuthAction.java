@@ -86,18 +86,12 @@ public class AuthAction extends ActionBase {
 				//Set language enum from the configure
 				try (ConfigureService cs = new ConfigureService();){
 					ConfigureView cv;
-					int id;
 					if (getSessionScope(AttributeConst.LANGUAGE_POST) == null) {
 							if (null != (cv = cs.findOne(ev.getId()))){
 								putSessionScope(AttributeConst.LANGUAGE, DeclaredLanguage.getByConfigureView(cv));
 							}
 						//Set flush message at the session: Login successful
 						putSessionScope(AttributeConst.FLUSH, MessageConst.I_LOGINED.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
-					}else if (null == (cv = cs.findOne(id = ev.getId()))) {
-						LanguageClassConst lcc = getSessionScope(AttributeConst.LANGUAGE);
-						LocalDateTime ldt = LocalDateTime.now();
-						cv = new ConfigureView(id, ldt, ldt, lcc.getLanguageCode(), lcc.getLanguageCountry(), "UTC+09:00", "", (byte)2, "default", false, false, "", "", false);	//Empty Configure instance
-						cs.create(cv);	//Initialize the employee's configuration
 					}
 
 				}
@@ -126,6 +120,18 @@ public class AuthAction extends ActionBase {
 	 * @throws IOException
 	 */
 	public void logout() throws ServletException, IOException{
+		if (getSessionScope(AttributeConst.LANGUAGE_POST) != null) {	//Initialize the logged out employee's configuration if the employee had changed the display language when the employee never been accessed configuration.
+			try (ConfigureService cs = new ConfigureService();){
+				int id;
+				if (null == cs.findOne(id = ((EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP)).getId())) {
+					LanguageClassConst lcc = getSessionScope(AttributeConst.LANGUAGE);
+					LocalDateTime ldt = LocalDateTime.now();
+					ConfigureView cv = new ConfigureView(id, ldt, ldt, lcc.getLanguageCode(), lcc.getLanguageCountry(), "UTC+09:00", "", (byte)2, "default", false, false, "", "", false);	//Empty Configure instance
+					cs.create(cv);	//Initialize the employee's configuration
+				}
+
+			}
+		}
 		//Delete login employee's parameter at the session
 		removeSessionScope(AttributeConst.LOGIN_EMP);
 		removeSessionScope(AttributeConst.CONFIG);

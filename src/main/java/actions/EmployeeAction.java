@@ -1,6 +1,7 @@
 package actions;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -189,20 +190,39 @@ public class EmployeeAction extends ActionBase {
 
 		//Anti-CSRF token check and whether administrator
 		if (checkToken() && checkAdmin()) {
+			int admin_flag = 0;
+			List<String> errors = new ArrayList<>();
+			if (((EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP)).getId() == toNumber(getRequestParam(AttributeConst.EMP_ID))) {
+				if (toNumber(getRequestParam(AttributeConst.EMP_ADMIN_FLG)) != 1) {
+//					errors.add(MessageConst.E_EMP_CANNOT_CHANGE_RIGHT.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
+					admin_flag = 1;
+				}
+
+			}else {
+				admin_flag = toNumber(getRequestParam(AttributeConst.EMP_ADMIN_FLG));
+			}
 			//Create the instance of employee information based on the parameter's value
 			EmployeeView ev = new EmployeeView(
 				toNumber(getRequestParam(AttributeConst.EMP_ID)),
 				getRequestParam(AttributeConst.EMP_CODE),
 				getRequestParam(AttributeConst.EMP_NAME),
 				getRequestParam(AttributeConst.EMP_PASS),
-				toNumber(getRequestParam(AttributeConst.EMP_ADMIN_FLG)),
+				admin_flag,
 				null,	null,	AttributeConst.DEL_FLAG_FALSE.getIntegerValue());
 
 			//Acquires pepper string from the application scope
 			String pepper = getContextScope(PropertyConst.PEPPER);
 
-			//Update employee information
-			List<String> errors = service.update(ev, pepper, getSessionScope(AttributeConst.LANGUAGE));
+			if (errors.size() == 0) {
+				try {
+					//Update employee information
+					errors = service.update(ev, pepper, getSessionScope(AttributeConst.LANGUAGE));
+				}catch(NullPointerException e) {	//If specified ID does not exist
+					//Redirect to the list screen
+					redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);
+					return;
+				}
+			}
 
 			if(errors.size() > 0) {
 				//In case errors occurred at updating
@@ -234,11 +254,35 @@ public class EmployeeAction extends ActionBase {
 	public void destroy() throws ServletException, IOException{
 		//Anti-CSRF token check and whether administrator
 		if(checkToken() && checkAdmin()) {
-			//Logical delete the employee data with ID as condition
-			service.destroy(toNumber(getRequestParam(AttributeConst.EMP_ID)));
+			int emp_id;
+			if (((EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP)).getId() == (emp_id = toNumber(getRequestParam(AttributeConst.EMP_ID)))) {
+//				EmployeeView ev = service.findOne(toNumber(getRequestParam(AttributeConst.EMP_ID)));
+//				List<String> errors = new ArrayList<>();
+//				errors.add(MessageConst.E_EMP_CANNOT_DELETE.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
+//				putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
+//				putRequestScope(AttributeConst.EMPLOYEE, ev);	//Acquired employee information
+//				putRequestScope(AttributeConst.ERR, errors);	//List of errors
+//				putRequestScope(AttributeConst.LINK, request.getRequestURL() + "?action=Employee&command=edit&id=" + ev.getId());	//Set as post link
+//
+//				//Re-displays edit screen
+//				forward(ForwardConst.FW_EMP_EDIT);
+//				return;
 
-			//Set delete complete flush message at the session
-			putSessionScope(AttributeConst.FLUSH, MessageConst.I_DELETED.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
+				//Redirect to the list screen
+				redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);
+				return;
+			}
+//			try {
+				//Logical delete the employee data with ID as condition
+				if(service.destroy(emp_id)) {
+					//Set delete complete flush message at the session
+					putSessionScope(AttributeConst.FLUSH, MessageConst.I_DELETED.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
+				}
+//			}catch (NullPointerException e) {
+//				//Redirect to the list screen
+//				redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);
+//				return;
+//			}
 
 			//Redirect to the list screen
 			redirect(ForwardConst.ACT_EMP, ForwardConst.CMD_INDEX);

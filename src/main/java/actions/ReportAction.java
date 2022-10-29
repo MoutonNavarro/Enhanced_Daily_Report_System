@@ -228,12 +228,20 @@ public class ReportAction extends ActionBase {
 			//Acquires the report data with ID as condition
 			ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
 
+			//Acquires logged in employee information from the session
+			EmployeeView ev = (EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP);
+			if(rv == null || ev.getId() != rv.getEmployee().getId()) {
+				//If corresponds report data is not exists or
+				//logged in employee is not the creator then displays error screen
+				forward(ForwardConst.FW_ERR_UNKNOWN);
+				return;
+			}
+
 			//Set input content of the report
 			rv.setReportDate(toLocalDate(getRequestParam(AttributeConst.REP_DATE)));
 			rv.setTitle(getRequestParam(AttributeConst.REP_TITLE));
 			rv.setContent(getRequestParam(AttributeConst.REP_CONTENT));
 
-			//Update the report data
 			List<String> errors = service.update(rv, getSessionScope(AttributeConst.LANGUAGE));
 
 			if(errors.size() > 0) {

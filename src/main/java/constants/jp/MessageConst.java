@@ -26,6 +26,9 @@ public enum MessageConst implements Message{
 	E_NO_SUCH_USER_COLOR("そのような名前の色はありません。"),
 	E_NO_SUCH_LANGUAGE("そのような名前の言語はありません。"),
 	E_NO_SUCH_DEFINED_LANGUAGE("表示言語として定義された言語ではありません。"),
+	E_EMP_CANNOT_DELETE("あなた自身は削除できません！"),
+	E_EMP_CANNOT_CHANGE_RIGHT("あなた自身の管理者権限は変更できません。"
+		+ "<br>(従業員管理に関するあらゆる操作ができなくなってしまいます！)"),
 
 	//Configure
 	I_CONFIG_UPDATED("コンフィグが更新されました。"),

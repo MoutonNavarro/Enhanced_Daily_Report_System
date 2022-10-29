@@ -42,6 +42,8 @@ public enum HtmlConst implements Html{
 	TEXT_EMP_ADMIN_RIGHT("管理者権限"),
 	TEXT_EMP_GENERAL("一般"),
 	TEXT_EMP_ADMIN("管理者"),
+	TEXT_EMP_ADMIN_ONLY("管理者(固定)"),
+	TEXT_EMP_GENERAL_LOCK("(選べません)"),
 	TEXT_EMP_BACK_LIST("従業員一覧ページに戻る"),
 
 	//Report
@@ -121,6 +123,7 @@ public enum HtmlConst implements Html{
 		TEXT_EMP_EDIT_PAGE_R(" の従業員情報編集ページ"),
 	TEXT_EMP_EDIT_NOTE_PASSWORD("(パスワードは変更したい場合のみ入力してください)"),
 	TEXT_EMP_DELETE("＜この従業員を削除する！＞"),
+	TEXT_EMP_CANNOT_DELETE("あなた自身は削除できません！"),
 	TEXT_EMP_DELETE_CONFIRM("本当にこの従業員を削除しますか？"),
 
 	//index.jsp

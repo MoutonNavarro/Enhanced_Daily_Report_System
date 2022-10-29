@@ -42,6 +42,8 @@ public enum HtmlConst implements Html{
 	TEXT_EMP_ADMIN_RIGHT("Administrator privileges"),
 	TEXT_EMP_GENERAL("General"),
 	TEXT_EMP_ADMIN("Administrator"),
+	TEXT_EMP_ADMIN_ONLY("Administrator"),
+	TEXT_EMP_GENERAL_LOCK("(Locked)"),
 	TEXT_EMP_BACK_LIST("Back to the list"),
 
 	//Report
@@ -120,6 +122,7 @@ public enum HtmlConst implements Html{
 		TEXT_EMP_EDIT_PAGE_R("'s employee information edit page"),
 	TEXT_EMP_EDIT_NOTE_PASSWORD("(Please input password only when you change it)"),
 	TEXT_EMP_DELETE("DELETE THIS EMPLOYEE INFORMATION"),
+	TEXT_EMP_CANNOT_DELETE("(You cannot delete your employee information yourself!)"),
 	TEXT_EMP_DELETE_CONFIRM("REALLY DELETE THIS EMPLOYEE?"),
 
 	//index.jsp

@@ -170,10 +170,14 @@ public class EmployeeService extends ServiceBase {
 	/**
 	 * Logical delete employee data with ID as condition
 	 * @param id
+	 * @return False if the employee has been terminated or not found.
 	 */
-	public void destroy(Integer id) {
+	public boolean destroy(Integer id) {
 		//Acquire registered employee information with ID as condition
 		EmployeeView savedEmp = findOne(id);
+		if (savedEmp == null || savedEmp.getDeleteFlag() == 1) {
+			return false;
+		}
 
 		//Set current time at date registered
 		LocalDateTime today = LocalDateTime.now();
@@ -184,6 +188,7 @@ public class EmployeeService extends ServiceBase {
 
 		//Update processing
 		update(savedEmp);
+		return true;
 	}
 
 	/**
