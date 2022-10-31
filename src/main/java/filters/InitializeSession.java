@@ -54,12 +54,11 @@ public class InitializeSession implements Filter {
                         + lcc.getDisplayName() + MessageConst.I_POST_LANG_UPDATED_R.getMessage(lcc));
                try(ConfigureService cs = new ConfigureService()){
                   int id;
-                  if (null != (nullCheck = ((HttpServletRequest) request).getSession().getAttribute(AttributeConst.LOGIN_EMP.getValue()))){
-                     if (null == cs.findOne(id = ((EmployeeView)nullCheck).getId())){
-                        LocalDateTime ldt = LocalDateTime.now();
-                        ConfigureView cv = new ConfigureView(id, ldt, ldt, lcc.getLanguageCode(), lcc.getLanguageCountry(), "UTC+09:00", "", (byte)2, "default", false, false, "", "", false);  //Empty Configure instance
-                        cs.create(cv); //The initialization timing may change after update
-                     }
+                  if (null == (nullCheck = ((HttpServletRequest) request).getSession().getAttribute(AttributeConst.LOGIN_EMP.getValue())) ? false
+                        : null == cs.findOne(id = ((EmployeeView)nullCheck).getId())){
+                     LocalDateTime ldt = LocalDateTime.now();
+                     ConfigureView cv = new ConfigureView(id, ldt, ldt, lcc.getLanguageCode(), lcc.getLanguageCountry(), "UTC+09:00", "", (byte)2, "default", false, false, "", "", false);  //Empty Configure instance
+                     cs.create(cv); //The initialization timing may change after update
                   }
 
                }
@@ -67,6 +66,11 @@ public class InitializeSession implements Filter {
                ((HttpServletRequest) request).getSession().setAttribute(AttributeConst.LANGUAGE_POST.getValue(), Boolean.TRUE);
             }
          }else {
+            //Initialize display language
+            if (lang == null) {
+               ((HttpServletRequest) request).getSession().setAttribute(AttributeConst.LANGUAGE.getValue(), LanguageClassConst.ENG_US);
+               lang = LanguageClassConst.ENG_US;
+            }
             ((HttpServletRequest) request).setAttribute(AttributeConst.POST_FLUSH_ERR.getValue(), MessageConst.E_POST_LANG_NO_SUCH.getMessage(lang));
          }
 
