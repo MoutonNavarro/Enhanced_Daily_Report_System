@@ -10,34 +10,34 @@
 <c:set var="commDel" value="${ForwardConst.CMD_DESTROY.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
-	<c:param name="content">
-		<H2>${HtmlConst.TEXT_EMP_EDIT_PAGE_L.getValue(lang)}${employee.id}${HtmlConst.TEXT_EMP_EDIT_PAGE_R.getValue(lang)}</H2>
-		<p>${HtmlConst.TEXT_EMP_EDIT_NOTE_PASSWORD.getValue(lang)}</p>
-		<form method="POST"
-			action="<c:url value='?action=${action}&command=${commUpd}' />">
-			<c:import url="_form.jsp" />
-		</form>
+   <c:param name="content">
+      <H2>${HtmlConst.TEXT_EMP_EDIT_PAGE_L.getValue(lang)}${employee.id}${HtmlConst.TEXT_EMP_EDIT_PAGE_R.getValue(lang)}</H2>
+      <p>${HtmlConst.TEXT_EMP_EDIT_NOTE_PASSWORD.getValue(lang)}</p>
+      <form method="POST"
+         action="<c:url value='?action=${action}&command=${commUpd}' />">
+         <c:import url="_form.jsp" />
+      </form>
 
-		<p>
-			<c:choose><c:when test="${employee.id != login_employee.id}"><a href="#" onclick="confirmDestroy();">${HtmlConst.TEXT_EMP_DELETE.getValue(lang)}</a></c:when>
-			<c:otherwise>${HtmlConst.TEXT_EMP_CANNOT_DELETE.getValue(lang)}</c:otherwise></c:choose>
-		</p>
-		<form method="POST"
-			action="<c:url value='?action=${action}&command=${commDel}' />">
-			<input type="hidden" name="${AttributeConst.EMP_ID.getValue()}" value="${employee.id}" />
-			<input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
-		</form>
-		<script>
-		var message = "<%= constants.HtmlConst.TEXT_EMP_DELETE_CONFIRM.getValue((constants.LanguageClassConst)request.getSession().getAttribute("lang")) %>"
-			function confirmDestroy(){
-				if (confirm(message)){
-					document.forms[1].submit();
-				}
-			}
-		</script>
+      <p>
+         <c:choose><c:when test="${employee.id != login_employee.id}"><a href="#" onclick="confirmDestroy();">${HtmlConst.TEXT_EMP_DELETE.getValue(lang)}</a></c:when>
+         <c:otherwise>${HtmlConst.TEXT_EMP_CANNOT_DELETE.getValue(lang)}</c:otherwise></c:choose>
+      </p>
+      <form method="POST"
+         action="<c:url value='?action=${action}&command=${commDel}' />">
+         <input type="hidden" name="${AttributeConst.EMP_ID.getValue()}" value="${employee.id}" />
+         <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
+      </form>
+      <script>
+      var message = "<%= constants.HtmlConst.TEXT_EMP_DELETE_CONFIRM.getValue((constants.LanguageClassConst)request.getSession().getAttribute("lang")) %>"
+         function confirmDestroy(){
+            if (confirm(message)){
+               document.forms[1].submit();
+            }
+         }
+      </script>
 
-		<p>
-			<a href="<c:url value='?action=${action}&command=${commIdx}' />">${HtmlConst.TEXT_EMP_BACK_LIST.getValue(lang)}</a>
-		</p>
-	</c:param>
+      <p>
+         <a href="<c:url value='?action=${action}&command=${commIdx}' />">${HtmlConst.TEXT_EMP_BACK_LIST.getValue(lang)}</a>
+      </p>
+   </c:param>
 </c:import>

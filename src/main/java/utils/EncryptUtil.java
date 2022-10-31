@@ -7,20 +7,20 @@ import javax.xml.bind.DatatypeConverter;
 
 //Class that hashing process
 public class EncryptUtil {
-	//Hash coupled string the raw password string and pepper string with SHA-256 function, and return it
-	public static String getPasswordEncrypt(String plainPass, String pepper) {
-		String ret = "";
+   //Hash coupled string the raw password string and pepper string with SHA-256 function, and return it
+   public static String getPasswordEncrypt(String plainPass, String pepper) {
+      String ret = "";
 
-		if (plainPass != null && !plainPass.equals("")) {
-			byte[] bytes;
-			String password = plainPass + pepper;
-			try {
-				bytes = MessageDigest.getInstance("SHA-256").digest(password.getBytes());
-				ret = DatatypeConverter.printHexBinary(bytes);
-			}catch(NoSuchAlgorithmException ex) {
-			}
-		}
+      if (plainPass != null && !plainPass.equals("")) {
+         byte[] bytes;
+         String password = plainPass + pepper;
+         try {
+            bytes = MessageDigest.getInstance("SHA-256").digest(password.getBytes());
+            ret = DatatypeConverter.printHexBinary(bytes);
+         }catch(NoSuchAlgorithmException ex) {
+         }
+      }
 
-		return ret;
-	}
+      return ret;
+   }
 }

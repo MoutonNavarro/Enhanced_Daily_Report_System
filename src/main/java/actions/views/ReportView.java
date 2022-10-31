@@ -17,48 +17,48 @@ import lombok.Setter;
 @AllArgsConstructor //Automatically create constructer with arguments that has all class field as argument (Lombok)
 public class ReportView {
 
-	/**
-	 * ID
-	 */
-	private Integer id;
+   /**
+    * ID
+    */
+   private Integer id;
 
-	/**
-	 * Employee whose registered the report
-	 */
-	private EmployeeView employee;
+   /**
+    * Employee whose registered the report
+    */
+   private EmployeeView employee;
 
-	/**
-	 * Date indicate when the report is
-	 */
-	private LocalDate reportDate;
+   /**
+    * Date indicate when the report is
+    */
+   private LocalDate reportDate;
 
-	/**
-	 * Report's title
-	 */
-	private String title;
+   /**
+    * Report's title
+    */
+   private String title;
 
-	/**
-	 * Content of the report
-	 */
-	private String content;
+   /**
+    * Content of the report
+    */
+   private String content;
 
-	/**
-	 * Date registered
-	 */
-	private LocalDateTime createdAt;
+   /**
+    * Date registered
+    */
+   private LocalDateTime createdAt;
 
-	/**
-	 * Date updated
-	 */
-	private LocalDateTime updatedAt;
+   /**
+    * Date updated
+    */
+   private LocalDateTime updatedAt;
 
-	/**
-	 * Employee's configure
-	 */
-	private ConfigureView configure;
+   /**
+    * Employee's configure
+    */
+   private ConfigureView configure;
 
-	/**
-	 * Number of clapped
-	 */
-	private Long claps;
+   /**
+    * Number of clapped
+    */
+   private Long claps;
 }

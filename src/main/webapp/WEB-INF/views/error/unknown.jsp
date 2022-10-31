@@ -4,7 +4,7 @@
 
 
 <c:import url="../layout/app.jsp">
-	<c:param name="content">
-		<H2>${HtmlConst.TEXT_UNKNOWN.getValue(lang)}</H2>
-	</c:param>
+   <c:param name="content">
+      <H2>${HtmlConst.TEXT_UNKNOWN.getValue(lang)}</H2>
+   </c:param>
 </c:import>

@@ -14,10 +14,10 @@
 <p><a href="#" onclick="changeBackground('');">reset</a></p>
 <script>
 function changeBackground(color){
-	content.style.backgroundColor = color;
+   content.style.backgroundColor = color;
 }
 function resetBackground(){
-	content.style.backgroundColor = '';
+   content.style.backgroundColor = '';
 }
 
 

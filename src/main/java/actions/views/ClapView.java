@@ -13,20 +13,20 @@ import lombok.Setter;
 @NoArgsConstructor //Automatically create no arguments constructor (Lonbok)
 @AllArgsConstructor //Automatically create constructor with arguments that has all class field as argument
 public class ClapView {
-	/**
-	 * Clap ID
-	 */
-	private Integer id;
-	/**
-	 * Report ID
-	 */
-	private Integer report_id;
-	/**
-	 * Employee ID
-	 */
-	private Integer employee_id;
-	/**
-	 * Reaction type(reserved)
-	 */
-	private Integer reaction;
+   /**
+    * Clap ID
+    */
+   private Integer id;
+   /**
+    * Report ID
+    */
+   private Integer report_id;
+   /**
+    * Employee ID
+    */
+   private Integer employee_id;
+   /**
+    * Reaction type(reserved)
+    */
+   private Integer reaction;
 }

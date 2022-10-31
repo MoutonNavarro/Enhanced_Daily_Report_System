@@ -7,14 +7,14 @@
 <c:set var="commUpd" value="${ForwardConst.CMD_UPDATE.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
-	<c:param name="content">
-		<H2>${HtmlConst.TEXT_REP_EDIT_PAGE.getValue(lang)}</H2>
-		<form method="POST" action="<c:url value='?action=${actRep}&command=${commUpd}' />">
-			<c:import url="_form.jsp" />
-		</form>
+   <c:param name="content">
+      <H2>${HtmlConst.TEXT_REP_EDIT_PAGE.getValue(lang)}</H2>
+      <form method="POST" action="<c:url value='?action=${actRep}&command=${commUpd}' />">
+         <c:import url="_form.jsp" />
+      </form>
 
-		<p>
-			<a href="<c:url value='?action=Report&command=index' />">${HtmlConst.TEXT_REP_BACK_LIST.getValue(lang)}</a>
-		</p>
-	</c:param>
+      <p>
+         <a href="<c:url value='?action=Report&command=index' />">${HtmlConst.TEXT_REP_BACK_LIST.getValue(lang)}</a>
+      </p>
+   </c:param>
 </c:import>

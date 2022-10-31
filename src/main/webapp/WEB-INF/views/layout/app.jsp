@@ -17,91 +17,91 @@
 
 <!DOCTYPE html>
 <html lang="${HtmlConst.HTML_LANGUAGE.getValue(lang)}">
-	<head>
-		<meta charset="UTF-8">
-		<title>${HtmlConst.TEXT_HEAD_DAILY_TITLE.getValue(lang)}</title>
-		<link rel="stylesheet" href="<c:url value='/css/reset.css' />">
-		<link rel="stylesheet" href="<c:url value='/css/style.css' />">
-		<c:if test="${sessionScope.login_employee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">	<style type="text/css"><c:import url="/WEB-INF/debug/debug.css" /></style></c:if>
+   <head>
+      <meta charset="UTF-8">
+      <title>${HtmlConst.TEXT_HEAD_DAILY_TITLE.getValue(lang)}</title>
+      <link rel="stylesheet" href="<c:url value='/css/reset.css' />">
+      <link rel="stylesheet" href="<c:url value='/css/style.css' />">
+      <c:if test="${sessionScope.login_employee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}"> <style type="text/css"><c:import url="/WEB-INF/debug/debug.css" /></style></c:if>
 
-		<script type="text/javascript">
-		var init_lang;
-			window.onload = function(){
-				init_lang = post_lang.lang_select.selectedIndex;
-				console.log(init_lang);
-			}
-			function jump(){
-				var action = document.post_lang.lang_select.options[document.post_lang.lang_select.selectedIndex].value;
-				var url = "<%= request.getAttribute("link") %>"
-				if(action != "" ){
-					if (url == "null"){
-						location.href = location.search.replace(/&?post=[^&]*/g, "")+'&'+action;
-					}else{
-						confirmReset(url + '&'+action, );
-					}
-				}
-			}
-			function confirmReset(url, action){
-				var message = "<%= constants.HtmlConst.TEXT_WARN_RESET.getValue((constants.LanguageClassConst)request.getSession().getAttribute("lang")) %>"
-				if (confirm(message)){
-					location.href = url;
-				}else{
-					document.post_lang.lang_select.selectedIndex = init_lang;
-				}
-			}
-		</script>
-	</head>
-	<body>
-		<div id="wrapper">
-			<div id="header">
-				<div id="header_menu">
-					<H1><a href="<c:url value='?action=${actTop}&command=${commIdx}' />">${HtmlConst.TEXT_HEAD_DAILY.getValue(lang)}</a></H1>&nbsp;&nbsp;&nbsp;
-					<c:if test="${sessionScope.login_employee != null}">
-						<c:if test="${sessionScope.login_employee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">
-							<a href="<c:url value='?action=${actEmp}&command=${commIdx}' />">${HtmlConst.TEXT_HEAD_MNGEMP.getValue(lang)}</a>&nbsp;
-						</c:if>
-						<a href="<c:url value='?action=${actRep}&command=${commIdx}' />">${HtmlConst.TEXT_HEAD_MNGREP.getValue(lang)}</a>&nbsp;
-					</c:if>
-				</div>
-				<c:if test="${sessionScope.login_employee != null}">
-					<div id="employee_name">
-						${HtmlConst.TEXT_HEAD_USERNAME_L.getValue(lang)}
-						<c:out value="${sessionScope.login_employee.name}" />
-						${HtmlConst.TEXT_HEAD_USERNAME_R.getValue(lang)}
-						<a href="<c:url value='?action=${actConf}&command=${commEdt}' />">${HtmlConst.TEXT_HEAD_SETTING.getValue(lang)}</a>&nbsp;&nbsp;&nbsp;
-						<a href="<c:url value='?action=${actAuth}&command=${commOut}' />">${HtmlConst.TEXT_HEAD_LOGOUT.getValue(lang)}</a>
-					</div>
-				</c:if>
-			</div>
-			<c:if test="${HtmlConst.EXAM_MESSAGE.getValue(lang) != null}"><div id="exam_message">${HtmlConst.EXAM_MESSAGE.getValue(lang)}</div></c:if>
-			<c:if test="${postFlush != null}"><div class="PostFlush" id="success">${postFlush}</div></c:if>
-			<c:if test="${postFlush_E != null}"><div class="PostFlush" id="failure">${postFlush_E}</div></c:if>
-			<div id="content">${param.content}</div>
-			<c:if test="${sessionScope.login_employee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">
-				<c:import url="/WEB-INF/debug/_main.jsp" />
-			</c:if>
-			<div id="footer"><div id="copyright">by Mouton Navarro.</div>
-				<div id="display_lang"><form action="#" name="post_lang" id="display_lang">
-					<label for="${AttributeConst.CONFIG_LANGUAGE.getValue()}">${HtmlConst.TEXT_CONFIG_DISPLAY_LANG.getValue(lang)}</label>
-					<select name="lang_select" id="post_lang"  onChange="jump()">
-						<option value="post=${DeclaredLanguage.ENG_US.getName()}"<c:if test="${lang == DeclaredLanguage.ENG_US.getLcc()}"> selected</c:if>>${DeclaredLanguage.ENG_US.getLcc().getDisplayName()}</option>
-						<option value="post=${DeclaredLanguage.JPN_JP.getName()}"<c:if test="${lang == DeclaredLanguage.JPN_JP.getLcc()}"> selected</c:if>>${DeclaredLanguage.JPN_JP.getLcc().getDisplayName()}</option>
-					</select>
-				</form></div>
-			</div>
-			<c:if test="${sessionScope.login_employee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">
-				<a href="<c:url value='?action=${actConf}&command=${commEdt}' />" >Setting</a>
-				<c:if test="${sessionScope.configure != null}">
-					<p>Your current configure</p>
-					<ul>
-						<li>Foreground color: <c:out value="${sessionScope.configure.user_color}" /></li>
-						<li>Background colour: <c:out value="${sessionScope.configure.user_background}" /></li>
-						<li>Language: <c:out value="${sessionScope.configure.language}" /></li>
-						<c:if test="false"><li>time zone: <c:out value="${sessionScope.configure.time_zone}" /></li></c:if>
-					</ul>
-				</c:if>
-			</c:if>
-		</div>
+      <script type="text/javascript">
+      var init_lang;
+         window.onload = function(){
+            init_lang = post_lang.lang_select.selectedIndex;
+            console.log(init_lang);
+         }
+         function jump(){
+            var action = document.post_lang.lang_select.options[document.post_lang.lang_select.selectedIndex].value;
+            var url = "<%= request.getAttribute("link") %>"
+            if(action != "" ){
+               if (url == "null"){
+                  location.href = location.search.replace(/&?post=[^&]*/g, "")+'&'+action;
+               }else{
+                  confirmReset(url + '&'+action, );
+               }
+            }
+         }
+         function confirmReset(url, action){
+            var message = "<%= constants.HtmlConst.TEXT_WARN_RESET.getValue((constants.LanguageClassConst)request.getSession().getAttribute("lang")) %>"
+            if (confirm(message)){
+               location.href = url;
+            }else{
+               document.post_lang.lang_select.selectedIndex = init_lang;
+            }
+         }
+      </script>
+   </head>
+   <body>
+      <div id="wrapper">
+         <div id="header">
+            <div id="header_menu">
+               <H1><a href="<c:url value='?action=${actTop}&command=${commIdx}' />">${HtmlConst.TEXT_HEAD_DAILY.getValue(lang)}</a></H1>&nbsp;&nbsp;&nbsp;
+               <c:if test="${sessionScope.login_employee != null}">
+                  <c:if test="${sessionScope.login_employee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">
+                     <a href="<c:url value='?action=${actEmp}&command=${commIdx}' />">${HtmlConst.TEXT_HEAD_MNGEMP.getValue(lang)}</a>&nbsp;
+                  </c:if>
+                  <a href="<c:url value='?action=${actRep}&command=${commIdx}' />">${HtmlConst.TEXT_HEAD_MNGREP.getValue(lang)}</a>&nbsp;
+               </c:if>
+            </div>
+            <c:if test="${sessionScope.login_employee != null}">
+               <div id="employee_name">
+                  ${HtmlConst.TEXT_HEAD_USERNAME_L.getValue(lang)}
+                  <c:out value="${sessionScope.login_employee.name}" />
+                  ${HtmlConst.TEXT_HEAD_USERNAME_R.getValue(lang)}
+                  <a href="<c:url value='?action=${actConf}&command=${commEdt}' />">${HtmlConst.TEXT_HEAD_SETTING.getValue(lang)}</a>&nbsp;&nbsp;&nbsp;
+                  <a href="<c:url value='?action=${actAuth}&command=${commOut}' />">${HtmlConst.TEXT_HEAD_LOGOUT.getValue(lang)}</a>
+               </div>
+            </c:if>
+         </div>
+         <c:if test="${HtmlConst.EXAM_MESSAGE.getValue(lang) != null}"><div id="exam_message">${HtmlConst.EXAM_MESSAGE.getValue(lang)}</div></c:if>
+         <c:if test="${postFlush != null}"><div class="PostFlush" id="success">${postFlush}</div></c:if>
+         <c:if test="${postFlush_E != null}"><div class="PostFlush" id="failure">${postFlush_E}</div></c:if>
+         <div id="content">${param.content}</div>
+         <c:if test="${sessionScope.login_employee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">
+            <c:import url="/WEB-INF/debug/_main.jsp" />
+         </c:if>
+         <div id="footer"><div id="copyright">by Mouton Navarro.</div>
+            <div id="display_lang"><form action="#" name="post_lang" id="display_lang">
+               <label for="${AttributeConst.CONFIG_LANGUAGE.getValue()}">${HtmlConst.TEXT_CONFIG_DISPLAY_LANG.getValue(lang)}</label>
+               <select name="lang_select" id="post_lang"  onChange="jump()">
+                  <option value="post=${DeclaredLanguage.ENG_US.getName()}"<c:if test="${lang == DeclaredLanguage.ENG_US.getLcc()}"> selected</c:if>>${DeclaredLanguage.ENG_US.getLcc().getDisplayName()}</option>
+                  <option value="post=${DeclaredLanguage.JPN_JP.getName()}"<c:if test="${lang == DeclaredLanguage.JPN_JP.getLcc()}"> selected</c:if>>${DeclaredLanguage.JPN_JP.getLcc().getDisplayName()}</option>
+               </select>
+            </form></div>
+         </div>
+         <c:if test="${sessionScope.login_employee.adminFlag == AttributeConst.ROLE_ADMIN.getIntegerValue()}">
+            <a href="<c:url value='?action=${actConf}&command=${commEdt}' />" >Setting</a>
+            <c:if test="${sessionScope.configure != null}">
+               <p>Your current configure</p>
+               <ul>
+                  <li>Foreground color: <c:out value="${sessionScope.configure.user_color}" /></li>
+                  <li>Background colour: <c:out value="${sessionScope.configure.user_background}" /></li>
+                  <li>Language: <c:out value="${sessionScope.configure.language}" /></li>
+                  <c:if test="false"><li>time zone: <c:out value="${sessionScope.configure.time_zone}" /></li></c:if>
+               </ul>
+            </c:if>
+         </c:if>
+      </div>
 
-	</body>
+   </body>
 </html>

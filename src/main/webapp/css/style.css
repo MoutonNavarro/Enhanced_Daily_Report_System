@@ -18,8 +18,8 @@ body {
 }
 
 h1 {
-	font-size: 24px;
-	display: inline;
+   font-size: 24px;
+   display: inline;
 }
 
 h2 {
@@ -71,158 +71,158 @@ button {
 }
 
 #flush_success{
-	width: 98%;
-	padding-top: 28px;
-	padding-left: 2%;
-	padding-bottom: 28px;
-	margin-bottom: 15px;
-	color: #155724;
-	background-color: #D4EDDA;
+   width: 98%;
+   padding-top: 28px;
+   padding-left: 2%;
+   padding-bottom: 28px;
+   margin-bottom: 15px;
+   color: #155724;
+   background-color: #D4EDDA;
 }
 
 #flush_error{
-	width: 98%;
-	padding-top: 28px;
-	padding-left: 2%;
-	padding-bottom: 28px;
-	margin-bottom: 15px;
-	color : #721C24;
-	background-color: #F8D7DA;
+   width: 98%;
+   padding-top: 28px;
+   padding-left: 2%;
+   padding-bottom: 28px;
+   margin-bottom: 15px;
+   color : #721C24;
+   background-color: #F8D7DA;
 }
 
 table#employee_list th{
-	width: 30%;
-	padding: 10px 2%;
+   width: 30%;
+   padding: 10px 2%;
 }
 
 table#employee_list td{
-	width: 29%;
-	padding: 10px 2%;
+   width: 29%;
+   padding: 10px 2%;
 }
 
 tr.row1{
-	background-color: #f2f2f2;
+   background-color: #f2f2f2;
 }
 tr.row0{
-	background-color: #ffffff;
+   background-color: #ffffff;
 }
 
 select{
-	height: 30px;
+   height: 30px;
 }
 
 #header_menu{
-	width: 57%;
-	padding-top: 17px;
-	padding-left: 3%;
-	display: inline-block;
+   width: 57%;
+   padding-top: 17px;
+   padding-left: 3%;
+   display: inline-block;
 }
 
 #employee_name{
-	color: #CCCCCC;
-	width: 36%;
-	padding-right: 3%;
-	text-align: right;
-	display: inline-block;
+   color: #CCCCCC;
+   width: 36%;
+   padding-right: 3%;
+   text-align: right;
+   display: inline-block;
 }
 
 #header a{
-	color: #eeeeee;
+   color: #eeeeee;
 }
 
 H1 a{
-	color: #EEEEEE;
+   color: #EEEEEE;
 }
 
 table#report_list th{
-	font-weight: bold;
-	padding: 10px 2%;
+   font-weight: bold;
+   padding: 10px 2%;
 }
 table#report_list .report_name{
-	width: 20%;
-	padding: 10px 2%;
+   width: 20%;
+   padding: 10px 2%;
 }
 table#report_list .report_date{
-	width: 20px;
+   width: 20px;
 }
 table#report_list .report_title{
-	width: 37%;
+   width: 37%;
 }
 table#report_list .report_claps{
-	width: 5%;
-	text-align: center;
+   width: 5%;
+   text-align: center;
 }
 table#report_list th.report_claps{
-	padding: 0px;
-	text-align: center;
+   padding: 0px;
+   text-align: center;
 }
 table#report_list .report_action{
-	width: 10%;
+   width: 10%;
 }
 pre{
-	font-family: "MS Gothic",Helvetica,Arial,sans-serif;
+   font-family: "MS Gothic",Helvetica,Arial,sans-serif;
 }
 
 H3{
-	font-size: largeer;
+   font-size: largeer;
 }
 
 #exam_message{
-	width: 89%;
-	margin-top: 13px;
-	margin-left: 3%;
-	padding-top: 13px;
-	padding-left: 5%;
-	padding-bottom: 13px;
-	margin-bottom: 15px;
-	color : #400080;
-	background-color: #ffe2c6;
+   width: 89%;
+   margin-top: 13px;
+   margin-left: 3%;
+   padding-top: 13px;
+   padding-left: 5%;
+   padding-bottom: 13px;
+   margin-bottom: 15px;
+   color : #400080;
+   background-color: #ffe2c6;
 }
 
 .PostFlush#success{
-	width: 89%;
-	margin-top: 13px;
-	margin-left: 3%;
-	padding-top: 13px;
-	padding-left: 5%;
-	padding-bottom: 13px;
-	margin-bottom: 15px;
-	color : #155724;
-	background-color: #D4EDDA;
+   width: 89%;
+   margin-top: 13px;
+   margin-left: 3%;
+   padding-top: 13px;
+   padding-left: 5%;
+   padding-bottom: 13px;
+   margin-bottom: 15px;
+   color : #155724;
+   background-color: #D4EDDA;
 }
 .PostFlush#failure{
-	width: 89%;
-	margin-top: 13px;
-	margin-left: 3%;
-	padding-top: 13px;
-	padding-left: 5%;
-	padding-bottom: 13px;
-	margin-bottom: 15px;
-	color : #721C24;
-	background-color: #F8D7DA;
+   width: 89%;
+   margin-top: 13px;
+   margin-left: 3%;
+   padding-top: 13px;
+   padding-left: 5%;
+   padding-bottom: 13px;
+   margin-bottom: 15px;
+   color : #721C24;
+   background-color: #F8D7DA;
 }
 
 #config_defferent_lang{
-	width: 98%;
-	padding-top: 28px;
-	padding-left: 2%;
-	padding-bottom: 28px;
-	margin-bottom: 15px;
-	color : #400080;
-	background-color: #ffe2c6;
+   width: 98%;
+   padding-top: 28px;
+   padding-left: 2%;
+   padding-bottom: 28px;
+   margin-bottom: 15px;
+   color : #400080;
+   background-color: #ffe2c6;
 }
 
 #footer div#copyright{
-	padding-left: 20%;
-	width: 55%;
-	text-align: center;
-	display: inline-block;
+   padding-left: 20%;
+   width: 55%;
+   text-align: center;
+   display: inline-block;
 }
 
 #footer div#display_lang{
-	width: 20%;
-	padding-right: 3%;
-	text-align: right;
-	display: inline-block;
+   width: 20%;
+   padding-right: 3%;
+   text-align: right;
+   display: inline-block;
 }
 

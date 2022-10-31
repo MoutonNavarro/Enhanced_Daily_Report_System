@@ -16,43 +16,43 @@ import lombok.Setter;
 @AllArgsConstructor //Automatically create constructor with arguments that has all class field as argument
 public class EmployeeView {
 
-	/**
-	 * id
-	 */
-	private Integer id;
+   /**
+    * id
+    */
+   private Integer id;
 
-	/**
-	 * Employee code
-	 */
-	private String code;
+   /**
+    * Employee code
+    */
+   private String code;
 
-	/**
-	 * Name
-	 */
-	private String name;
+   /**
+    * Name
+    */
+   private String name;
 
-	/**
-	 * Password
-	 */
-	private String password;
+   /**
+    * Password
+    */
+   private String password;
 
-	/**
-	 * Whether has administrator privileges (general: 0, administrator: 1)
-	 */
-	private Integer adminFlag;
+   /**
+    * Whether has administrator privileges (general: 0, administrator: 1)
+    */
+   private Integer adminFlag;
 
-	/**
-	 * Date registered
-	 */
-	private LocalDateTime createdAt;
+   /**
+    * Date registered
+    */
+   private LocalDateTime createdAt;
 
-	/**
-	 * Date updated
-	 */
-	private LocalDateTime updatedAt;
+   /**
+    * Date updated
+    */
+   private LocalDateTime updatedAt;
 
-	/**
-	 * Whether has been deleted (active: 0, deleted: 1)
-	 */
-	private Integer deleteFlag;
+   /**
+    * Whether has been deleted (active: 0, deleted: 1)
+    */
+   private Integer deleteFlag;
 }

@@ -21,248 +21,248 @@ import services.ReportService;
  */
 public class ReportAction extends ActionBase {
 
-	private ReportService service;
+   private ReportService service;
 
-	/**
-	 * Do the method
-	 */
-	@Override
-	public void process() throws ServletException, IOException {
+   /**
+    * Do the method
+    */
+   @Override
+   public void process() throws ServletException, IOException {
 
-		try {
-			service = new ReportService();
+      try {
+         service = new ReportService();
 
-			//Do method
-			invoke();
-		}finally {
-			service.close();
-		}
+         //Do method
+         invoke();
+      }finally {
+         service.close();
+      }
 
-	}
+   }
 
-	/**
-	 * Displays list screen
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public void index() throws ServletException, IOException{
-		//Acquires report data for displays list screen of number of specified page
-		int page = getPage();
-		List<ReportView> reports = service.getAllPerPage(page);
-		try(ClapService cs = new ClapService()){
-			for (ReportView report : reports) {
-				report.setClaps(cs.countAllByReport(report.getId()));
-			}
-		}
+   /**
+    * Displays list screen
+    * @throws ServletException
+    * @throws IOException
+    */
+   public void index() throws ServletException, IOException{
+      //Acquires report data for displays list screen of number of specified page
+      int page = getPage();
+      List<ReportView> reports = service.getAllPerPage(page);
+      try(ClapService cs = new ClapService()){
+         for (ReportView report : reports) {
+            report.setClaps(cs.countAllByReport(report.getId()));
+         }
+      }
 
-		//Acquires number of all report data
-		long reportsCount = service.countAll();
+      //Acquires number of all report data
+      long reportsCount = service.countAll();
 
-		putRequestScope(AttributeConst.REPORTS, reports);	//Acquired report data
-		putRequestScope(AttributeConst.REP_COUNT, reportsCount);	//Number of all report data
-		putRequestScope(AttributeConst.PAGE, page);	//Number of page
-		putRequestScope(AttributeConst.MAX_ROW, JpaConst.ROW_PER_PAGE);	//Number of record for displays at one page
+      putRequestScope(AttributeConst.REPORTS, reports);  //Acquired report data
+      putRequestScope(AttributeConst.REP_COUNT, reportsCount); //Number of all report data
+      putRequestScope(AttributeConst.PAGE, page);  //Number of page
+      putRequestScope(AttributeConst.MAX_ROW, JpaConst.ROW_PER_PAGE);   //Number of record for displays at one page
 
-		//If there is set flush message at the session then move to request scope and delete from the session
-		String flush = getSessionScope(AttributeConst.FLUSH);
-		if(flush != null) {
-			putRequestScope(AttributeConst.FLUSH, flush);
-			removeSessionScope(AttributeConst.FLUSH);
-		}
+      //If there is set flush message at the session then move to request scope and delete from the session
+      String flush = getSessionScope(AttributeConst.FLUSH);
+      if(flush != null) {
+         putRequestScope(AttributeConst.FLUSH, flush);
+         removeSessionScope(AttributeConst.FLUSH);
+      }
 
-		//Displays list screen
-		forward(ForwardConst.FW_REP_INDEX);
-	}
+      //Displays list screen
+      forward(ForwardConst.FW_REP_INDEX);
+   }
 
-	/**
-	 * Displays new registration screen
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public void entryNew() throws ServletException, IOException{
+   /**
+    * Displays new registration screen
+    * @throws ServletException
+    * @throws IOException
+    */
+   public void entryNew() throws ServletException, IOException{
 
-		putRequestScope(AttributeConst.TOKEN, getTokenId());	//the token for anti-CSRF
+      putRequestScope(AttributeConst.TOKEN, getTokenId());  //the token for anti-CSRF
 
-		//Set the report's date = today's date to empty instance of report information
-		ReportView rv = new ReportView();
-		rv.setReportDate(LocalDate.now());	//[Locked] We must implements the function of the time zone setting
-		putRequestScope(AttributeConst.REPORT, rv);	//Report instance with set only date
+      //Set the report's date = today's date to empty instance of report information
+      ReportView rv = new ReportView();
+      rv.setReportDate(LocalDate.now());  //[Locked] We must implements the function of the time zone setting
+      putRequestScope(AttributeConst.REPORT, rv);  //Report instance with set only date
 
-		//Displays new registration screen
-		forward(ForwardConst.FW_REP_NEW);
-	}
+      //Displays new registration screen
+      forward(ForwardConst.FW_REP_NEW);
+   }
 
-	/**
-	 * Do registration
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public void create() throws ServletException, IOException{
+   /**
+    * Do registration
+    * @throws ServletException
+    * @throws IOException
+    */
+   public void create() throws ServletException, IOException{
 
-		//Anti-CSRF token check
-		if (checkToken()) {
+      //Anti-CSRF token check
+      if (checkToken()) {
 
-			//Set today's date if there isn't input date at the report
-			LocalDate day = null;
-			if(getRequestParam(AttributeConst.REP_DATE) == null
-				|| getRequestParam(AttributeConst.REP_DATE).equals("")) {
-				day = LocalDate.now();	//[Locked] We must implements the function of the time zone setting
-			}else {
-				day = LocalDate.parse(getRequestParam(AttributeConst.REP_DATE));
-			}
-			//Acquire logged in employee from the session
-			EmployeeView ev = (EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP);
+         //Set today's date if there isn't input date at the report
+         LocalDate day = null;
+         if(getRequestParam(AttributeConst.REP_DATE) == null
+            || getRequestParam(AttributeConst.REP_DATE).equals("")) {
+            day = LocalDate.now();  //[Locked] We must implements the function of the time zone setting
+         }else {
+            day = LocalDate.parse(getRequestParam(AttributeConst.REP_DATE));
+         }
+         //Acquire logged in employee from the session
+         EmployeeView ev = (EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP);
 
-			//Create an instance of the report based on the parameter's value
-			ReportView rv = new ReportView(
-				null,
-				ev,	//Register logged in employee as a report creator
-				day,
-				getRequestParam(AttributeConst.REP_TITLE),
-				getRequestParam(AttributeConst.REP_CONTENT),
-				null,
-				null, null, null);
+         //Create an instance of the report based on the parameter's value
+         ReportView rv = new ReportView(
+            null,
+            ev,   //Register logged in employee as a report creator
+            day,
+            getRequestParam(AttributeConst.REP_TITLE),
+            getRequestParam(AttributeConst.REP_CONTENT),
+            null,
+            null, null, null);
 
-			//Register the report information
-			List<String> errors = service.create(rv, getSessionScope(AttributeConst.LANGUAGE));
+         //Register the report information
+         List<String> errors = service.create(rv, getSessionScope(AttributeConst.LANGUAGE));
 
-			if(errors.size() > 0) {
-				//Errors occurred at registration
+         if(errors.size() > 0) {
+            //Errors occurred at registration
 
-				putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
-				putRequestScope(AttributeConst.REPORT, rv);	//Input the report information
-				putRequestScope(AttributeConst.ERR, errors);	//List of errors
-				putRequestScope(AttributeConst.LINK, request.getRequestURL() + "?action=Report&command=entryNew");	//Set as post link
+            putRequestScope(AttributeConst.TOKEN, getTokenId());  //The token for anti-CSRF
+            putRequestScope(AttributeConst.REPORT, rv);  //Input the report information
+            putRequestScope(AttributeConst.ERR, errors); //List of errors
+            putRequestScope(AttributeConst.LINK, request.getRequestURL() + "?action=Report&command=entryNew"); //Set as post link
 
-				//Re-display the new registration screen
-				forward(ForwardConst.FW_REP_NEW);
-			}else {
-				//In case no errors occurred
+            //Re-display the new registration screen
+            forward(ForwardConst.FW_REP_NEW);
+         }else {
+            //In case no errors occurred
 
-				//Set flush message of registration complete at the session
-				putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
+            //Set flush message of registration complete at the session
+            putSessionScope(AttributeConst.FLUSH, MessageConst.I_REGISTERED.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
 
-				//Redirect to the list screen
-				redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
-			}
-		}
+            //Redirect to the list screen
+            redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+         }
+      }
 
-	}
+   }
 
-	/**
-	 * Displays detail screen
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public void show() throws ServletException, IOException{
+   /**
+    * Displays detail screen
+    * @throws ServletException
+    * @throws IOException
+    */
+   public void show() throws ServletException, IOException{
 
-		//If there is set flush message at the session then move to request scope and delete from the session
-		String flush = getSessionScope(AttributeConst.FLUSH);
-		if(flush != null) {
-			putRequestScope(AttributeConst.FLUSH, flush);
-			removeSessionScope(AttributeConst.FLUSH);
-		}
-		List<String> errors = getSessionScope(AttributeConst.ERR);
-		if(errors != null) {
-			putRequestScope(AttributeConst.ERR, errors);
-			removeSessionScope(AttributeConst.ERR);
-		}
+      //If there is set flush message at the session then move to request scope and delete from the session
+      String flush = getSessionScope(AttributeConst.FLUSH);
+      if(flush != null) {
+         putRequestScope(AttributeConst.FLUSH, flush);
+         removeSessionScope(AttributeConst.FLUSH);
+      }
+      List<String> errors = getSessionScope(AttributeConst.ERR);
+      if(errors != null) {
+         putRequestScope(AttributeConst.ERR, errors);
+         removeSessionScope(AttributeConst.ERR);
+      }
 
-		//Acquires the report data with ID as condition
-		ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
+      //Acquires the report data with ID as condition
+      ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
 
-		if (rv == null) {
-			//Displays error screen if corresponds report data is not exists
-			forward(ForwardConst.FW_ERR_UNKNOWN);
-		}else {
-			putRequestScope(AttributeConst.REPORT, rv);
-			putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
-			try (ClapService cs = new ClapService()){
-				putRequestScope(AttributeConst.CLAP, ClappedEmployeeView.toList(cs.getClapsAllByReport(rv.getId())));	//All claps at the report
-				putRequestScope(AttributeConst.CLAP_COUNT, cs.countAllByReport(rv.getId()));	//count of clap at this report
-				EmployeeView ev = (EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP);
-				putRequestScope(AttributeConst.IS_CLAPPED, cs.isEmployeeReactedTheReport(rv.getId(), ev.getId()));	//Should we have primitive value as arguments?
-			}
+      if (rv == null) {
+         //Displays error screen if corresponds report data is not exists
+         forward(ForwardConst.FW_ERR_UNKNOWN);
+      }else {
+         putRequestScope(AttributeConst.REPORT, rv);
+         putRequestScope(AttributeConst.TOKEN, getTokenId());  //The token for anti-CSRF
+         try (ClapService cs = new ClapService()){
+            putRequestScope(AttributeConst.CLAP, ClappedEmployeeView.toList(cs.getClapsAllByReport(rv.getId()))); //All claps at the report
+            putRequestScope(AttributeConst.CLAP_COUNT, cs.countAllByReport(rv.getId()));  //count of clap at this report
+            EmployeeView ev = (EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP);
+            putRequestScope(AttributeConst.IS_CLAPPED, cs.isEmployeeReactedTheReport(rv.getId(), ev.getId())); //Should we have primitive value as arguments?
+         }
 
-			//Displays detail screen
-			forward(ForwardConst.FW_REP_SHOW);
-		}
-	}
+         //Displays detail screen
+         forward(ForwardConst.FW_REP_SHOW);
+      }
+   }
 
-	/**
-	 * Displays edit screen
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public void edit() throws ServletException, IOException{
+   /**
+    * Displays edit screen
+    * @throws ServletException
+    * @throws IOException
+    */
+   public void edit() throws ServletException, IOException{
 
-		//Acquires the report data with ID as condition
-		ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
+      //Acquires the report data with ID as condition
+      ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
 
-		//Acquires logged in employee information from the session
-		EmployeeView ev = (EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP);
+      //Acquires logged in employee information from the session
+      EmployeeView ev = (EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP);
 
-		if(rv == null || ev.getId() != rv.getEmployee().getId()) {
-			//If corresponds report data is not exists or
-			//logged in employee is not the creator then displays error screen
-			forward(ForwardConst.FW_ERR_UNKNOWN);
-		}else {
+      if(rv == null || ev.getId() != rv.getEmployee().getId()) {
+         //If corresponds report data is not exists or
+         //logged in employee is not the creator then displays error screen
+         forward(ForwardConst.FW_ERR_UNKNOWN);
+      }else {
 
-			putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
-			putRequestScope(AttributeConst.REPORT, rv);	//Acquired report data
+         putRequestScope(AttributeConst.TOKEN, getTokenId());  //The token for anti-CSRF
+         putRequestScope(AttributeConst.REPORT, rv);  //Acquired report data
 
-			//Displays edit screen
-			forward(ForwardConst.FW_REP_EDIT);
-		}
-	}
+         //Displays edit screen
+         forward(ForwardConst.FW_REP_EDIT);
+      }
+   }
 
-	/**
-	 * Updating
-	 * @throws ServletException
-	 * @throws IOException
-	 */
-	public void update() throws ServletException, IOException{
-		//Anti-CSRF token check
-		if(checkToken()) {
+   /**
+    * Updating
+    * @throws ServletException
+    * @throws IOException
+    */
+   public void update() throws ServletException, IOException{
+      //Anti-CSRF token check
+      if(checkToken()) {
 
-			//Acquires the report data with ID as condition
-			ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
+         //Acquires the report data with ID as condition
+         ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
 
-			//Acquires logged in employee information from the session
-			EmployeeView ev = (EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP);
-			if(rv == null || ev.getId() != rv.getEmployee().getId()) {
-				//If corresponds report data is not exists or
-				//logged in employee is not the creator then displays error screen
-				forward(ForwardConst.FW_ERR_UNKNOWN);
-				return;
-			}
+         //Acquires logged in employee information from the session
+         EmployeeView ev = (EmployeeView)getSessionScope(AttributeConst.LOGIN_EMP);
+         if(rv == null || ev.getId() != rv.getEmployee().getId()) {
+            //If corresponds report data is not exists or
+            //logged in employee is not the creator then displays error screen
+            forward(ForwardConst.FW_ERR_UNKNOWN);
+            return;
+         }
 
-			//Set input content of the report
-			rv.setReportDate(toLocalDate(getRequestParam(AttributeConst.REP_DATE)));
-			rv.setTitle(getRequestParam(AttributeConst.REP_TITLE));
-			rv.setContent(getRequestParam(AttributeConst.REP_CONTENT));
+         //Set input content of the report
+         rv.setReportDate(toLocalDate(getRequestParam(AttributeConst.REP_DATE)));
+         rv.setTitle(getRequestParam(AttributeConst.REP_TITLE));
+         rv.setContent(getRequestParam(AttributeConst.REP_CONTENT));
 
-			List<String> errors = service.update(rv, getSessionScope(AttributeConst.LANGUAGE));
+         List<String> errors = service.update(rv, getSessionScope(AttributeConst.LANGUAGE));
 
-			if(errors.size() > 0) {
-				//In case errors occurred at updating
+         if(errors.size() > 0) {
+            //In case errors occurred at updating
 
-				putRequestScope(AttributeConst.TOKEN, getTokenId());	//The token for anti-CSRF
-				putRequestScope(AttributeConst.REPORT, rv);	//Input the report information
-				putRequestScope(AttributeConst.ERR, errors);	//List of errors
-				putRequestScope(AttributeConst.LINK, request.getRequestURL() + "?action=Report&command=edit&id=" + rv.getId());	//Set as post link
+            putRequestScope(AttributeConst.TOKEN, getTokenId());  //The token for anti-CSRF
+            putRequestScope(AttributeConst.REPORT, rv);  //Input the report information
+            putRequestScope(AttributeConst.ERR, errors); //List of errors
+            putRequestScope(AttributeConst.LINK, request.getRequestURL() + "?action=Report&command=edit&id=" + rv.getId());   //Set as post link
 
-				//Re-displays edit screen
-				forward(ForwardConst.FW_REP_EDIT);
-			}else {
-				//In case there isn't errors occurred
+            //Re-displays edit screen
+            forward(ForwardConst.FW_REP_EDIT);
+         }else {
+            //In case there isn't errors occurred
 
-				//Set flush message of update complete at the session
-				putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
+            //Set flush message of update complete at the session
+            putSessionScope(AttributeConst.FLUSH, MessageConst.I_UPDATED.getMessage(getSessionScope(AttributeConst.LANGUAGE)));
 
-				//Redirect to the list screen
-				redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
-			}
-		}
-	}
+            //Redirect to the list screen
+            redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+         }
+      }
+   }
 }

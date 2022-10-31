@@ -8,13 +8,13 @@
 <c:set var="commCrt" value="${ForwardConst.CMD_CREATE.getValue()}" />
 
 <c:import url="../layout/app.jsp">
-	<c:param name="content">
-		<H2>${HtmlConst.TEXT_EMP_NEW_PAGE.getValue(lang)}</H2>
+   <c:param name="content">
+      <H2>${HtmlConst.TEXT_EMP_NEW_PAGE.getValue(lang)}</H2>
 
-		<form method="POST" action="<c:url value='?action=${action}&command=${commCrt}' />">
-			<c:import url="_form.jsp" />
-		</form>
+      <form method="POST" action="<c:url value='?action=${action}&command=${commCrt}' />">
+         <c:import url="_form.jsp" />
+      </form>
 
-		<p><a href="<c:url value='?action=${action}&command=${commIdx}' />">${HtmlConst.TEXT_EMP_BACK_LIST.getValue(lang)}</a></p>
-	</c:param>
+      <p><a href="<c:url value='?action=${action}&command=${commIdx}' />">${HtmlConst.TEXT_EMP_BACK_LIST.getValue(lang)}</a></p>
+   </c:param>
 </c:import>

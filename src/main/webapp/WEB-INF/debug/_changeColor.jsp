@@ -14,10 +14,10 @@
 <p><a href="#" onclick="resetColor();">reset</a></p>
 <script>
 function changeColor(color){
-	content.style.color = color;
+   content.style.color = color;
 }
 function resetColor(){
-	content.style.color = "";
+   content.style.color = "";
 }
 
 

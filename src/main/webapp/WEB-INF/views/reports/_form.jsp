@@ -5,12 +5,12 @@
 <%@ page import="constants.HtmlConst" %>
 
 <c:if test="${errors != null}">
-	<div id="flush_error">
-		${HtmlConst.TEXT_FORM_ERR.getValue(lang)}<br>
-		<c:forEach var="error" items="${errors}">
-			*<c:out value="${error}" /><br>
-		</c:forEach>
-	</div>
+   <div id="flush_error">
+      ${HtmlConst.TEXT_FORM_ERR.getValue(lang)}<br>
+      <c:forEach var="error" items="${errors}">
+         *<c:out value="${error}" /><br>
+      </c:forEach>
+   </div>
 </c:if>
 <fmt:parseDate value="${report.reportDate}" pattern="yyyy-MM-dd" var="reportDay" type="date" />
 <label for="${AttributeConst.REP_DATE.getValue()}">${HtmlConst.TEXT_DATE.getValue(lang)}</label><br>

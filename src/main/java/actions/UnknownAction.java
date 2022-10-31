@@ -11,13 +11,13 @@ import constants.ForwardConst;
  */
 public class UnknownAction extends ActionBase {
 
-	/**
-	 * Displays common error screen "Page is not found"
-	 */
-	@Override
-	public void process() throws ServletException, IOException {
-		//Displays error screen
-		forward(ForwardConst.FW_ERR_UNKNOWN);
-	}
+   /**
+    * Displays common error screen "Page is not found"
+    */
+   @Override
+   public void process() throws ServletException, IOException {
+      //Displays error screen
+      forward(ForwardConst.FW_ERR_UNKNOWN);
+   }
 
 }
