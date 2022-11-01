@@ -48,14 +48,14 @@ public class InitializeSession implements Filter {
          //e.g: post=English_United-States
          LanguageClassConst lang = (LanguageClassConst)((HttpServletRequest) request).getSession().getAttribute(AttributeConst.LANGUAGE.getValue());
          if (null != (nullCheck = DeclaredLanguage.getByName((String)nullCheck))) { //Continue expression with cast to target type if it is not null
-            LanguageClassConst lcc = ((DeclaredLanguage)nullCheck).getLcc();
+            LanguageClassConst lcc = ((DeclaredLanguage)nullCheck).getLcc();	//Do not nullCheck use for directly assign to another variables or arguments
             if (lcc != lang) {
                ((HttpServletRequest) request).setAttribute(AttributeConst.POST_FLUSH.getValue(), MessageConst.I_POST_LANG_UPDATED_L.getMessage(lcc)
                         + lcc.getDisplayName() + MessageConst.I_POST_LANG_UPDATED_R.getMessage(lcc));
                try(ConfigureService cs = new ConfigureService()){
                   int id;
-                  if (null == (nullCheck = ((HttpServletRequest) request).getSession().getAttribute(AttributeConst.LOGIN_EMP.getValue())) ? false
-                        : null == cs.findOne(id = ((EmployeeView)nullCheck).getId())){
+                  if (null != (nullCheck = ((HttpServletRequest) request).getSession().getAttribute(AttributeConst.LOGIN_EMP.getValue()))
+                        && null == cs.findOne(id = ((EmployeeView)nullCheck).getId())){	//In case that you logged in and your configuration uninitialized
                      LocalDateTime ldt = LocalDateTime.now();
                      ConfigureView cv = new ConfigureView(id, ldt, ldt, lcc.getLanguageCode(), lcc.getLanguageCountry(), "UTC+09:00", "", (byte)2, "default", false, false, "", "", false);  //Empty Configure instance
                      cs.create(cv); //The initialization timing may change after update
