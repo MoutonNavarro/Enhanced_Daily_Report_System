@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="constants.ForwardConst" %>
 <%@ page import="constants.HtmlConst" %>
+<%@ page import="constants.FormatConst" %>
 
 <c:set var="actTop" value="${ForwardConst.ACT_TOP.getValue()}" />
 <c:set var="actEmp" value="${ForwardConst.ACT_EMP.getValue()}" />
@@ -33,7 +34,7 @@
 					<fmt:parseDate value="${report.reportDate}" pattern="yyyy-MM-dd" var="reportDay" type="date" />
 					<tr class="row${status.count % 2}"<c:if test="${report.configure.user_color != ''}"> style="color:<c:out value='${report.configure.user_color}' />;"</c:if>>
 						<td class="report_name"><c:out value="${report.employee.name}" /></td>
-						<td class="report_date"><fmt:formatDate value="${reportDay}" pattern="MM/dd/yyyy" /></td>
+						<td class="report_date"><fmt:formatDate value="${reportDay}" pattern="${FormatConst.DATE_FORMAT.getFormat(lang)}" /></td>
 						<td class="report_title">${report.title}</td>
 						<td class="report_action"><a href="<c:url value='?action=${actRep}&command=${commShow}&id=${report.id}' />">${HtmlConst.TEXT_SEEDETAIL.getValue(lang)}</a></td>
 					</tr>

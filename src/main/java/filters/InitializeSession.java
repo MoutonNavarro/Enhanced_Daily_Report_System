@@ -54,8 +54,8 @@ public class InitializeSession implements Filter {
 								+ lcc.getDisplayName() + MessageConst.I_POST_LANG_UPDATED_R.getMessage(lcc));
 					try(ConfigureService cs = new ConfigureService()){
 						int id;
-						if (null == (nullCheck = ((HttpServletRequest) request).getSession().getAttribute(AttributeConst.LOGIN_EMP.getValue())) ? false
-								: null == cs.findOne(id = ((EmployeeView)nullCheck).getId())){
+						if (null != (nullCheck = ((HttpServletRequest) request).getSession().getAttribute(AttributeConst.LOGIN_EMP.getValue()))
+								&& null == cs.findOne(id = ((EmployeeView)nullCheck).getId())){
 							LocalDateTime ldt = LocalDateTime.now();
 							ConfigureView cv = new ConfigureView(id, ldt, ldt, lcc.getLanguageCode(), lcc.getLanguageCountry(), "UTC+09:00", "", (byte)2, "default", false, false, "", "", false);	//Empty Configure instance
 							cs.create(cv);	//The initialization timing may change after update
